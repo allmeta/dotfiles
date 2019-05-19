@@ -1,8 +1,8 @@
 #!/bin/bash -eu
 if [[ $(echo "dln" | grep $1) ]] 
 then
-    # cd to 
-    cd "${BASH_SOURCE[0]}"
+    parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+    cd "$parent_path"
     case $1 in
     "l")
         file="./themes/light"
@@ -36,15 +36,16 @@ then
             # need to split line on space
             line_split=($line_upper)
             # use sed here to replace with current color
-            $(sed -i -e "s/!${line_split[0]}/${line_split[1]}/g" $dunst_file)
+            $(sed -i --follow-symlinks -e "s/!${line_split[0]}/${line_split[1]}/g" $dunst_file)
             # replace betterlockscreen
-            $(sed -i -e "s/!${line_split[0]}/${line_split[1]}/g" $bls_file)
+            $(sed -i --follow-symlinks -e "s/!${line_split[0]}/${line_split[1]}/g" $bls_file)
             
         fi
     done < $file
     # replace cursorColor to cursor in kitty
     kitty_rep="${kitty/cursorColor/cursor}"
     # echo -e $xcolors
+    echo $bls_file
     echo -e $kitty_rep > "./templates/kitty"
     echo -e $xcolors > "./templates/xcolors"
     $(xrdb -merge $HOME/.Xresources)
