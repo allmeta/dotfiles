@@ -1,0 +1,27 @@
+background #fbf1c7
+foreground #282828
+cursorColor #fbf1c7
+
+color0 #7c6f64
+color8 #3c3836
+
+color1 #cc241d
+color9 #9d0006
+
+color2 #98971d
+color10 #79740e
+
+color3 #d79921
+color11 #b57514
+
+color4 #458588
+color12 #076678
+
+color5 #b16286
+color13 #8f3f71
+
+color6 #689d6a
+color14 #427b58
+
+color7 #fbf1c7
+color15 #928374

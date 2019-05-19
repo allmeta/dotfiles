@@ -1,0 +1,42 @@
+;=====================================================
+;     File Includes
+;=====================================================
+
+[section/base]
+include-file = $HOME/.config/polybar/master.conf
+include-file = $HOME/.config/polybar/modules.conf
+
+[bar/openbox-bar]
+inherit = bar/master
+
+; Use $ xrandr -q | grep " connected" | cut -d ' ' -f1
+monitor = 
+monitor-fallback = 
+
+modules-left   = workspaces
+modules-center = clock 
+modules-right  = battery pulseaudio network
+
+[bar/i3-bar]
+inherit=bar/master
+monitor =
+monitor-fallback= 
+
+tray-position = right
+tray-padding = 2
+tray-transparent = true
+
+modules-left = workspaces
+modules-center = clock
+modules-right = pulseaudio backlight network battery
+
+; Need to have backlight here, 
+; didn't work when but in modules/
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.magenta-alt}
+format-underline = ${colors.magenta-alt}
+label = %percentage%%
