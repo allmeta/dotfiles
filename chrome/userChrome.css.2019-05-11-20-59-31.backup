@@ -1,0 +1,78 @@
+@import "global/variables.css";
+@import "global/global.css";
+@import "tabbar/tabbar.css";
+@import "navbar/navbar.css";
+@import "personalbar/personalbar.css";
+@import "popup/popup.css";
+#context-pocket{
+    display:none;
+}
+#context-viewinfo{
+    display:none !important;
+}
+#screenshots_mozilla_org_create-screenshot{
+    display:none !important;
+}
+#context-selectall{
+    display:none !important;
+}
+#context-sendpagetodevice{
+    display:none !important;
+}
+#context-navigation{
+    display:none !important;
+}
+#context-sep-navigation{
+    display:none !important;
+}
+#context-sep-sendpagetodevice{
+    display:none !important;
+}
+#context-savelinktopocket{
+    display:none !important;
+}
+#context-openlink{
+    display:none !important;
+}
+#context-openlinkprivate{
+    display: none !important;
+}
+#context-openlinkinusercontext-menu{
+    display:none !important;
+}
+#context-sendlinktodevice{
+    display:none !important;
+}
+#context-savelink{
+    display: none !important;
+}
+#context-bookmarklink{
+    display:none !important;
+}
+#context-viewbgimage{
+    display:none !important;
+}
+#context-sep-sendlinktodevice{
+    display:none !important;
+}
+#context-sep-viewsource{
+    display:none !important;
+}
+/* Hide company name for EVSSL certs */
+#identity-box.verifiedIdentity #identity-icon-labels {
+    display: none !important;
+}
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+
+#tabbrowser-tabs .tabbrowser-tab .tab-close-button { 
+    display:none!important; 
+}
+toolbarbutton#alltabs-button {
+    -moz-binding: url("userChrome.xml#js");
+}
+img { 
+    image-rendering: optimizeSpeed;             /*                     */
+    image-rendering: -moz-crisp-edges;          /* Firefox             */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed       */
+    }
