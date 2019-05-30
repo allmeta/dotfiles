@@ -136,7 +136,7 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
     --in-content-category-header-background: var(--tone-8)!important;
     --selected-icon-fill-color: var(--tone-2)!important;
     --in-content-dark-header-background: var(--tone-9)!important;
-    --tab-line-selected-color: var(--theme-highlight-orange)!important;
+    --tab-line-selected-color: var(--accent-2)!important;
     --secure-connection-color: var(--accent-1);
     --tab-background-color: var(--tone-9)!important;
     --tab-color: var(--in-content-selected-text);
@@ -151,7 +151,9 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
     --cm-matching-bracket: rgba(255,255,255,.25)!important;
     --cm-search-background: rgba(24,29,32,1)!important;
     --cm-red: #de7474!important;
-    
+    --accent-1: var(--orange-50);
+--accent-2: var(--orange-60);
+--accent-3: var(--orange-70);
     --dummy-variable-for-updater-scripts: black
   }
 }
@@ -232,7 +234,7 @@ screen and (-moz-os-version:windows-win10) {
   }
   #context-navigation,
   #context-sep-navigation {
-    padding: 6px 8px!important
+    padding: 0!important
   }
   #BMB_bookmarksPopup menupopup {
     padding: 4px 0 0!important
