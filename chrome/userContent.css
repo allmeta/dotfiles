@@ -151,7 +151,9 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
     --cm-matching-bracket: rgba(255,255,255,.25)!important;
     --cm-search-background: rgba(24,29,32,1)!important;
     --cm-red: #de7474!important;
-    
+    --accent-1: var(--orange-50);
+--accent-2: var(--orange-60);
+--accent-3: var(--orange-70);
     --dummy-variable-for-updater-scripts: black
   }
 }
