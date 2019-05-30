@@ -62,9 +62,9 @@ exec betterlockscreen -w
 bindsym $mod+w exec firefox
 
 # volume and brightness
-bindsym XF86AudioRaiseVolume exec pamixer -i 10
-bindsym XF86AudioLowerVolume exec pamixer -d 10
-bindsym XF86AudioMute exec pamixer -t
+bindsym XF86AudioRaiseVolume exec ~/bin/pa_sound.sh i
+bindsym XF86AudioLowerVolume exec ~/bin/pa_sound.sh d
+bindsym XF86AudioMute exec ~/bin/pa_sound.sh t
 bindsym XF86MonBrightnessUp exec xbacklight +5
 bindsym XF86MonBrightnessDown exec xbacklight -5
 
