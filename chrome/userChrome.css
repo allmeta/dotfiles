@@ -11,27 +11,6 @@
 @slackInvitation  https://join.slack.com/t/shadowfox-workspace/shared_invite/enQtMzU3NTU2NTQ0NDA1LTcwN2I1M2I4MzlkMWFlMWEzODc2MTY1NzU2NjhlYTgzOGY5ZTQzM2UxZTFiZDMxNDM1NDMyNjlhOWQ4MWQ3ZDc
 @license          MIT License Copyright (c) 2017 overdodactyl
 ================= */
-/* fook scrollbar */
-
-@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
-#tabbrowser-tabs .tabbrowser-tab .tab-close-button { 
-  display:none!important; 
-}
-toolbarbutton#alltabs-button {
-    -moz-binding: url("userChrome.xml#js");
-}
-/* 
-   Hide EVSSL Company Name in the identity area 
-   unless hovered for half a second
-*/
-#identity-box.verifiedIdentity #identity-icon-labels {
-  visibility: collapse !important;
-  transition: visibility 250ms ease-in-out;
-}
-#identity-box.verifiedIdentity:hover #identity-icon-labels {
-  visibility: visible !important;
-  transition: visibility 250ms ease-in-out 500ms;
-}
 @-moz-document url-prefix(https://discovery.addons.mozilla.org),
 url-prefix(chrome://),
 url-prefix(about:),
@@ -56,7 +35,7 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
     --purple-90: #25003e;
     --blue-40: #45a1ff;
     --blue-50: #0a84ff;
-    --blue-60: #665c54;
+    --blue-60: #0060df;
     --blue-70: #003eaa;
     --blue-80: #002275;
     --blue-90: #000f40;
@@ -85,13 +64,13 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
     --orange-70: #a44900;
     --orange-80: #712b00;
     --orange-90: #3e1300;
-    --grey-10: #a89984;
-    --grey-20: #ebdbb2;
-    --grey-30: #a89984;
+    --grey-10: #f9f9fa;
+    --grey-20: #ededf0;
+    --grey-30: #d7d7db;
     --grey-40: #b1b1b3;
     --grey-50: #737373;
-    --grey-60: #282828;
-    --grey-70: #282828;
+    --grey-60: #4a4a4f;
+    --grey-70: #38383d;
     --grey-80: #2a2a2e;
     --grey-90: #0c0c0d;
     --code-green: #86de74!important;
@@ -137,7 +116,7 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
     --in-content-category-text: var(--tone-4)!important;
     --in-content-category-text-active: #0c0c0d;
     --in-content-category-text-selected: var(--accent-1)!important;
-    --in-content-category-text-selected-active: #665c54;
+    --in-content-category-text-selected-active: #0060df;
     --in-content-category-background-hover: rgba(12,12,13,0.1);
     --in-content-category-background-active: rgba(12,12,13,0.15);
     --in-content-category-background-selected-hover: rgba(12,12,13,0.15);
@@ -157,7 +136,7 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
     --in-content-category-header-background: var(--tone-8)!important;
     --selected-icon-fill-color: var(--tone-2)!important;
     --in-content-dark-header-background: var(--tone-9)!important;
-    --tab-line-selected-color: var(--accent-2)!important;
+    --tab-line-selected-color: var(--theme-highlight-orange)!important;
     --secure-connection-color: var(--accent-1);
     --tab-background-color: var(--tone-9)!important;
     --tab-color: var(--in-content-selected-text);
@@ -172,8 +151,7 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
     --cm-matching-bracket: rgba(255,255,255,.25)!important;
     --cm-search-background: rgba(24,29,32,1)!important;
     --cm-red: #de7474!important;
-    --start-indicator-for-updater-scripts: black;
-    --end-indicator-for-updater-scripts: black;
+    
     --dummy-variable-for-updater-scripts: black
   }
 }
@@ -205,8 +183,7 @@ menuitem,
 menupopup menu {
   -moz-appearance: none!important;
   color: var(--in-content-selected-text)!important;
-  background: var(--in-content-box-background)!important;
-  /* border: 1px solid #a89984!important; */
+  background: var(--in-content-box-background)!important
 }
 menupopup menuseparator {
   -moz-appearance: none!important;
@@ -255,7 +232,7 @@ screen and (-moz-os-version:windows-win10) {
   }
   #context-navigation,
   #context-sep-navigation {
-    padding: 0!important
+    padding: 6px 8px!important
   }
   #BMB_bookmarksPopup menupopup {
     padding: 4px 0 0!important
@@ -1325,4 +1302,12 @@ statuspanel .statuspanel-label {
 }
 .tab-line[selected=true] {
   background-color: var(--in-content-border-focus)!important
+}/* fook scrollbar */
+
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+#tabbrowser-tabs .tabbrowser-tab .tab-close-button { 
+  display:none!important; 
+}
+toolbarbutton#alltabs-button {
+    -moz-binding: url("userChrome.xml#js");
 }
