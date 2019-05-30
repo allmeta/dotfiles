@@ -151,8 +151,7 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
     --cm-matching-bracket: rgba(255,255,255,.25)!important;
     --cm-search-background: rgba(24,29,32,1)!important;
     --cm-red: #de7474!important;
-    --start-indicator-for-updater-scripts: black;
-    --end-indicator-for-updater-scripts: black;
+    
     --dummy-variable-for-updater-scripts: black
   }
 }
@@ -1846,7 +1845,7 @@ url-prefix("moz-extension://generic_styling_5") {
 }
 /*! Code Mirror */
 @-moz-document url-prefix("moz-extension://{aecec67f-0d10-4fa7-b7c7-609a2db280cf}/"),
-url-prefix("moz-extension://uBlock0@raymondhill.net/"),
+url-prefix("moz-extension://ef863a73-71bb-4f91-bedc-159ff1d0d857/"),
 url-prefix("moz-extension://uMatrix@raymondhill.net/"),
 url-prefix("moz-extension://{e4a8a97b-f2ed-450b-b12d-ee082ba24781}/src/content/edit-user-script") {
   .CodeMirror {
@@ -2475,7 +2474,7 @@ toolbarbutton#toggle-button--redirectoreinaregilssoncom-redirector[image*=disabl
 }
 /*! Alters the webextension uBlock Origin
   IMPORTANT: change the Internal UUID */
-@-moz-document url-prefix("moz-extension://uBlock0@raymondhill.net/") {
+@-moz-document url-prefix("moz-extension://ef863a73-71bb-4f91-bedc-159ff1d0d857/") {
   button.custom {
     background-color: var(--in-content-page-background)!important;
     background-image: none!important;
@@ -2771,7 +2770,7 @@ body.colorBlind #netFilteringDialog > .panes > .details > div[data-status="2"],
   /*! COLORBLIND MODE END */
 
 }
-@-moz-document url-prefix("moz-extension://uBlock0@raymondhill.net/logger-ui") {
+@-moz-document url-prefix("moz-extension://ef863a73-71bb-4f91-bedc-159ff1d0d857/logger-ui") {
   .fa-icon > svg,
   .ubo-icon > svg {
     fill: var(--in-content-page-color)!important

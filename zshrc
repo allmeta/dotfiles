@@ -37,4 +37,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval $(thefuck --alias f)
 alias ranger='source ranger'
+export VISUAL='vim'
 export TERMINAL='kitty'
