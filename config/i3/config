@@ -40,7 +40,7 @@ for_window [class="Fkitty"] floating enable
 bindsym $mod+Shift+t exec kitty --class=Fkitty
 
 # kill focused window
-bindsym Mod1+q kill
+bindsym $mod+q kill
 
 # pressing super key alone simulates pressing Alt-F1
 exec --no-startup-id ksuperkey -e 'Super_L=Alt_L|F1'
@@ -55,7 +55,7 @@ bindsym $mod+x exec rofr.sh -l
 # lockscreen
 bindsym $mod+l exec betterlockscreen -l dim
 
-# backgorund
+# background
 exec betterlockscreen -w
 
 # firefox
