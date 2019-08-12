@@ -158,6 +158,13 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
+# gaps
+bindsym $mod+plus gaps inner all plus 2
+bindsym $mod+minus gaps inner all minus 2
+
+bindsym $mod+Shift+plus gaps outer all plus 2
+bindsym $mod+Shift+minus gaps outer all minus 2
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -206,7 +213,7 @@ client.background	$bg
 # 
 # login on startup
 exec --no-startup-id betterlockscreen -l dim -t "Login"
-exec_always --no-startup-id /usr/bin/manjaro-polybar-session
+exec_always --no-startup-id killall polybar && polybar -c $HOME/.config/polybar/config i3-bar
 exec_always --no-startup-id dunst &
 exec_always --no-startup-id nm-applet &
 exec_always --no-startup-id blueman-applet &
