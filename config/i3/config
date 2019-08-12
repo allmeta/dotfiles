@@ -213,7 +213,8 @@ client.background	$bg
 # 
 # login on startup
 exec --no-startup-id betterlockscreen -l dim -t "Login"
-exec_always --no-startup-id killall polybar && polybar -c $HOME/.config/polybar/config i3-bar
+exec_always --no-startup-id killall polybar &
+exec_always --no-startup-id polybar -c /home/allmeta/.config/polybar/config i3-bar &
 exec_always --no-startup-id dunst &
 exec_always --no-startup-id nm-applet &
 exec_always --no-startup-id blueman-applet &
