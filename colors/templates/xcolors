@@ -16,5 +16,5 @@
 #define COLOR6 #B294BB
 #define COLOR14 #B294BB
 #define COLOR7 #FFFFFF
-#define COLOR15 #A3685A
+#define COLOR15 #000000
 
