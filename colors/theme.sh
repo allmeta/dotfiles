@@ -1,5 +1,5 @@
 #!/bin/bash -eu
-if [[ $(echo "dln" | grep $1) ]] 
+if [[ $(echo "dlnw" | grep $1) ]] 
 then
     parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
     cd "$parent_path"
@@ -12,6 +12,9 @@ then
         ;;
     "n")
         file="./themes/new"
+	;;
+    "w")
+	file="./themes/white"
     esac
 
     xcolors=""
@@ -54,5 +57,5 @@ then
     $(i3-msg restart)
     echo "Theme switched!"
 else
-    echo "Argument must be either d, l or n"
+    echo "Argument must be d|l|w|n"
 fi
