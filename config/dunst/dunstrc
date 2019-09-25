@@ -22,7 +22,7 @@
     separator_height = 2
     padding = 10
     horizontal_padding = 20
-    frame_color = "#CA9C46"
+    frame_color = "#000000"
     separator_color = frame
     frame_width = 2
     startup_notification = false
@@ -34,17 +34,17 @@
 [shortcuts]
 
 [urgency_low]
-    background = "#181521"
-    foreground = "#E3DDCD"
+    background = "#FFFFFF"
+    foreground = "#1D1F21"
     timeout = 3
 
 [urgency_normal]
-    background = "#181521"
-    foreground = "#E3DDCD"
+    background = "#FFFFFF"
+    foreground = "#1D1F21"
     timeout = 3
 
 [urgency_critical]
-    background = "#181521"
-    foreground = "#B3573E"
-    frame_color = "#B3573E"
+    background = "#FFFFFF"
+    foreground = "#DE935F"
+    frame_color = "#DE935F"
     timeout = 5
