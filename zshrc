@@ -39,3 +39,6 @@ eval $(thefuck --alias f)
 alias ranger='source ranger'
 export VISUAL='vim'
 export TERMINAL='kitty'
+alias theme="~/.colors/theme.sh"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
