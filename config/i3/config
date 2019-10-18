@@ -10,6 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $term kitty -1
 
 set_from_resource $bg           background
 set_from_resource $fg           color15
@@ -20,7 +21,7 @@ set_from_resource $warn         color1
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 12
+font pango:Roboto 12
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -33,11 +34,14 @@ font pango:DejaVu Sans Mono 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+t exec kitty
+bindsym $mod+t exec $term
+
+#ranger float
+bindsym $mod+f exec $term --class float -e ranger
 
 # floating terminal, change class
-for_window [class="Fkitty"] floating enable
-bindsym $mod+Shift+t exec kitty --class=Fkitty
+for_window [class="float"] floating enable
+bindsym $mod+Shift+t exec $term --class float
 
 # kill focused window
 bindsym $mod+q kill
@@ -56,7 +60,7 @@ bindsym $mod+x exec rofr.sh -l
 bindsym $mod+l exec betterlockscreen -l dim
 
 # background
-exec betterlockscreen -w
+exec sh ~/color-wallpaper
 
 # firefox
 bindsym $mod+w exec vivaldi-stable 
@@ -70,6 +74,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -5
 
 # print
 bindsym Print exec flameshot gui -p ~/Pictures
+
+# color picker to clipboard
+bindsym $mod+Print exec colorpicker --one-shot --short --preview | tr -d "\n" | tr -s " " | xsel -b
 
 # change focus
 # bindsym $mod+j focus left
@@ -102,7 +109,7 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+#bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
@@ -147,16 +154,16 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
 # gaps
 bindsym $mod+plus gaps inner all plus 2

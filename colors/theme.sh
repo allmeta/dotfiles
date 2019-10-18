@@ -51,8 +51,9 @@ then
     echo $bls_file
     echo -e $kitty_rep > "./templates/kitty"
     echo -e $xcolors > "./templates/xcolors"
+    echo -e $1 > "$HOME/.theme"
     $(xrdb -merge $HOME/.Xresources)
-    $(kitty @ set-colors --all ./templates/kitty)
+    $(kitty @ set-colors -a ./templates/kitty)
     $(killall dunst)
     $(i3-msg restart)
     echo "Theme switched!"
