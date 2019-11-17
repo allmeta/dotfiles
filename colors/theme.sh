@@ -1,5 +1,5 @@
 #!/bin/bash -eu
-if [[ $(echo "dlnw" | grep $1) ]] 
+if [[ $(echo "dlnwa" | grep $1) ]] 
 then
     parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
     cd "$parent_path"
@@ -15,6 +15,9 @@ then
 	;;
     "w")
 	file="./themes/white"
+        ;;
+    "a")
+	file="./themes/ayu"
     esac
 
     xcolors=""
@@ -52,11 +55,12 @@ then
     echo -e $kitty_rep > "./templates/kitty"
     echo -e $xcolors > "./templates/xcolors"
     echo -e $1 > "$HOME/.theme"
+    $(sh ~/color-wallpaper)
     $(xrdb -merge $HOME/.Xresources)
     $(kitty @ set-colors -a ./templates/kitty)
     $(killall dunst)
     $(i3-msg restart)
     echo "Theme switched!"
 else
-    echo "Argument must be d|l|w|n"
+    echo "Argument must be d|l|w|n|a"
 fi

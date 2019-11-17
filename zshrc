@@ -40,5 +40,7 @@ alias ranger='source ranger'
 export VISUAL='vim'
 export TERMINAL='kitty'
 alias theme="~/.colors/theme.sh"
+alias imgur="imgur.sh"
+
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
