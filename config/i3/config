@@ -2,7 +2,7 @@ set $mod Mod4
 set $term kitty -1
 
 set_from_resource $bg           background
-set_from_resource $fg           color15
+set_from_resource $fg		foreground
 set_from_resource $warn         color1
 
 font pango:Roboto 12
@@ -34,7 +34,7 @@ bindsym Mod1+F1 exec rofi -modi drun -show drun -show-icons -columns 2 &
 bindsym $mod+x exec rofr.sh -l
 
 # lockscreen
-bindsym $mod+l exec betterlockscreen -l dim
+#bindsym $mod+l exec betterlockscreen -l dim
 
 # browser
 bindsym $mod+w exec vivaldi-stable 
@@ -53,10 +53,10 @@ bindsym Print exec flameshot gui -p ~/Pictures
 #bindsym $mod+Print exec colorpicker --one-shot --short --preview | tr -d "\n" | tr -s " " | xsel -b
 
 # change focus
-# bindsym $mod+j focus left
-# bindsym $mod+k focus down
-# bindsym $mod+l focus up
-# bindsym $mod+oslash focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -65,10 +65,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-# bindsym $mod+Shift+j move left
-# bindsym $mod+Shift+k move down
-# bindsym $mod+Shift+l move up
-# bindsym $mod+Shift+oslash move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -76,7 +76,7 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+h split h
+bindsym $mod+g split h
 bindsym $mod+v split v
 
 # toggle tiling / floating
@@ -167,11 +167,10 @@ client.urgent 		$warn	$warn	$fg	$bg
 client.background	$bg
 
 # login on startup
-exec --no-startup-id betterlockscreen -l dim -t "Login"
 exec_always --no-startup-id ~/.config/polybar/polybar_session.sh &
 exec_always --no-startup-id dunst &
 exec_always --no-startup-id nm-applet &
-exec_always --no-startup-id blueman-applet &
+exec --no-startup-id betterlockscreen -l dim -t "Login"
 
 # wal on startup
 exec --no-startup-id wal -R &
