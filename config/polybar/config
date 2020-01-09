@@ -6,24 +6,13 @@
 include-file = $HOME/.config/polybar/master.conf
 include-file = $HOME/.config/polybar/modules.conf
 
-[bar/openbox-bar]
-inherit = bar/master
-
-; Use $ xrandr -q | grep " connected" | cut -d ' ' -f1
-monitor = 
-monitor-fallback = 
-
-modules-left   = workspaces
-modules-center = clock 
-modules-right  = battery pulseaudio network
-
-[bar/i3-bar]
+[bar/i3]
 inherit=bar/master
 monitor =
 monitor-fallback= 
 
 tray-position = right
-tray-padding = 2
+tray-padding = 1
 
 modules-left = workspaces
 modules-center = clock
@@ -35,7 +24,9 @@ modules-right = alsa backlight network battery
 type = internal/backlight
 card = intel_backlight
 format = <label>
+format-padding=1
 format-prefix = " "
-format-prefix-foreground = ${colors.magenta-alt}
-format-underline = ${colors.magenta-alt}
+format-prefix-foreground = ${colors.bg}
+format-background = ${colors.magenta-alt}
 label = %percentage%%
+label-foreground=${colors.bg}
