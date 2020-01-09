@@ -24,11 +24,10 @@ monitor-fallback=
 
 tray-position = right
 tray-padding = 2
-tray-transparent = true
 
 modules-left = workspaces
 modules-center = clock
-modules-right = pulseaudio backlight network battery
+modules-right = alsa backlight network battery
 
 ; Need to have backlight here, 
 ; didn't work when but in modules/
@@ -36,7 +35,7 @@ modules-right = pulseaudio backlight network battery
 type = internal/backlight
 card = intel_backlight
 format = <label>
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.magenta-alt}
 format-underline = ${colors.magenta-alt}
 label = %percentage%%
