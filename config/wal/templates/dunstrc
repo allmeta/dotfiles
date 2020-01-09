@@ -1,5 +1,5 @@
 [global]
-    font = Roboto Regular 12
+    font = Fira Code
     markup = yes
     format = "<b>%s</b>\n%b"
     sort = yes
@@ -22,7 +22,6 @@
     separator_height = 2
     padding = 10
     horizontal_padding = 20
-    frame_color = "#CA9C46"
     separator_color = frame
     frame_width = 2
     startup_notification = false
@@ -36,12 +35,14 @@
 [urgency_low]
     background = "{background}"
     foreground = "{foreground}"
-    timeout = 3
+    frame_color = "{foreground}"
+    timeout = 5
 
 [urgency_normal]
     background = "{background}"
     foreground = "{foreground}"
-    timeout = 3
+    frame_color = "{foreground}"
+    timeout = 5
 
 [urgency_critical]
     background = "{background}"
