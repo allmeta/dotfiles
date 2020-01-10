@@ -6,5 +6,5 @@
 
 config_version: 2
 settings:
-  input.partial_timeout:
-    global: 20000
+  tabs.show:
+    global: multiple
