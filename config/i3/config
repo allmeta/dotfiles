@@ -20,7 +20,7 @@ for_window [class="float"] floating enable
 bindsym $mod+Shift+t exec $term --class float
 
 # kill focused window
-bindsym $mod+q move scratchpad; kill
+bindsym $mod+q kill
 
 # pressing super key alone simulates pressing Alt-F1
 exec --no-startup-id ksuperkey -e 'Super_L=Alt_L|F1'
