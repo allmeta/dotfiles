@@ -118,7 +118,7 @@ c.downloads.remove_finished = 0
 
 # open tabs in background
 c.tabs.background = True
-c.tabs.partial_timeout = 20000
+c.input.partial_timeout = 20000
 c.tabs.show = 'multiple'
 
 # Bindings
