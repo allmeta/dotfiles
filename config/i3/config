@@ -36,8 +36,11 @@ bindsym $mod+x exec ~/.config/i3/rofr.sh
 # lockscreen
 #bindsym $mod+l exec betterlockscreen -l dim
 
+# background
+exec --no-startup-id feh --bg-scale ~/pics/wallhaven-438w60.jpg
+
 # browser
-bindsym $mod+w exec vivaldi-stable 
+bindsym $mod+w exec qutebrowser 
 
 # volume and brightness
 bindsym XF86AudioRaiseVolume exec amixer sset Master 10%+
@@ -47,7 +50,11 @@ bindsym XF86MonBrightnessUp exec xbacklight +5
 bindsym XF86MonBrightnessDown exec xbacklight -5
 
 # sc
-bindsym Print exec maim -s ~/pics/$(date +%y-%b-%d-%R).png
+bindsym Shift+Print exec maim -s ~/pics/$(date +%y-%b-%d-%R).png
+bindsym Print exec maim -s | xclip -selection clipboard -t image/png
+
+# notes
+bindsym $mod+n exec $term --class float -e vim -f ~/dotfiles/todo
 
 # broken color picker
 #bindsym $mod+Print exec colorpicker --one-shot --short --preview | tr -d "\n" | tr -s " " | xsel -b
