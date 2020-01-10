@@ -1,9 +1,10 @@
 ##using curl
 function transfer() {
-    curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename $1) | tee /dev/null | xclip -selection clipboard
+    curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename $1) | tee /dev/null | xclip -selection clipboard && notify-send "Transfer" "Url copied to clipboard"
 }
 function transfer_encrypt() {
-	cat $1 | gpg -ac -o- | curl -X PUT --progress-bar --upload-file "-" https://transfer.sh/$(basename $1) | tee /dev/null | xclip -selection clipboard
+	cat $1 | gpg -ac -o- | curl -X PUT --progress-bar --upload-file "-" https://transfer.sh/$(basename $1) | tee /dev/null | xclip -selection clipboard && notify-send "Transfer" "Url copied to clipboard"
+
 }
 # Path to your oh-my-zsh installation.
 export ZSH="/usr/share/oh-my-zsh"
