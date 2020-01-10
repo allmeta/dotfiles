@@ -19,9 +19,5 @@ source $ZSH/oh-my-zsh.sh
 eval $(thefuck --alias f)
 
 alias ranger='source ranger'
-export VISUAL='vim'
-export TERMINAL='kitty'
-alias theme="~/.colors/theme.sh"
-alias imgur="imgur.sh"
 alias transfer=transfer
 alias transfer_encrypt=transfer_encrypt
