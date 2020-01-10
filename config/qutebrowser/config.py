@@ -120,12 +120,14 @@ c.downloads.remove_finished = 0
 c.tabs.background = True
 c.input.partial_timeout = 20000
 c.tabs.show = 'multiple'
+c.hints.auto_follow='always'
 
 # Bindings
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
 config.bind('x','tab-close')
 config.bind('X','undo')
+config.bind('gi','hint inputs')
 
 # vim
 c.editor.command =['kitty','-e','vim','-f','{file}','-c','normal {line}G{column0}l']
