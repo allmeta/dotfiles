@@ -1,6 +1,0 @@
-set statusbar-v padding 0
-set statusbar-h padding 0
-map i recolor
-map p print
-set default-fg "{foreground}"
-set default-bg "{background}"

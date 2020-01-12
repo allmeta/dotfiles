@@ -1,9 +1,0 @@
-/* fook scrollbar */
-
-@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
-#tabbrowser-tabs .tabbrowser-tab .tab-close-button { 
-  display:none!important; 
-}
-toolbarbutton#alltabs-button {
-    -moz-binding: url("userChrome.xml#js");
-}
