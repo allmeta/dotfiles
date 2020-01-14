@@ -24,6 +24,7 @@ if os.path.isfile(colors_absolute):
         blue = colors['colors']['color4']
         magenta = colors['colors']['color5']
         cyan = colors['colors']['color6']
+        bg_alt = colors['colors']['color8']
 
     # Background color of the completion widget category headers.
     # Type: QssColor
@@ -320,19 +321,19 @@ if os.path.isfile(colors_absolute):
 
     # Background color of selected even tabs.
     # Type: QtColor
-    c.colors.tabs.selected.even.bg = gray
+    c.colors.tabs.selected.even.bg = bg_alt
 
     # Foreground color of selected even tabs.
     # Type: QtColor
-    c.colors.tabs.selected.even.fg = background
+    c.colors.tabs.selected.even.fg = foreground
 
     # Background color of selected odd tabs.
     # Type: QtColor
-    c.colors.tabs.selected.odd.bg = gray
+    c.colors.tabs.selected.odd.bg = bg_alt
 
     # Foreground color of selected odd tabs.
     # Type: QtColor
-    c.colors.tabs.selected.odd.fg = background
+    c.colors.tabs.selected.odd.fg = foreground
 
     # Background color for webpages if unset (or empty to use the theme's
     # color)
