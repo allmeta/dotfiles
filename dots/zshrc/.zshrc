@@ -9,6 +9,8 @@ function transfer_encrypt() {
 # Path to your oh-my-zsh installation.
 export ZSH="/usr/share/oh-my-zsh"
 
+export PATH=~/.local/bin:$PATH
+
 ZSH_THEME="refined"
 HIST_STAMPS="dd/mm/yyyy"
 
