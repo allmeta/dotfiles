@@ -6,7 +6,5 @@
 
 config_version: 2
 settings:
-  content.javascript.alert:
-    global: false
-  content.javascript.enabled:
-    global: true
+  fonts.tabs:
+    global: 12pt monospace
