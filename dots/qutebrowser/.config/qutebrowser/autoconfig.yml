@@ -6,5 +6,5 @@
 
 config_version: 2
 settings:
-  fonts.tabs:
-    global: 12pt monospace
+  colors.webpage.prefers_color_scheme_dark:
+    global: true
