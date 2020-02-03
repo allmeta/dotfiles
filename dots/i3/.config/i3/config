@@ -61,6 +61,9 @@ bindsym $mod+Shift+Print exec ~/.config/i3/stop_record.sh
 # notes
 bindsym $mod+n exec $term --class float -e vim -f ~/dotfiles/todo
 
+# password menu
+bindsym $mod+p exec ~/.config/i3/lpass_menu.sh
+
 # broken color picker
 #bindsym $mod+Print exec colorpicker --one-shot --short --preview | tr -d "\n" | tr -s " " | xsel -b
 
