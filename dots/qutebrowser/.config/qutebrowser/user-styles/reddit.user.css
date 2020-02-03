@@ -1,0 +1,14 @@
+
+/* Sticky header. */
+[data-qb-domain="www.reddit.com"] #header,
+[data-qb-domain="old.reddit.com"] #header {
+	position: sticky !important;
+	top: 0 !important;
+	z-index: 1000 !important;
+}
+
+[data-qb-domain="www.reddit.com"] #sr-header-area,
+[data-qb-domain="old.reddit.com"] #sr-header-area {
+	position: relative !important;
+	z-index: 1000 !important;
+}

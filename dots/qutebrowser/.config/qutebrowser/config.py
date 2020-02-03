@@ -134,6 +134,7 @@ c.editor.command =['kitty','-e','vim','-f','{file}','-c','normal {line}G{column0
 
 #theme
 config.source('qutewal.py')
-
+import glob
+c.content.user_stylesheets = glob.glob('/home/meta/.config/qutebrowser/user-styles/*')
 # force dark theme
 c.qt.args=["blink-settings=darkMode=4"]
