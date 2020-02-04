@@ -31,7 +31,7 @@ exec --no-startup-id xmodmap -e "keycode 135 = Super_L"
 bindsym Mod1+F1 exec rofi -modi drun -show drun -show-icons -columns 2 &
 
 # logout screen thing
-bindsym $mod+x exec ~/.config/i3/rofr.sh
+bindsym $mod+x exec ~/.local/bin/rofr.sh
 
 # lockscreen
 #bindsym $mod+l exec betterlockscreen -l dim
@@ -54,15 +54,15 @@ bindsym Shift+Print exec maim -s ~/pics/$(date +%y-%b-%d-%R).png
 bindsym Print exec maim -s | xclip -selection clipboard -t image/png
 
 # ffmpeg record script w slop
-bindsym $mod+Print exec ~/.config/i3/record_video.sh
+bindsym $mod+Print exec ~/.local/bin/record_video.sh
 # stop record
-bindsym $mod+Shift+Print exec ~/.config/i3/stop_record.sh
+bindsym $mod+Shift+Print exec ~/.local/bin/stop_record.sh
 
 # notes
 bindsym $mod+n exec $term --class float -e vim -f ~/dotfiles/todo
 
 # password menu
-bindsym $mod+p exec ~/.config/i3/lpass_menu.sh
+bindsym $mod+p exec ~/.local/bin/lpass_menu.sh
 
 # broken color picker
 #bindsym $mod+Print exec colorpicker --one-shot --short --preview | tr -d "\n" | tr -s " " | xsel -b
