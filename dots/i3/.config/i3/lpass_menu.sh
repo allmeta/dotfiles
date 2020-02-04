@@ -1,14 +1,6 @@
 #!/bin/bash
 
-if [[ "$(lpass ls)" == "" ]]; then
-	# not logged in
-	ans=$(lpass login $(cat ~/.email))
-	[[ "$ans" == "" ]] && exit 1
-fi
-
-item=`lpass ls | awk -F '[/[]' '{print $(NF-1)}' | rofi -dmenu -i -p 'Select item'`
-
-if [ $item ]; then
-		lpass show -c --password $item
-		notify-send "$item" "Password copied"
-fi
+[[ $(lpass ls) ]] || [[ $(lpass login $(cat ~/.email)) ]] || exit 1
+item=`lpass ls | awk -F '[/[]' '{print $(NF-1)}' | rofi -dmenu -i -p 'Select item'` || exit 1
+lpass show -c --password $item
+notify-send "$item" "Password copied"
