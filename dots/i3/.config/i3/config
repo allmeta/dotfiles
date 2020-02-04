@@ -50,7 +50,7 @@ bindsym XF86MonBrightnessUp exec xbacklight +5
 bindsym XF86MonBrightnessDown exec xbacklight -5
 
 # sc
-bindsym Shift+Print exec maim -s ~/pics/$(date +%y-%b-%d-%R).png
+bindsym Shift+Print exec maim -s ~/pics/"$(date +%y-%m-%d_%H:%M:%S).png"
 bindsym Print exec maim -s | xclip -selection clipboard -t image/png
 
 # ffmpeg record script w slop

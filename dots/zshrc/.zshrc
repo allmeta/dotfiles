@@ -14,7 +14,7 @@ export PATH=~/.local/bin:$PATH
 ZSH_THEME="refined"
 HIST_STAMPS="dd/mm/yyyy"
 
-plugins=(git zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting docker)
 
 source $ZSH/oh-my-zsh.sh
 
