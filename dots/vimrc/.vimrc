@@ -5,16 +5,23 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'ayu-theme/ayu-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-surround'
+Plug 'airblade/vim-gitgutter'
+Plug 'valloric/youcompleteme'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
+let mapleader=" "
+
 set termguicolors
+set nocompatible
 set tabstop=2
 set relativenumber
 set laststatus=2
@@ -25,6 +32,14 @@ set timeoutlen=10
 set list lcs=tab:\|\ 
 set shiftwidth=2 
 set expandtab
+set splitbelow splitright
+
+" shortcut split navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 if !has('gui_running')
   set t_Co=256
@@ -52,6 +67,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:airline_theme='gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
+let g:airline_section_z=''
+let g:airline_section_warning=''
+let g:airline_section_error=''
 "devicons
 let g:webdevicons_enable_nerdtree=1
 let g:webdevicons_enable_airline_tabline=1
@@ -59,3 +78,13 @@ let g:webdevicons_enable_airline_statusline=1
 
 "tabline
 let g:indentLine_setColors = 0
+let g:indentLine_char = '|'
+
+"ctrlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard'] "gitignore
+
+"commentary.vim
+autocmd FileType vim setlocal commentstring=\"\ %s
+autocmd FileType javascript setlocal commentstring=//\ %s
