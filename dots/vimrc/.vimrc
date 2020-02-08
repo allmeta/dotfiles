@@ -28,7 +28,7 @@ set laststatus=2
 set noshowmode
 set encoding=UTF-8
 set background=dark
-set timeoutlen=10
+set timeoutlen=600
 set list lcs=tab:\|\ 
 set shiftwidth=2 
 set expandtab
@@ -68,7 +68,7 @@ let g:airline_theme='gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
-let g:airline_section_z=''
+let g:airline_section_z='%p%% %l,%c'
 let g:airline_section_warning=''
 let g:airline_section_error=''
 "devicons
@@ -88,3 +88,6 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 "commentary.vim
 autocmd FileType vim setlocal commentstring=\"\ %s
 autocmd FileType javascript setlocal commentstring=//\ %s
+
+"emerald mode
+au BufNewFile,BufRead *.m setlocal ft=emerald
