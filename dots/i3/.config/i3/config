@@ -37,7 +37,7 @@ bindsym $mod+x exec ~/.local/bin/rofr.sh
 #bindsym $mod+l exec betterlockscreen -l dim
 
 # background
-exec --no-startup-id feh --bg-scale ~/pics/wallhaven-438w60.jpg
+exec --no-startup-id feh --bg-scale ~/pics/walls/wallhaven-438w60.jpg
 
 # browser
 bindsym $mod+w exec qutebrowser 
