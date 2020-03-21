@@ -10,7 +10,7 @@ Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'valloric/youcompleteme'
@@ -28,11 +28,20 @@ set laststatus=2
 set noshowmode
 set encoding=UTF-8
 set background=dark
-set timeoutlen=600
+set ttimeout
+set ttimeoutlen=1
+set ttyfast
+set listchars=tab:>-,trail:~,extends:>,precedes:<,space:.
+let &t_SI = "\<Esc>[6 q"
+let &t_EI = "\<Esc>[1 q"
 set list lcs=tab:\|\ 
 set shiftwidth=2 
+set softtabstop=2
 set expandtab
 set splitbelow splitright
+set wildmenu
+set wildmode=longest:full,full
+set cul
 
 " shortcut split navigation
 map <C-h> <C-w>h
@@ -88,6 +97,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 "commentary.vim
 autocmd FileType vim setlocal commentstring=\"\ %s
 autocmd FileType javascript setlocal commentstring=//\ %s
+autocmd FileType emerald setlocal commentstring=\%\ %s
 
 "emerald mode
 au BufNewFile,BufRead *.m setlocal ft=emerald
