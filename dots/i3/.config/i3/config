@@ -28,7 +28,7 @@ exec --no-startup-id ksuperkey -e 'Super_R=Alt_L|F1'
 exec --no-startup-id xmodmap -e "keycode 135 = Super_L"
 
 # start rofi (a program launcher)
-bindsym Mod1+F1 exec rofi -modi drun -show drun -show-icons -columns 2 &
+bindsym Mod1+F1 exec rofi -modi drun -show drun &
 
 # logout screen thing
 bindsym $mod+x exec ~/.local/bin/rofr.sh
