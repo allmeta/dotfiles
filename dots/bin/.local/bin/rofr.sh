@@ -4,7 +4,7 @@ ANS=$(echo " Lock| Logout| Reboot| Shutdown" | \
 case "$ANS" in 
 	*Lock) betterlockscreen -l ;;
 	*Logout) i3-msg exit ;;
-	*Reboot) openrc-shutdown -r 0  ;;
-	*Shutdown) openrc-shutdown -p 0
+	*Reboot) sudo openrc-shutdown -r 0  ;;
+	*Shutdown) sudo openrc-shutdown -p 0
 esac
 
