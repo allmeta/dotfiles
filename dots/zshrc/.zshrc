@@ -24,3 +24,4 @@ alias ranger='source ranger'
 alias transfer=transfer
 alias transfer_encrypt=transfer_encrypt
 alias fn='find -name'
+alias dockem='docker run -it --rm --volume "$(pwd):/home/docker/src" --workdir "/home/docker/src" portoleks/in5570v20:latest'
