@@ -101,3 +101,7 @@ autocmd FileType emerald setlocal commentstring=\%\ %s
 
 "emerald mode
 au BufNewFile,BufRead *.m setlocal ft=emerald
+
+"visual indent
+xnoremap > >gv
+xnoremap < <gv
