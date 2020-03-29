@@ -48,6 +48,7 @@ bindsym XF86AudioLowerVolume exec amixer sset Master 10%-
 bindsym XF86AudioMute exec amixer sset Master toggle 
 bindsym XF86MonBrightnessUp exec xbacklight +5
 bindsym XF86MonBrightnessDown exec xbacklight -5
+bindsym $mod+XF86MonBrightnessDown exec xbacklight -set 0.1 
 
 # sc
 bindsym Shift+Print exec maim -s ~/pics/"$(date +%y-%m-%d_%H:%M:%S).png"
