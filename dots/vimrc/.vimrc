@@ -6,16 +6,16 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
+Plug 'ayu-theme/ayu-vim'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-" Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
-Plug 'airblade/vim-gitgutter'
 Plug 'valloric/youcompleteme'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-commentary'
+Plug 'alx741/vim-hindent'
 call plug#end()
 
 let mapleader=" "
@@ -24,6 +24,7 @@ set termguicolors
 set nocompatible
 set tabstop=2
 set relativenumber
+set nu rnu
 set laststatus=2
 set noshowmode
 set encoding=UTF-8
@@ -56,16 +57,18 @@ endif
 
 let g:gruvbox_contrast_dark='hard'
 
-colorscheme gruvbox
+colorscheme ayu
+
+let ayucolor="dark"
 
 "gruvbox inverted selection color
-nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
-nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
-nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
+" nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
+" nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
+" nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
 
-nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
-nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
-nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
+" nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
+" nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
+" nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
 
 "nerdtree
 map <C-n> :NERDTreeToggle<CR>
@@ -73,7 +76,7 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "airline
-let g:airline_theme='gruvbox'
+" let g:airline_theme='gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
