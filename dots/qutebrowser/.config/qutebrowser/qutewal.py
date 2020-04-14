@@ -238,7 +238,7 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color of the statusbar in passthrough mode.
     # Type: QssColor
-    c.colors.statusbar.passthrough.fg = foreground
+    c.colors.statusbar.passthrough.fg = background
 
     # Background color of the statusbar in private browsing mode.
     # Type: QssColor
@@ -267,7 +267,7 @@ if os.path.isfile(colors_absolute):
     # Foreground color of the URL in the statusbar on successful load
     # (http).
     # Type: QssColor
-    c.colors.statusbar.url.success.http.fg = foreground
+    c.colors.statusbar.url.success.http.fg = background
 
     # Foreground color of the URL in the statusbar on successful load
     # (https).
@@ -339,6 +339,12 @@ if os.path.isfile(colors_absolute):
     # color)
     # Type: QtColor
     c.colors.webpage.bg = background
+
+    # context menu
+    c.colors.contextmenu.menu.bg=background
+    c.colors.contextmenu.menu.fg=foreground
+    c.colors.contextmenu.selected.bg=yellow
+    c.colors.contextmenu.selected.fg=background
 
     if qutewal_dynamic_loading or bool(os.getenv('QUTEWAL_DYNAMIC_LOADING')):
         import signal

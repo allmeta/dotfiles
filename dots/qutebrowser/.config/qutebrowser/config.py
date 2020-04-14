@@ -136,3 +136,4 @@ import glob
 c.content.user_stylesheets = glob.glob('/home/meta/.config/qutebrowser/user-styles/*')
 # force dark theme
 # c.qt.args=["blink-settings=darkMode=4"]
+c.content.ssl_strict=True
