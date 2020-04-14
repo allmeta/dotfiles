@@ -27,6 +27,6 @@ format = <label>
 format-padding=1
 format-prefix = " "
 format-prefix-foreground = ${colors.bg}
-format-background = ${colors.magenta-alt}
+format-background = ${colors.blue}
 label = %percentage%%
 label-foreground=${colors.bg}
