@@ -6,5 +6,5 @@
 
 config_version: 2
 settings:
-  content.persistent_storage:
-    https://mega.nz: true
+  content.ssl_strict:
+    global: true
