@@ -2,9 +2,9 @@ ANS=$(echo " Lock| Logout| Reboot| Shutdown" | \
                 rofi -sep "|" -dmenu -i -p 'System ' "" -width 20 \
 		-hide-scrollbar -eh 1 -line-padding 4 -padding 50 -lines 4)
 case "$ANS" in 
-	*Lock) betterlockscreen -l ;;
-	*Logout) i3-msg exit ;;
-	*Reboot) sudo openrc-shutdown -r 0  ;;
-	*Shutdown) sudo openrc-shutdown -p 0
+	*Lock)  notify-send "kys" ;;
+  *Logout) loginctl kill-session $(cat /proc/self/sessionid) ;;
+	*Reboot) loginctl reboot  ;;
+	*Shutdown) loginctl poweroff
 esac
 
