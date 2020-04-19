@@ -16,17 +16,4 @@ tray-padding = 1
 
 modules-left = workspaces
 modules-center = clock
-modules-right = weather alsa backlight network battery
-
-; Need to have backlight here, 
-; didn't work when but in modules/
-[module/backlight]
-type = internal/backlight
-card = intel_backlight
-format = <label>
-format-padding=1
-format-prefix = " "
-format-prefix-foreground = ${colors.bg}
-format-background = ${colors.blue}
-label = %percentage%%
-label-foreground=${colors.bg}
+modules-right = weather pulseaudio backlight network battery
