@@ -6,5 +6,5 @@
 
 config_version: 2
 settings:
-  content.ssl_strict:
-    global: true
+  colors.downloads.start.bg:
+    global: '#0a0e14'

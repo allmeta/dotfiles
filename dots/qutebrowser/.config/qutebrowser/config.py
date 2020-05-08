@@ -126,6 +126,10 @@ config.bind('K', 'tab-next')
 config.bind('x','tab-close')
 config.bind('X','undo')
 config.bind('gi','hint inputs')
+config.bind('yf','hint links yank')
+config.bind('ge','set-cmd-text :open {url:pretty}')
+config.bind('W','tab-give')
+
 
 # vim
 c.editor.command =['kitty','-e','vim','-f','{file}','-c','normal {line}G{column0}l']
