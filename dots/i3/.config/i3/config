@@ -32,11 +32,6 @@ bindsym $mod+f exec $term --class float -e ranger # ranger float
 bindsym $mod+Shift+t exec $term --class float # floating term
 bindsym $mod+w exec qutebrowser 
 
-# pressing super key alone simulates pressing Alt-F1
-exec --no-startup-id ksuperkey -e 'Super_L=Alt_L|F1'
-exec --no-startup-id ksuperkey -e 'Super_R=Alt_L|F1'
-exec --no-startup-id xmodmap -e "keycode 135 = Super_L"
-
 bindsym Mod1+F1 exec rofi -modi drun -show drun & 
 bindsym $mod+x exec ~/.local/bin/rofr.sh # logout screen thing
 
