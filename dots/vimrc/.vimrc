@@ -7,20 +7,20 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 " Plug 'morhetz/gruvbox'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'ayu-theme/ayu-vim'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
-Plug 'valloric/youcompleteme'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-commentary'
-Plug 'alx741/vim-hindent'
 call plug#end()
 
 let mapleader=" "
 
 set termguicolors
+set term=builtin_xterm
 set nocompatible
 set tabstop=2
 set relativenumber
@@ -49,7 +49,20 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup EditVim
+  autocmd!
+  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+  "close vim if only nerdtree is open
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+  "commentary.vim
+  autocmd FileType vim setlocal commentstring=\"\ %s
+  autocmd FileType javascript setlocal commentstring=//\ %s
+  autocmd FileType emerald setlocal commentstring=\%\ %s
+
+  "emerald mode
+  au BufNewFile,BufRead *.m setlocal ft=emerald
+augroup END
 
 if !has('gui_running')
   set t_Co=256
@@ -72,8 +85,6 @@ let ayucolor="dark"
 
 "nerdtree
 map <C-n> :NERDTreeToggle<CR>
-"close vim if only nerdtree is open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "airline
 " let g:airline_theme='gruvbox'
@@ -92,19 +103,10 @@ let g:webdevicons_enable_airline_statusline=1
 let g:indentLine_setColors = 0
 let g:indentLine_char = '|'
 
-"ctrlp
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard'] "gitignore
-
-"commentary.vim
-autocmd FileType vim setlocal commentstring=\"\ %s
-autocmd FileType javascript setlocal commentstring=//\ %s
-autocmd FileType emerald setlocal commentstring=\%\ %s
-
-"emerald mode
-au BufNewFile,BufRead *.m setlocal ft=emerald
 
 "visual indent
 xnoremap > >gv
 xnoremap < <gv
+
+" fzf
+nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
