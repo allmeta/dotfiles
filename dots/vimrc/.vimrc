@@ -5,7 +5,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-" Plug 'vim-airline/vim-airline'
 " Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -15,6 +14,7 @@ Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'ajh17/VimCompletesMe'
 call plug#end()
 
 let mapleader=" "
@@ -106,7 +106,6 @@ set statusline=%f%m%r%w%=%y[%p%%][%l,%v]
 ""tabline
 "let g:indentLine_setColors = 0
 "let g:indentLine_char = '|'
-
 
 "visual indent
 xnoremap > >gv
