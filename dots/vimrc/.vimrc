@@ -5,7 +5,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
 " Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -86,22 +86,26 @@ let ayucolor="dark"
 "nerdtree
 map <C-n> :NERDTreeToggle<CR>
 
+"custom statusline
+set statusline=%f%m%r%w%=%y[%p%%][%l,%v]
+" https://www.vi-improved.org/recommendations/
+
 "airline
 " let g:airline_theme='gruvbox'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline_powerline_fonts = 1
 
-let g:airline_section_z='%p%% %l,%c'
-let g:airline_section_warning=''
-let g:airline_section_error=''
-"devicons
-let g:webdevicons_enable_nerdtree=1
-let g:webdevicons_enable_airline_tabline=1
-let g:webdevicons_enable_airline_statusline=1
+"let g:airline_section_z='%p%% %l,%c'
+"let g:airline_section_warning=''
+"let g:airline_section_error=''
+""devicons
+"let g:webdevicons_enable_nerdtree=1
+"let g:webdevicons_enable_airline_tabline=1
+"let g:webdevicons_enable_airline_statusline=1
 
-"tabline
-let g:indentLine_setColors = 0
-let g:indentLine_char = '|'
+""tabline
+"let g:indentLine_setColors = 0
+"let g:indentLine_char = '|'
 
 
 "visual indent
