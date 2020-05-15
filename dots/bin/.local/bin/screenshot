@@ -1,0 +1,6 @@
+#!/bin/bash
+SCDIR=~/pics/sc
+TIMESTAMP="$(date +%y-%m-%d.%H:%M:%S)"
+FILENAME=$SCDIR/$TIMESTAMP.png
+maim -s $FILENAME
+notify-send "Screenshot" --urgency low -i $FILENAME

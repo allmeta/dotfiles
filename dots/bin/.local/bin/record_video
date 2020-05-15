@@ -2,5 +2,10 @@
 slop=$(slop -f "%x %y %w %h %g %i") || exit 1
 read -r X Y W H G ID < <(echo $slop)
 ffmpeg -f x11grab -s "$W"x"$H" -i :0.0+$X,$Y \
-  -framerate 24 \
+  -framerate 30 \
+  -rtbufsize 150M \
+  -c:v  libx264 -r 30 \
+  -preset ultrafast -tune zerolatency -crf 30 \
+  -pix_fmt yuv420p \
+  -movflags +faststart \
   ~/videos/captures/"$(date +%y-%m-%d_%H:%M:%S)".mp4
