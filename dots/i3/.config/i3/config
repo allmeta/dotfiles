@@ -1,6 +1,6 @@
 # SETUP
 set $mod Mod4
-set $term kitty -1
+set $term kitty
 
 font pango:Roboto 12
 
