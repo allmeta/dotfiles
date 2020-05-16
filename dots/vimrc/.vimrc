@@ -87,7 +87,11 @@ let ayucolor="dark"
 map <C-n> :NERDTreeToggle<CR>
 
 "custom statusline
-set statusline=%f%m%r%w%=%y[%p%%][%l,%v]
+" set statusline=%f%m%r%w%=%y[%p%%][%l,%v]
+set statusline=%#Function#%t%m\ %=%Y\ %p%%\ %l,%v
+highlight Comment cterm=italic
+highlight VertSplit ctermbg=NONE guibg=NONE
+highlight ColorColumn ctermbg=NONE guibg=NONE
 " https://www.vi-improved.org/recommendations/
 
 "airline
