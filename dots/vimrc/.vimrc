@@ -32,10 +32,10 @@ set background=dark
 set ttimeout
 set ttimeoutlen=1
 set ttyfast
-set listchars=tab:>-,trail:~,extends:>,precedes:<,space:.
+" set listchars=tab:>-,trail:~,extends:>,precedes:<,space:.
 let &t_SI = "\<Esc>[6 q"
 let &t_EI = "\<Esc>[1 q"
-set list lcs=tab:\|\ 
+set list lcs=space:.
 set shiftwidth=2 
 set softtabstop=2
 set expandtab
@@ -68,7 +68,7 @@ if !has('gui_running')
   set t_Co=256
 endif
 
-let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_contrast_dark='hard'
 
 colorscheme ayu
 
@@ -89,31 +89,11 @@ map <C-n> :NERDTreeToggle<CR>
 "custom statusline
 " set statusline=%f%m%r%w%=%y[%p%%][%l,%v]
 set statusline=%#Function#%t%m\ %=%Y\ %p%%\ %l,%v
-highlight Comment cterm=italic
-highlight VertSplit ctermbg=NONE guibg=NONE
-highlight ColorColumn ctermbg=NONE guibg=NONE
 " https://www.vi-improved.org/recommendations/
-
-"airline
-" let g:airline_theme='gruvbox'
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline_powerline_fonts = 1
-
-"let g:airline_section_z='%p%% %l,%c'
-"let g:airline_section_warning=''
-"let g:airline_section_error=''
-""devicons
-"let g:webdevicons_enable_nerdtree=1
-"let g:webdevicons_enable_airline_tabline=1
-"let g:webdevicons_enable_airline_statusline=1
-
-""tabline
-"let g:indentLine_setColors = 0
-"let g:indentLine_char = '|'
 
 "visual indent
 xnoremap > >gv
 xnoremap < <gv
 
 " fzf
-nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files --hidden' : ':GFiles --exclude-standard --others --cached')."\<cr>"
