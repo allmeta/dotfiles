@@ -129,6 +129,8 @@ config.bind('gi','hint inputs')
 config.bind('yf','hint links yank')
 config.bind('ge','set-cmd-text :open {url:pretty}')
 config.bind('W','tab-give')
+config.bind(';v','hint links spawn vlc {hint-url}')
+config.bind('yv','spawn vlc {url:pretty}')
 
 
 # vim
