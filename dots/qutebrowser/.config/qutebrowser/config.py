@@ -3,26 +3,8 @@
 #   qute://help/configuring.html
 #   qute://help/settings.html
 
-# Uncomment this to still load settings configured via autoconfig.yml
-# config.load_autoconfig()
-
-# Always restore open sites when qutebrowser is reopened.
-# Type: Bool
 c.auto_save.session = True
 
-# User agent to send.  The following placeholders are defined:  *
-# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
-# The underlying WebKit version (set to a fixed value   with
-# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
-# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
-# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
-# QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value.
-# Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -37,20 +19,6 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{w
 # read from JavaScript is always the global value.
 # Type: FormatString
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://accounts.google.com/*')
-
-# User agent to send.  The following placeholders are defined:  *
-# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
-# The underlying WebKit version (set to a fixed value   with
-# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
-# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
-# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
-# QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value.
-# Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -121,25 +89,33 @@ c.tabs.show = 'multiple'
 c.hints.auto_follow='always'
 
 # Bindings
+config.unbind('d')
+config.unbind('u')
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
 config.bind('x','tab-close')
 config.bind('X','undo')
+config.bind('d','scroll-px 0 350')
+config.bind('u','scroll-px 0 -350')
 config.bind('gi','hint inputs')
 config.bind('yf','hint links yank')
 config.bind('ge','set-cmd-text :open {url:pretty}')
 config.bind('W','tab-give')
 config.bind(';v','hint links spawn vlc {hint-url}')
+config.bind(';V','hint links spawn vlc {hint-url} --no-video')
 config.bind('yv','spawn vlc {url:pretty}')
+config.bind('yV','spawn vlc {url:pretty} --no-video')
 
 
 # vim
-c.editor.command =['kitty','-e','vim','-f','{file}','-c','normal {line}G{column0}l']
+c.editor.command =['st','-e','vim','-f','{file}','-c','normal {line}G{column0}l']
 
 #theme
 config.source('qutewal.py')
 import glob
+
 c.content.user_stylesheets = glob.glob('/home/meta/.config/qutebrowser/user-styles/*')
 # force dark theme
 # c.qt.args=["blink-settings=darkMode=4"]
 c.content.ssl_strict=True
+# c.colors.webpage.darkmode.enabled=True

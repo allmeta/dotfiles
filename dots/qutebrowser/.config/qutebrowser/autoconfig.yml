@@ -6,15 +6,5 @@
 
 config_version: 2
 settings:
-  bindings.commands:
-    global:
-      normal:
-        ;v: hint links spawn vlc {hint-url}
-        J: tab-prev
-        K: tab-next
-        W: tab-give
-        X: undo
-        ge: set-cmd-text :open {url:pretty}
-        gi: hint inputs
-        x: tab-close
-        yf: hint links yank
+  content.register_protocol_handler:
+    https://mail.google.com?extsrc=mailto&url=%25s: false

@@ -142,7 +142,7 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color of an error message.
     # Type: QssColor
-    c.colors.messages.error.fg = foreground
+    c.colors.messages.error.fg = background
 
     # Background color of an info message.
     # Type: QssColor
@@ -154,7 +154,7 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color an info message.
     # Type: QssColor
-    c.colors.messages.info.fg = foreground
+    c.colors.messages.info.fg = background
 
     # Background color of a warning message.
     # Type: QssColor
@@ -166,7 +166,7 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color a warning message.
     # Type: QssColor
-    c.colors.messages.warning.fg = foreground
+    c.colors.messages.warning.fg = background
 
     # Background color for prompts.
     # Type: QssColor
