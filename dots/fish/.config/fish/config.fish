@@ -10,3 +10,6 @@ alias ga="git add"
 alias gb="git branch"
 alias gsta="git stash push"
 alias gcl="git clone"
+alias gr="git rebase"
+
+starship init fish | source
