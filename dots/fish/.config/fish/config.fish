@@ -5,7 +5,6 @@ if status is-login
     end
 end
 
-alias dockem='docker run -it --rm --volume "/home/meta/git/emerald:/home/docker/src" --workdir     "/home/docker/src" portoleks/in5570v20:latest'
 alias gl="git pull"
 alias gp="git push"
 alias gc="git commit -m"
