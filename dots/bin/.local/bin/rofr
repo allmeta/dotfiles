@@ -5,7 +5,7 @@ ANS=$(echo " Lock| Logout| Reboot| Shutdown" | \
 case "$ANS" in 
 	*Lock)  notify-send "kys" ;;
   *Logout) loginctl kill-session $(cat /proc/self/sessionid) ;;
-	*Reboot) loginctl reboot  ;;
-	*Shutdown) loginctl poweroff
+	*Reboot) shutdown -r now ;;
+	*Shutdown) shutdown now
 esac
 

@@ -1,3 +1,10 @@
+# Start X at login
+if status is-login
+    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+        exec startx -- -keeptty
+    end
+end
+
 alias dockem='docker run -it --rm --volume "/home/meta/git/emerald:/home/docker/src" --workdir     "/home/docker/src" portoleks/in5570v20:latest'
 alias gl="git pull"
 alias gp="git push"
