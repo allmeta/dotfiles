@@ -145,8 +145,8 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
 # EXIT MENU
-bindsym $mod+x mode "custom"; exec --no-startup-id notify-send "Keybinds" "u: poweroff\nr: reboot\nl: lock\ne: exit" &
-mode "custom" {
+bindsym $mod+x mode "shutdown"; exec --no-startup-id notify-send "Keybinds" "u: poweroff\nr: reboot\nl: lock\ne: exit" &
+mode "shutdown" {
         bindsym u exec loginctl poweroff
         bindsym r exec loginctl reboot
         bindsym l exec notify-send "Can't lock xd"
