@@ -1,4 +1,5 @@
-## as of 0e3d55c5843eec9d16833313c6f585f5549676de
-![preview.png](preview.png)
+## as of `3580e3`
+![preview.jpg](preview.jpg)
 
-cd dots && stow -t ~ *
+### Install with GNU/stow
+`cd dots && stow -t ~ *`
