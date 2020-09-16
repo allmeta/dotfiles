@@ -24,6 +24,7 @@ client.urgent           $warn	  $warn	  $fg	    $bg
 # STARTUP
 
 exec_always --no-startup-id flashfocus
+exec_always --no-startup-id autotiling
 exec_always --no-startup-id ~/.config/polybar/polybar_session.sh i3 &
 
 # KEYBINDS
@@ -45,13 +46,13 @@ bindsym XF86MonBrightnessDown exec xbacklight -5
 bindsym $mod+XF86MonBrightnessDown exec xbacklight -set 0.4
 
 # sc
-bindsym Shift+Print exec ~/.local/bin/screenshot
-bindsym Print exec maim -s | xclip -selection clipboard -t image/png
+bindsym Shift+Print exec ~/.local/bin/screenshot save
+bindsym Print exec ~/.local/bin/screenshot clip
 
 # ffmpeg record script w slop
-bindsym $mod+Print exec ~/.local/bin/record_video
+bindsym Mod1+Print exec ~/.local/bin/record_video
 # stop record
-bindsym $mod+Shift+Print exec ~/.local/bin/stop_record
+bindsym Mod1+Shift+Print exec ~/.local/bin/stop_record
 
 # notes
 bindsym $mod+n exec $term c float -e vim -f ~/dotfiles/todo
