@@ -8,6 +8,7 @@ end
 alias gl="git pull"
 alias gp="git push"
 alias gco="git checkout"
+alias gc="git commit -m"
 alias glo="git log"
 alias gst="git status"
 alias gd="git diff"
