@@ -121,3 +121,5 @@ c.content.ssl_strict=True
 # c.colors.webpage.darkmode.enabled=True
 # FONT
 c.fonts.default_family="FiraCode Nerd Font"
+
+c.content.register_protocol_handler=False
