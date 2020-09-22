@@ -43,6 +43,7 @@ set splitbelow splitright
 set wildmenu
 set wildmode=longest:full,full
 set cul
+set autochdir "auto change dir xd
 
 " shortcut split navigation
 map <C-h> <C-w>h
@@ -96,4 +97,5 @@ xnoremap > >gv
 xnoremap < <gv
 
 " fzf
-nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files --hidden' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+" nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files --hidden' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+map <C-p> :Files<CR>
