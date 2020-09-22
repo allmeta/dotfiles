@@ -8,27 +8,28 @@
  */
 
 configuration {
-    drun-display-format: "{icon}  {name}";
-    display-drun: "Applications";
-	show-icons: true;
-	icon-theme: "Papirus";
-	location: 0;
-	yoffset: 0;
-    xoffset: 0;
-	columns: 2;
-	fake-transparency: false;
-	hide-scrollbar: true;
-	bw: 0;
-    fullscreen: false;
-    show-icons: true;
-	terminal: "termite";
-	sidebar-mode: false;
+  drun-display-format: "{icon}  {name}";
+  display-drun: "Applications";
+  show-icons: true;
+  icon-theme: "Papirus";
+  location: 0;
+  yoffset: 0;
+  xoffset: 0;
+  columns: 2;
+  fake-transparency: false;
+  hide-scrollbar: true;
+  bw: 0;
+  fullscreen: false;
+  show-icons: true;
+  terminal: "termite";
+  sidebar-mode: false;
 }
 
 @import "~/.cache/wal/colors.rasi"
 
 * {
   /* text-font:                            "Iosevka 12"; */
+  text-font:                            "FiraCode Nerd Font Bold 12";
 
   inputbar-margin:                      3px 3px;
   prompt-padding:                       10px 10px;
@@ -88,6 +89,11 @@ entry {
   background-color: @background-light;
   border-color: @background-light;
 }
+
+element-icon {
+  size: 2.5ch;
+}
+
 
 #element.selected {
   background-color: @background-focus;
