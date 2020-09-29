@@ -13,8 +13,4 @@ dunst &
 picom -b &
 # ~/.config/polybar/polybar_session.sh &
 xrdb -merge ~/.cache/wal/colors.Xresources
-if [ -z "$1" ]; then
-  exec i3
-else
-  exec $1
-fi
+exec ${1:-i3}
