@@ -5,11 +5,11 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-" Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'ayu-theme/ayu-vim'
+" Plug 'ayu-theme/ayu-vim'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
@@ -43,6 +43,7 @@ set splitbelow splitright
 set wildmenu
 set wildmode=longest:full,full
 set cul
+set autochdir "auto change dir xd
 
 " shortcut split navigation
 map <C-h> <C-w>h
@@ -68,20 +69,20 @@ if !has('gui_running')
   set t_Co=256
 endif
 
-" let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_dark='hard'
 
-colorscheme ayu
+colorscheme gruvbox
 
-let ayucolor="dark"
+" let ayucolor="dark"
 
 "gruvbox inverted selection color
-" nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
-" nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
-" nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
+nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
+nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
+nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
 
-" nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
-" nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
-" nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
+nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
+nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
+nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
 
 "nerdtree
 map <C-n> :NERDTreeToggle<CR>
@@ -96,4 +97,5 @@ xnoremap > >gv
 xnoremap < <gv
 
 " fzf
-nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files --hidden' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+" nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files --hidden' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+map <C-p> :Files<CR>

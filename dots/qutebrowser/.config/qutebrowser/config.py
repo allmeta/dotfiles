@@ -119,3 +119,7 @@ c.content.user_stylesheets = glob.glob('/home/meta/.config/qutebrowser/user-styl
 # c.qt.args=["blink-settings=darkMode=4"]
 c.content.ssl_strict=True
 # c.colors.webpage.darkmode.enabled=True
+# FONT
+c.fonts.default_family="FiraCode Nerd Font"
+
+c.content.register_protocol_handler=False
