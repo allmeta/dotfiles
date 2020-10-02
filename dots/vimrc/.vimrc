@@ -10,6 +10,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 " Plug 'ayu-theme/ayu-vim'
+Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
