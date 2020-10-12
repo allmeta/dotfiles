@@ -343,7 +343,7 @@ if os.path.isfile(colors_absolute):
     # context menu
     c.colors.contextmenu.menu.bg=background
     c.colors.contextmenu.menu.fg=foreground
-    c.colors.contextmenu.selected.bg=yellow
+    c.colors.contextmenu.selected.bg=red
     c.colors.contextmenu.selected.fg=background
 
     if qutewal_dynamic_loading or bool(os.getenv('QUTEWAL_DYNAMIC_LOADING')):
