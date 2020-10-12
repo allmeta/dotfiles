@@ -5,14 +5,11 @@ export PATH=~/.local/bin:$PATH
 setxkbmap no &
 ksuperkey -e 'Super_L=Alt_L|F1' &
 ksuperkey -e 'Super_R=Alt_L|F1' &
-xmodmap -e "keycode 135 = Super_L" &
-ulimit -c 0
-
-sh ~/.screenlayout/2.sh
+ulimit -c 0 &
+xset m 0 0 &
 
 dunst &
 ~/.fehbg &
-pulseaudio --start
 picom -b &
 xrdb -merge ~/.cache/wal/colors.Xresources
 exec ${1:-i3}
