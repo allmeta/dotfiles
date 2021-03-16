@@ -1,16 +1,13 @@
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim  --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin('~/.vim/plugged')
+call plug#begin(stdpath('data') . '/plugged')
 Plug 'lifepillar/vim-gruvbox8'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'tpope/vim-fugitive'
 " Plug 'ayu-theme/ayu-vim'
 Plug 'preservim/nerdtree'
+Plug 'neoclide/coc.nvim', {'branch':'release'}
+Plug 'ionide/ionide-vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
 Plug 'direnv/direnv.vim'
@@ -111,11 +108,12 @@ augroup END
 
 " fzf
 nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files --hidden' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+nnoremap <C-p> <cmd>Telescope find_files<cr>
 
 " treesitter
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = {"haskell","javascript","typescript",},
   highlight = {
     enable = true,              -- false will disable the whole extension
   },
@@ -130,3 +128,10 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+
+" coc
+" GoTo code navigation.
+" nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
