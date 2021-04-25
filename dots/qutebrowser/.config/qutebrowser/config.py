@@ -64,7 +64,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 #   - true
 #   - false
 #   - ask
-c.content.notifications = False
+c.content.notifications.enabled = False
 
 # Allow websites to show notifications.
 # Type: BoolAsk
@@ -117,9 +117,15 @@ import glob
 c.content.user_stylesheets = glob.glob('/home/meta/.config/qutebrowser/user-styles/*')
 # force dark theme
 # c.qt.args=["blink-settings=darkMode=4"]
-c.content.ssl_strict=True
 # c.colors.webpage.darkmode.enabled=True
 # FONT
 c.fonts.default_family="FiraCode Nerd Font"
 
 c.content.register_protocol_handler=False
+
+c.fileselect.handler="external"
+c.fileselect.single_file.command=['st', '-e', 'ranger', '--choosefile={}']
+c.fileselect.multiple_files.command=['st', '-e', 'ranger', '--choosefiles={}']
+c.fileselect.folder.command=['st', '-e', 'ranger', '--choosedir={}']
+
+config.load_autoconfig()
