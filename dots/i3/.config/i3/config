@@ -30,7 +30,7 @@ exec_always --no-startup-id ~/.config/polybar/polybar_session.sh i3 &
 # KEYBINDS
 
 bindsym $mod+t exec $term
-bindsym $mod+f exec $term c float -e ranger # ranger float
+bindsym $mod+f exec $term -c float -e ranger # ranger float
 bindsym $mod+Shift+t exec $term -c float # floating term
 bindsym $mod+w exec qutebrowser 
 
