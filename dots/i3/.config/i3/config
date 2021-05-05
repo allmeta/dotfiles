@@ -34,7 +34,7 @@ bindsym $mod+f exec $term -c float -e ranger # ranger float
 bindsym $mod+Shift+t exec $term -c float # floating term
 bindsym $mod+w exec qutebrowser 
 
-bindsym Mod1+F1 exec rofi -modi drun -show drun & 
+bindsym Mod1+F1 exec "rofi -modi drun,run -show drun" 
 # bindsym $mod+x exec ~/.local/bin/rofr # logout screen thing
 
 # volume and brightness
@@ -59,6 +59,7 @@ bindsym $mod+n exec $term c float -e vim -f ~/dotfiles/todo
 
 # password menu
 bindsym $mod+p exec ~/.local/bin/lpass_menu
+bindsym $mod+y exec ~/.local/bin/twitch-rofi
 
 # change focus
 bindsym $mod+h focus left
