@@ -105,6 +105,7 @@ config.bind(';v','hint links spawn vlc {hint-url}')
 config.bind(';V','hint links spawn vlc {hint-url} --no-video')
 config.bind('yv','spawn vlc {url:pretty}')
 config.bind('yV','spawn vlc {url:pretty} --no-video')
+config.bind('gp','spawn --userscript qute-bitwarden')
 
 
 # vim
