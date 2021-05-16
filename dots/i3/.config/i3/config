@@ -6,13 +6,13 @@ font pango:mono 10
 set_from_resource $bg     background
 set_from_resource $fg     foreground
 set_from_resource $warn   color1
-set_from_resource $active color4
+set_from_resource $active color3
 
 floating_modifier $mod
 for_window [class="float"] floating enable
 
 # Remove title bar
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 1
 
 
 # COLORS                border	bg      text    indicator
@@ -23,7 +23,6 @@ client.urgent           $warn	  $warn	  $fg	    $bg
 
 # STARTUP
 
-exec_always --no-startup-id flashfocus
 exec_always --no-startup-id autotiling
 exec_always --no-startup-id ~/.config/polybar/polybar_session.sh i3 &
 
