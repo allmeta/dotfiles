@@ -1,5 +1,5 @@
 * {{
-  accent:           {color1};
+  accent:           {color3};
   background:       {background};
   background-light: #282828;
   foreground:       {foreground};
