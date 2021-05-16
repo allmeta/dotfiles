@@ -321,7 +321,7 @@ if os.path.isfile(colors_absolute):
 
     # Background color of selected even tabs.
     # Type: QtColor
-    c.colors.tabs.selected.even.bg = blue
+    c.colors.tabs.selected.even.bg = yellow
 
     # Foreground color of selected even tabs.
     # Type: QtColor
@@ -329,7 +329,7 @@ if os.path.isfile(colors_absolute):
 
     # Background color of selected odd tabs.
     # Type: QtColor
-    c.colors.tabs.selected.odd.bg = blue
+    c.colors.tabs.selected.odd.bg = yellow
 
     # Foreground color of selected odd tabs.
     # Type: QtColor

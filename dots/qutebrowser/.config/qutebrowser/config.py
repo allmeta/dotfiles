@@ -84,7 +84,7 @@ c.downloads.remove_finished = 0
 
 # open tabs in background
 c.tabs.background = True
-c.input.partial_timeout = 20000
+c.input.partial_timeout = 99999999
 c.tabs.show = 'multiple'
 c.hints.auto_follow='always'
 
@@ -101,11 +101,10 @@ config.bind('gi','hint inputs')
 config.bind('yf','hint links yank')
 config.bind('ge','set-cmd-text :open {url:pretty}')
 config.bind('W','tab-give')
-config.bind(';v','hint links spawn vlc {hint-url}')
-config.bind(';V','hint links spawn vlc {hint-url} --no-video')
-config.bind('yv','spawn vlc {url:pretty}')
-config.bind('yV','spawn vlc {url:pretty} --no-video')
+config.bind(';m','hint links spawn vlc --one-instance --playlist-enqueue {hint-url}')
+config.bind('ym','spawn vlc --one-instance --playlist-enqueue {url:pretty}')
 config.bind('gp','spawn --userscript qute-bitwarden')
+config.bind('!','set-cmd-text :open -t !')
 
 
 # vim
@@ -125,8 +124,8 @@ c.fonts.default_family="FiraCode Nerd Font"
 c.content.register_protocol_handler=False
 
 c.fileselect.handler="external"
-c.fileselect.single_file.command=['st', '-e', 'ranger', '--choosefile={}']
-c.fileselect.multiple_files.command=['st', '-e', 'ranger', '--choosefiles={}']
-c.fileselect.folder.command=['st', '-e', 'ranger', '--choosedir={}']
+c.fileselect.single_file.command=['st', '-e', 'ranger -c float', '--choosefile={}']
+c.fileselect.multiple_files.command=['st', '-e', 'ranger -c float', '--choosefiles={}']
+c.fileselect.folder.command=['st', '-e', 'ranger -c float', '--choosedir={}']
 
 config.load_autoconfig()
