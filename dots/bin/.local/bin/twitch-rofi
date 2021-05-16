@@ -19,9 +19,8 @@ streamer=`curl -s 'https://gql.twitch.tv/gql' \
         -H 'Referer: https://www.twitch.tv/' \
         --data-raw '[{"operationName":"PersonalSections","variables":{"input":{"sectionInputs":["FOLLOWED_SECTION"]},"channelLogin":null,"withChannelUser":false},"extensions":{"persistedQuery":{"version":1,"sha256Hash":"156c235ae84585c1252fdcf47636c0773af1f67db48c1091e56ded42c548fd43"}}}]' \
         --compressed | \
-jq -r '.[0].data.personalSections[0].items | map(select(.content | has("viewersCount")))[] | .user.login, .content.game.name' | tee % | \
-paste -d ' ' - - | \
+        jq -r '.[0].data.personalSections[0].items | map(select(.content | has("viewersCount")))[] | .user.login + " - " + .content.game.name + " - " + (.content.viewersCount | tostring)' | \
 rofi -dmenu -i -p 'Twitch vlc' | \
-awk '{print $1}' `
+awk '{print $1}' ` || exit 1
 
 mpv "https://twitch.tv/$streamer"
