@@ -21,6 +21,7 @@ call plug#end()
 let mapleader=" "
 
 set termguicolors
+set guifont=Fantasque\ Sans\ Mono:h14
 set term=builtin_xterm
 set nocompatible
 set tabstop=2
@@ -36,7 +37,6 @@ set ttyfast
 " set listchars=tab:>-,trail:~,extends:>,precedes:<,space:.
 let &t_SI = "\<Esc>[6 q"
 let &t_EI = "\<Esc>[1 q"
-set list lcs=space:.
 set shiftwidth=2 
 set softtabstop=2
 set expandtab

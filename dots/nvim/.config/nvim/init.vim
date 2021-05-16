@@ -1,3 +1,10 @@
+" install vim-plug
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'nvim-lua/popup.nvim'
@@ -19,6 +26,7 @@ call plug#end()
 let mapleader=" "
 
 set termguicolors
+set guifont=Fantasque\ Sans\ Mono:h16
 set nocompatible
 set tabstop=2
 set relativenumber
