@@ -33,7 +33,6 @@ alias gd="git diff"
 alias gst="git status"
 alias gsta="git stash push"
 
-HIST_STAMPS="dd/mm/yyyy"
 
 alias transfer=transfer
 alias transfer_encrypt=transfer_encrypt
@@ -41,10 +40,18 @@ alias transfer_encrypt=transfer_encrypt
 # source highlighter
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source history nav
+export HISTFILE=~/.zsh_history
+export HIST_STAMPS="dd/mm/yyyy"
+export HISTSIZE=100000
+export SAVEHIST=100000
+setopt HIST_IGNORE_ALL_DUPS
+setopt histsavenodups
+setopt histreduceblanks
+setopt incappendhistorytime
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
 #completion
 fpath=(/usr/share/zsh/site-functions/ $fpath)
 autoload -U compinit && compinit
