@@ -11,11 +11,13 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'tpope/vim-fugitive'
+Plug 'romgrk/barbar.nvim'
 " Plug 'ayu-theme/ayu-vim'
-Plug 'preservim/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'ionide/ionide-vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'tpope/vim-surround'
 Plug 'direnv/direnv.vim'
 Plug 'tpope/vim-commentary'
@@ -57,8 +59,6 @@ map <C-l> <C-w>l
 augroup EditVim
   autocmd!
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-  "close vim if only nerdtree is open
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
   "commentary.vim
   autocmd FileType vim setlocal commentstring=\"\ %s
@@ -81,18 +81,6 @@ let g:gruvbox_filetype_hi_groups = 1
 colorscheme gruvbox8
 
 " let ayucolor="dark"
-
-" gruvbox inverted selection color
- " nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
- " nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
- " nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
-
- " nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
- " nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
- " nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
-
-"nerdtree
-map <C-n> :NERDTreeToggle<CR>
 
 "custom statusline
 " set statusline=%f%m%r%w%=%y[%p%%][%l,%v]
@@ -143,3 +131,78 @@ EOF
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" barbar
+" Move to previous/next
+nnoremap <silent>    <A-,> :BufferPrevious<CR>
+nnoremap <silent>    <A-.> :BufferNext<CR>
+" Re-order to previous/next
+nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
+nnoremap <silent>    <A->> :BufferMoveNext<CR>
+" Goto buffer in position...
+nnoremap <silent>    <A-1> :BufferGoto 1<CR>
+nnoremap <silent>    <A-2> :BufferGoto 2<CR>
+nnoremap <silent>    <A-3> :BufferGoto 3<CR>
+nnoremap <silent>    <A-4> :BufferGoto 4<CR>
+nnoremap <silent>    <A-5> :BufferGoto 5<CR>
+nnoremap <silent>    <A-6> :BufferGoto 6<CR>
+nnoremap <silent>    <A-7> :BufferGoto 7<CR>
+nnoremap <silent>    <A-8> :BufferGoto 8<CR>
+nnoremap <silent>    <A-9> :BufferLast<CR>
+" Close buffer
+nnoremap <silent>    <A-c> :BufferClose<CR>
+" Wipeout buffer
+"                          :BufferWipeout<CR>
+" Close commands
+"                          :BufferCloseAllButCurrent<CR>
+"                          :BufferCloseBuffersLeft<CR>
+"                          :BufferCloseBuffersRight<CR>
+" Magic buffer-picking mode
+nnoremap <silent> <C-s>    :BufferPick<CR>
+
+"nvim-tree
+nnoremap <C-n> :NvimTreeToggle<CR>
+let g:nvim_tree_side = "left"
+let g:nvim_tree_width = 25
+let g:nvim_tree_ignore = ['.git', 'node_modules', '.cache']
+let g:nvim_tree_auto_open = 0
+let g:nvim_tree_auto_close = 0
+let g:nvim_tree_quit_on_open = 0
+let g:nvim_tree_follow = 1
+let g:nvim_tree_indent_markers = 1
+let g:nvim_tree_hide_dotfiles = 1
+let g:nvim_tree_git_hl = 1
+let g:nvim_tree_root_folder_modifier = ":~"
+let g:nvim_tree_allow_resize = 1
+let g:nvim_tree_show_icons = {
+    \ 'git': 1,
+    \ 'folders': 1,
+    \ 'files': 1,
+    \ }
+let g:nvim_tree_icons = {
+    \ 'default': '',
+    \ 'symlink': '',
+    \ 'git': {
+    \   'unstaged': "✗",
+    \   'staged': "✓",
+    \   'unmerged': "",
+    \   'renamed': "➜",
+    \   'untracked': "★",
+    \   'deleted': "",
+    \   'ignored': "◌"
+    \   },
+    \ 'folder': {
+    \   'default': "",
+    \   'open': "",
+    \   'empty': "",
+    \   'empty_open': "",
+    \   'symlink': "",
+    \   'symlink_open': "",
+    \   },
+    \   'lsp': {
+    \     'hint': "",
+    \     'info': "",
+    \     'warning': "",
+    \     'error': "",
+    \   }
+    \ }
