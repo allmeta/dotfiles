@@ -280,11 +280,11 @@ if os.path.isfile(colors_absolute):
 
     # Background color of the tab bar.
     # Type: QtColor
-    c.colors.tabs.bar.bg = background
+    c.colors.tabs.bar.bg = bg_alt
 
     # Background color of unselected even tabs.
     # Type: QtColor
-    c.colors.tabs.even.bg = background
+    c.colors.tabs.even.bg = bg_alt
 
     # Foreground color of unselected even tabs.
     # Type: QtColor
@@ -313,7 +313,7 @@ if os.path.isfile(colors_absolute):
 
     # Background color of unselected odd tabs.
     # Type: QtColor
-    c.colors.tabs.odd.bg = background
+    c.colors.tabs.odd.bg = bg_alt
 
     # Foreground color of unselected odd tabs.
     # Type: QtColor
@@ -321,19 +321,19 @@ if os.path.isfile(colors_absolute):
 
     # Background color of selected even tabs.
     # Type: QtColor
-    c.colors.tabs.selected.even.bg = yellow
+    c.colors.tabs.selected.even.bg = background
 
     # Foreground color of selected even tabs.
     # Type: QtColor
-    c.colors.tabs.selected.even.fg = background
+    c.colors.tabs.selected.even.fg = foreground
 
     # Background color of selected odd tabs.
     # Type: QtColor
-    c.colors.tabs.selected.odd.bg = yellow
+    c.colors.tabs.selected.odd.bg = background
 
     # Foreground color of selected odd tabs.
     # Type: QtColor
-    c.colors.tabs.selected.odd.fg = background
+    c.colors.tabs.selected.odd.fg = foreground
 
     # Background color for webpages if unset (or empty to use the theme's
     # color)
