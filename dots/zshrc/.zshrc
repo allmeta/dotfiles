@@ -33,6 +33,9 @@ alias gd="git diff"
 alias gst="git status"
 alias gsta="git stash push"
 
+alias ..='cd ..'
+alias ...='cd ../..'
+
 
 alias transfer=transfer
 alias transfer_encrypt=transfer_encrypt
