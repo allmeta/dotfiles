@@ -1,0 +1,15 @@
+#!/bin/sh
+url=${2:-'https://hanime.tv/videos/hentai/fault-service-aratanaru-rival?playlist_id=exg8kyt3t81rssia0myb'}
+id=`basename $url |  cut -d'?' -f1`
+video_url=`curl -s "https://hw.hanime.tv/api/v8/video?id=$id" \
+    --compressed -o - \
+  | jq '.videos_manifest.servers[0].streams[] | .height+" "+.url' -r \
+  | dmenu -p quality \
+  | awk '{print $2}'`
+
+if [ $1 = '-u' ]; then
+  echo $video_url
+elif [ $1 = '-p' ]; then
+  echo $video_url | mpv --playlist=-
+fi
+

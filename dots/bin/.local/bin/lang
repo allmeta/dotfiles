@@ -1,0 +1,3 @@
+#!/bin/bash
+LANG=`echo -e "no\nus" | rofi -dmenu -i -p "XKB"` || exit 1
+setxkbmap $LANG

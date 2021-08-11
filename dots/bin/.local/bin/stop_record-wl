@@ -1,0 +1,3 @@
+#!/bin/bash
+notify-send "recording stopped"
+pkill wf-recorder
