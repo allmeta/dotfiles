@@ -1,0 +1,236 @@
+# SETUP
+set $mod Mod4
+set $term footclient
+font pango:mono 10
+
+# set_from_resource $bg     background
+# set_from_resource $fg     foreground
+# set_from_resource $warn   color1
+# set_from_resource $active color3
+
+floating_modifier $mod
+for_window [app_id="float"] floating enable
+
+default_border pixel 1
+default_floating_border pixel 1
+
+set $active #edbbd2
+set $bg #1d2021
+set $fg #efa2c2
+set $warn #ff5000
+
+# COLORS                border	bg      text    indicator
+client.focused          $active $active $active $active
+client.focused_inactive	$bg	    $bg	    $fg	    $bg
+client.unfocused        $bg	    $bg     $fg     $bg
+client.urgent           $warn	  $warn	  $fg	    $bg
+
+# STARTUP
+exec bsptile
+exec swaybg -i ~/pics/walls/ddr_small.jpg
+# exec pipewire
+exec pulseaudio
+exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+exec waybar
+exec foot --server
+exec ~/git/ddg-proxy/ddg-proxy
+
+# INPUT
+
+input type:keyboard {
+  xkb_layout "us"
+  xkb_options "ctrl:nocaps"
+}
+input type:touchpad {
+  dwt disabled
+  tap enabled
+}
+
+# KEYBINDS
+
+bindsym $mod+t exec $term
+bindsym $mod+e exec $term -a 'float' lfrun # lf float
+bindsym $mod+Shift+t exec $term --class='float' # floating term
+bindsym $mod+w exec qutebrowser 
+
+bindsym $mod+d exec "wofi -i --show drun --columns 2"
+bindsym $mod+comma exec lang
+
+# sway rotate screen
+bindsym $mod+Mod1+Down exec swaymsg output eDP-1 transform 0
+bindsym $mod+Mod1+Left exec swaymsg output eDP-1 transform 90
+bindsym $mod+Mod1+Up exec swaymsg output eDP-1 transform 180
+bindsym $mod+Mod1+Right exec swaymsg output eDP-1 transform 270
+
+# sway fullscreen
+bindsym $mod+f fullscreen
+
+# volume and brightness
+bindsym XF86AudioRaiseVolume exec amixer sset -M Master 10%+ && pkill -RTMIN+6 waybar
+bindsym XF86AudioLowerVolume exec amixer sset -M Master 10%- && pkill -RTMIN+6 waybar
+bindsym XF86AudioMute exec amixer sset Master toggle && pkill -RTMIN+6 waybar
+bindsym XF86MonBrightnessUp exec xbacklight +5
+bindsym XF86MonBrightnessDown exec xbacklight -5
+bindsym $mod+XF86MonBrightnessDown exec xbacklight -set 0.4
+
+# sc
+bindsym Shift+Print exec ~/.local/bin/screenshot-wl save
+bindsym Print exec ~/.local/bin/screenshot-wl clip
+
+# ffmpeg record script w slop
+bindsym Mod1+Print exec ~/.local/bin/record_videowl
+# stop record
+bindsym Mod1+Shift+Print exec ~/.local/bin/stop_record
+
+# notes
+bindsym $mod+n exec $term -a float nvim -f ~/dotfiles/todo
+
+# password menu
+bindsym $mod+p exec ~/.local/bin/lpass_menu
+# twitch rofi script
+bindsym $mod+y exec ~/.local/bin/twitch-rofi
+bindsym $mod+Shift+y exec ~/.local/bin/twitch-video-rofi
+# wofi emoji picker
+bindsym $mod+period exec ~/.local/bin/wofi-emoji
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+g split h
+bindsym $mod+v split v
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# gaps
+bindsym $mod+plus gaps inner all plus 2
+bindsym $mod+minus gaps inner all minus 2
+
+bindsym $mod+Shift+plus gaps outer all plus 2
+bindsym $mod+Shift+minus gaps outer all minus 2
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart
+bindsym $mod+Shift+r restart
+
+bindsym $mod+q kill
+
+# WORKSPACE
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
+
+# EXIT MENU
+bindsym $mod+x mode "shutdown"; exec notify-send "Keybinds" "u: poweroff\nr: reboot\nl: lock\ne: exit" &
+mode "shutdown" {
+        bindsym u exec loginctl poweroff
+        bindsym r exec loginctl reboot
+        bindsym l exec notify-send "Can't lock xd"
+        bindsym e exit
+
+        bindsym Escape mode "default"
+        bindsym Return mode "default"
+}
+
+bindsym $mod+s mode "swap"; mark swapee
+mode "swap" {
+        bindsym $mod+h focus left
+        bindsym $mod+j focus down
+        bindsym $mod+k focus up
+        bindsym $mod+l focus right
+
+        # alternatively, you can use the cursor keys:
+        bindsym $mod+Left focus left
+        bindsym $mod+Down focus down
+        bindsym $mod+Up focus up
+        bindsym $mod+Right focus right
+
+        bindsym Escape mode "default"
+        bindsym Return swap container with mark swapee; mode "default"
+}
+
+# RESIZE
+bindsym $mod+r mode "resize"
+mode "resize" {
+        bindsym j resize shrink width 40px or 10 ppt
+        bindsym k resize grow height 40px or 10 ppt
+        bindsym l resize shrink height 40px or 10 ppt
+        bindsym oslash resize grow width 40px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 40px or 10 ppt
+        bindsym Down resize grow height 40px or 10 ppt
+        bindsym Up resize shrink height 40px or 10 ppt
+        bindsym Right resize grow width 40px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+
+# GAPS
+
+gaps inner 12
+gaps outer 0
+smart_gaps on
+smart_borders on

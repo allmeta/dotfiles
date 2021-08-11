@@ -23,15 +23,17 @@ client.urgent           $warn	  $warn	  $fg	    $bg
 
 # STARTUP
 
-exec_always --no-startup-id autotiling
+exec_always --no-startup-id autotiling &
 exec_always --no-startup-id ~/.config/polybar/polybar_session.sh i3 &
 
 # KEYBINDS
 
 bindsym $mod+t exec $term
-bindsym $mod+f exec $term -c float -e ranger # ranger float
+bindsym $mod+e exec $term -c float -e lfrun # lf float
 bindsym $mod+Shift+t exec $term -c float # floating term
 bindsym $mod+w exec qutebrowser 
+
+bindsym $mod+comma exec lang
 
 bindsym Mod1+F1 exec "rofi -columns 2 -modi drun,run -show drun" 
 
@@ -59,7 +61,7 @@ bindsym Mod1+Print exec ~/.local/bin/record_video
 bindsym Mod1+Shift+Print exec ~/.local/bin/stop_record
 
 # notes
-bindsym $mod+n exec $term c float -e vim -f ~/dotfiles/todo
+bindsym $mod+n exec $term -c float -e nvim -f ~/dotfiles/todo
 
 # password menu
 bindsym $mod+p exec ~/.local/bin/lpass_menu
@@ -98,6 +100,9 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
+
+# fullscreen
+bindsym $mod+f fullscreen
 
 # gaps
 bindsym $mod+plus gaps inner all plus 2
@@ -150,6 +155,23 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
+
+bindsym $mod+s mode "swap"; mark swapee
+mode "swap" {
+        bindsym $mod+h focus left
+        bindsym $mod+j focus down
+        bindsym $mod+k focus up
+        bindsym $mod+l focus right
+
+        # alternatively, you can use the cursor keys:
+        bindsym $mod+Left focus left
+        bindsym $mod+Down focus down
+        bindsym $mod+Up focus up
+        bindsym $mod+Right focus right
+
+        bindsym Escape mode "default"
+        bindsym Return swap container with mark swapee; mode "default"
+}
 
 # EXIT MENU
 bindsym $mod+x mode "shutdown"; exec --no-startup-id notify-send "Keybinds" "u: poweroff\nr: reboot\nl: lock\ne: exit" &
