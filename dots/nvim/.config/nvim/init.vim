@@ -27,7 +27,6 @@ call plug#end()
 
 let mapleader=" "
 
-set termguicolors
 set guifont=Fantasque\ Sans\ Mono:h16
 set nocompatible
 set tabstop=2
@@ -37,8 +36,8 @@ set laststatus=2
 set noshowmode
 set encoding=UTF-8
 set background=dark
-set ttimeout
-set ttimeoutlen=1
+" set ttimeout
+set ttimeoutlen=0
 set ttyfast
 " set listchars=tab:>-,trail:~,extends:>,precedes:<,space:.
 let &t_SI = "\<Esc>[6 q"
@@ -78,7 +77,7 @@ set background=dark
 let g:gruvbox_transp_bg = 1
 let g:gruvbox_filetype_hi_groups = 1
 
-colorscheme gruvbox8
+" colorscheme gruvbox8
 
 " let ayucolor="dark"
 
