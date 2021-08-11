@@ -1,12 +1,13 @@
 #!/usr/bin/bash
 
-cid=$(<~/cid)
-oauth=$(<~/oath)
+config_dir=~/.config/twitch-rofi
+client_id=$(<$config_dir/client_id)
+oauth_token=$(<$config_dir/oauth_token)
 streamer=`curl -s 'https://gql.twitch.tv/gql' \
         -H 'Connection: keep-alive' \
-        -H "Authorization: OAuth ${oauth}" \
+        -H "Authorization: OAuth ${oauth_token}" \
         -H 'Accept-Language: en-US,en;q=0.9' \
-        -H "Client-Id: ${cid}" \
+        -H "Client-Id: ${client_id}" \
         -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.15.2 Chrome/87.0.4280.144 Safari/537.36' \
         -H 'X-Device-Id: 5e48e11f1026806c' \
         -H 'Content-Type: text/plain;charset=UTF-8' \
@@ -20,7 +21,7 @@ streamer=`curl -s 'https://gql.twitch.tv/gql' \
         --data-raw '[{"operationName":"PersonalSections","variables":{"input":{"sectionInputs":["FOLLOWED_SECTION"]},"channelLogin":null,"withChannelUser":false},"extensions":{"persistedQuery":{"version":1,"sha256Hash":"156c235ae84585c1252fdcf47636c0773af1f67db48c1091e56ded42c548fd43"}}}]' \
         --compressed | \
         jq -r '.[0].data.personalSections[0].items | map(select(.content | has("viewersCount")))[] | .user.login + " - " + .content.game.name + " - " + (.content.viewersCount | tostring)' | \
-rofi -dmenu -i -p 'Twitch vlc' | \
+rofi -dmenu -i -p 'Twitch' | \
 awk '{print $1}' ` || exit 1
 
 mpv "https://twitch.tv/$streamer"

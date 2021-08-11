@@ -1,0 +1,19 @@
+#!/bin/bash
+case $1 in
+  "save")
+    SCDIR=~/pics/sc
+    TIMESTAMP="$(date +%y-%m-%d.%H:%M:%S)"
+    FILENAME=$SCDIR/$TIMESTAMP.png
+    grim -g "`slurp`" $FILENAME
+    notify-send "Screenshot" "saved" --urgency low -i $FILENAME 
+    ;;
+  "clip")
+    grim -g "`slurp`" - | magick -\
+      -sampling-factor 4:2:0\
+      -strip \
+      -quality 85\
+      -interlace Plane \
+      -colorspace RGB \
+      jpg:- | wl-copy -t image/jpeg
+    notify-send "Screenshot" "clipboard" --urgency low 
+esac
