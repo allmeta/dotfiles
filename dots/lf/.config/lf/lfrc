@@ -1,0 +1,12 @@
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner
+cmd open &xdg-open $f
+set icons
+set dircounts
+set info size
+map <esc> unselect
+map gp cd ~/pics/
+map gv cd ~/videos/
+map gd cd ~/downloads/
+map gc cd ~/.config/
+map gt cd ~/git/

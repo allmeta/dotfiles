@@ -101,8 +101,8 @@ config.bind('gi','hint inputs')
 config.bind('yf','hint links yank')
 config.bind('ge','set-cmd-text :open {url:pretty}')
 config.bind('W','tab-give')
-config.bind(';m','hint links spawn vlc --one-instance --playlist-enqueue {hint-url}')
-config.bind('ym','spawn vlc --one-instance --playlist-enqueue {url:pretty}')
+config.bind(';m','hint links spawn mpv "{hint-url}"')
+config.bind('ym','spawn mpv {url:pretty}')
 config.bind('gp','spawn --userscript qute-bitwarden')
 config.bind('!','set-cmd-text :open -t !')
 
@@ -124,8 +124,8 @@ c.fonts.default_family="FiraCode Nerd Font"
 c.content.register_protocol_handler=False
 
 c.fileselect.handler="external"
-c.fileselect.single_file.command=['st', '-e', 'ranger -c float', '--choosefile={}']
-c.fileselect.multiple_files.command=['st', '-e', 'ranger -c float', '--choosefiles={}']
-c.fileselect.folder.command=['st', '-e', 'ranger -c float', '--choosedir={}']
+c.fileselect.single_file.command=['st', '-c', 'float', 'lf' ,'-selection-path','{}']
+c.fileselect.multiple_files.command=['st', '-c', 'float', 'lf' ,'-selection-path','{}']
+c.fileselect.folder.command=['st', '-c', 'float', 'lf' ,'-selection-path','{}']
 
 config.load_autoconfig()
