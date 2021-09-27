@@ -12,8 +12,10 @@ function transfer() {
 }
 function transfer_encrypt() {
 	cat $1 | gpg -ac -o- | curl -X PUT --progress-bar --upload-file "-" https://transfer.sh/$(basename $1) | tee /dev/null | xclip -selection clipboard && notify-send "Transfer" "Url copied to clipboard"
-
 }
+
+
+
 function gc(){
   git commit -m "$*"
 }
@@ -35,8 +37,7 @@ alias ...='cd ../..'
 alias lf=lfrun
 alias ls='ls --color'
 alias open="xdg-open"
-
-
+alias v="$EDITOR"
 
 alias transfer=transfer
 alias transfer_encrypt=transfer_encrypt
@@ -65,9 +66,15 @@ autoload -U compinit && compinit
 #zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 ## case-insensitive,partial-word,substr
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select
+
 
 # powerline prompt
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+#vi mode
+# Your custom widget
+source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh

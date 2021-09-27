@@ -41,11 +41,11 @@
 [urgency_normal]
     background = "{background}"
     foreground = "{foreground}"
-    frame_color = "{foreground}"
+    frame_color = "{cursor}"
     timeout = 5
 
 [urgency_critical]
     background = "{background}"
-    foreground = "{color1}"
+    foreground = "{foreground}"
     frame_color = "{color1}"
     timeout = 5

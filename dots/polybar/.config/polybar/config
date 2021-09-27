@@ -15,8 +15,8 @@ tray-position = right
 tray-padding = 1
 
 modules-left = workspaces
-modules-center = c5 clock c6
-modules-right = c0 weather c1 alsa c2 backlight c3 network c4 battery
+modules-center = clock 
+modules-right = weather pulseaudio backlight network battery
 
 [bar/i3]
 inherit=bar/base
