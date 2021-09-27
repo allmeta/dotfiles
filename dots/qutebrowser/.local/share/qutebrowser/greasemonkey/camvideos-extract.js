@@ -4,7 +4,8 @@
 // @run-at document-start
 // ==/UserScript==
 
-window.addEventListener("DOMContentLoaded",()=>{
+window.addEventListener("load",()=>{
+  console.log("loaded")
   Array.from(document.querySelectorAll("video")).forEach(x=>{
     let a=document.createElement("a")
     a.href=x.src

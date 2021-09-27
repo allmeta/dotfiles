@@ -13,8 +13,8 @@ if os.path.isfile(colors_absolute):
     with open(colors_absolute) as colorfile:
         colors = json.load(colorfile)
         cursor = colors['special']['cursor']
-        background = colors['special']['background']
-        foreground = colors['special']['foreground']
+        bg = colors['special']['background']
+        fg = colors['special']['foreground']
         black = colors['colors']['color0']
         white = colors['colors']['color7']
         gray = colors['colors']['color15']
@@ -24,51 +24,53 @@ if os.path.isfile(colors_absolute):
         blue = colors['colors']['color4']
         magenta = colors['colors']['color5']
         cyan = colors['colors']['color6']
-        bg_alt = colors['colors']['color8']
+        bg_alt = colors['special']['background']
+
+        accent=blue
 
     # Background color of the completion widget category headers.
     # Type: QssColor
-    c.colors.completion.category.bg = background
+    c.colors.completion.category.bg = bg
 
     # Bottom border color of the completion widget category headers.
     # Type: QssColor
-    c.colors.completion.category.border.bottom = background
+    c.colors.completion.category.border.bottom = bg
 
     # Top border color of the completion widget category headers.
     # Type: QssColor
-    c.colors.completion.category.border.top = background
+    c.colors.completion.category.border.top = bg
 
     # Foreground color of completion widget category headers.
     # Type: QtColor
-    c.colors.completion.category.fg = foreground
+    c.colors.completion.category.fg = fg
 
     # Background color of the completion widget for even rows.
     # Type: QssColor
-    c.colors.completion.even.bg = background
+    c.colors.completion.even.bg = bg
 
     # Background color of the completion widget for odd rows.
     # Type: QssColor
-    c.colors.completion.odd.bg = background
+    c.colors.completion.odd.bg = bg
 
     # Text color of the completion widget.
     # Type: QtColor
-    c.colors.completion.fg = foreground
+    c.colors.completion.fg = fg
 
     # Background color of the selected completion item.
     # Type: QssColor
-    c.colors.completion.item.selected.bg = yellow
+    c.colors.completion.item.selected.bg = accent
 
     # Bottom border color of the selected completion item.
     # Type: QssColor
-    c.colors.completion.item.selected.border.bottom = background
+    c.colors.completion.item.selected.border.bottom = bg
 
     # Top border color of the completion widget category headers.
     # Type: QssColor
-    c.colors.completion.item.selected.border.top = background
+    c.colors.completion.item.selected.border.top = bg
 
     # Foreground color of the selected completion item.
     # Type: QtColor
-    c.colors.completion.item.selected.fg = background
+    c.colors.completion.item.selected.fg = bg
 
     # Foreground color of the matched text in the completion.
     # Type: QssColor
@@ -76,7 +78,7 @@ if os.path.isfile(colors_absolute):
 
     # Color of the scrollbar in completion view
     # Type: QssColor
-    c.colors.completion.scrollbar.bg = background
+    c.colors.completion.scrollbar.bg = bg
 
     # Color of the scrollbar handle in completion view.
     # Type: QssColor
@@ -84,7 +86,7 @@ if os.path.isfile(colors_absolute):
 
     # Background color for the download bar.
     # Type: QssColor
-    c.colors.downloads.bar.bg = background
+    c.colors.downloads.bar.bg = bg
 
     # Background color for downloads with errors.
     # Type: QtColor
@@ -92,7 +94,7 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color for downloads with errors.
     # Type: QtColor
-    c.colors.downloads.error.fg = foreground
+    c.colors.downloads.error.fg = fg
 
     # Color gradient stop for download backgrounds.
     # Type: QtColor
@@ -114,7 +116,7 @@ if os.path.isfile(colors_absolute):
 
     # Font color for hints.
     # Type: QssColor
-    c.colors.hints.fg = background
+    c.colors.hints.fg = bg
 
     # Font color for the matched part of hints.
     # Type: QssColor
@@ -122,11 +124,11 @@ if os.path.isfile(colors_absolute):
 
     # Background color of the keyhint widget.
     # Type: QssColor
-    c.colors.keyhint.bg = background
+    c.colors.keyhint.bg = bg
 
     # Text color for the keyhint widget.
     # Type: QssColor
-    c.colors.keyhint.fg = foreground
+    c.colors.keyhint.fg = fg
 
     # Highlight color for keys to complete the current keychain.
     # Type: QssColor
@@ -142,7 +144,7 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color of an error message.
     # Type: QssColor
-    c.colors.messages.error.fg = background
+    c.colors.messages.error.fg = bg
 
     # Background color of an info message.
     # Type: QssColor
@@ -154,7 +156,7 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color an info message.
     # Type: QssColor
-    c.colors.messages.info.fg = background
+    c.colors.messages.info.fg = bg
 
     # Background color of a warning message.
     # Type: QssColor
@@ -166,23 +168,23 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color a warning message.
     # Type: QssColor
-    c.colors.messages.warning.fg = background
+    c.colors.messages.warning.fg = bg
 
     # Background color for prompts.
     # Type: QssColor
-    c.colors.prompts.bg = background
+    c.colors.prompts.bg = bg
 
     # # Border used around UI elements in prompts.
     # # Type: String
-    c.colors.prompts.border = '1px solid ' + background
+    c.colors.prompts.border = '1px solid ' + accent
 
     # Foreground color for prompts.
     # Type: QssColor
-    c.colors.prompts.fg = foreground
+    c.colors.prompts.fg = fg
 
     # Background color for the selected item in filename prompts.
     # Type: QssColor
-    c.colors.prompts.selected.bg = magenta
+    c.colors.prompts.selected.bg = accent
 
     # Background color of the statusbar in caret mode.
     # Type: QssColor
@@ -190,7 +192,7 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color of the statusbar in caret mode.
     # Type: QssColor
-    c.colors.statusbar.caret.fg = background
+    c.colors.statusbar.caret.fg = bg
 
     # Background color of the statusbar in caret mode with a selection.
     # Type: QssColor
@@ -198,23 +200,23 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color of the statusbar in caret mode with a selection.
     # Type: QssColor
-    c.colors.statusbar.caret.selection.fg = background
+    c.colors.statusbar.caret.selection.fg = bg
 
     # Background color of the statusbar in command mode.
     # Type: QssColor
-    c.colors.statusbar.command.bg = background
+    c.colors.statusbar.command.bg = bg
 
     # Foreground color of the statusbar in command mode.
     # Type: QssColor
-    c.colors.statusbar.command.fg = foreground
+    c.colors.statusbar.command.fg = fg
 
     # Background color of the statusbar in private browsing + command mode.
     # Type: QssColor
-    c.colors.statusbar.command.private.bg = background
+    c.colors.statusbar.command.private.bg = bg
 
     # Foreground color of the statusbar in private browsing + command mode.
     # Type: QssColor
-    c.colors.statusbar.command.private.fg = foreground
+    c.colors.statusbar.command.private.fg = fg
 
     # Background color of the statusbar in insert mode.
     # Type: QssColor
@@ -222,15 +224,15 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color of the statusbar in insert mode.
     # Type: QssColor
-    c.colors.statusbar.insert.fg = background
+    c.colors.statusbar.insert.fg = bg
 
     # Background color of the statusbar.
     # Type: QssColor
-    c.colors.statusbar.normal.bg = background
+    c.colors.statusbar.normal.bg = bg
 
     # Foreground color of the statusbar.
     # Type: QssColor
-    c.colors.statusbar.normal.fg = foreground
+    c.colors.statusbar.normal.fg = fg
 
     # Background color of the statusbar in passthrough mode.
     # Type: QssColor
@@ -238,19 +240,19 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color of the statusbar in passthrough mode.
     # Type: QssColor
-    c.colors.statusbar.passthrough.fg = background
+    c.colors.statusbar.passthrough.fg = bg
 
     # Background color of the statusbar in private browsing mode.
     # Type: QssColor
-    c.colors.statusbar.private.bg = background
+    c.colors.statusbar.private.bg = bg
 
     # Foreground color of the statusbar in private browsing mode.
     # Type: QssColor
-    c.colors.statusbar.private.fg = foreground
+    c.colors.statusbar.private.fg = fg
 
     # Background color of the progress bar.
     # Type: QssColor
-    c.colors.statusbar.progress.bg = foreground
+    c.colors.statusbar.progress.bg = fg
 
     # Foreground color of the URL in the statusbar on error.
     # Type: QssColor
@@ -258,16 +260,16 @@ if os.path.isfile(colors_absolute):
 
     # Default foreground color of the URL in the statusbar.
     # Type: QssColor
-    c.colors.statusbar.url.fg = foreground
+    c.colors.statusbar.url.fg = fg
 
     # Foreground color of the URL in the statusbar for hovered links.
     # Type: QssColor
-    c.colors.statusbar.url.hover.fg = blue
+    c.colors.statusbar.url.hover.fg = red
 
     # Foreground color of the URL in the statusbar on successful load
     # (http).
     # Type: QssColor
-    c.colors.statusbar.url.success.http.fg = background
+    c.colors.statusbar.url.success.http.fg = bg
 
     # Foreground color of the URL in the statusbar on successful load
     # (https).
@@ -288,7 +290,7 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color of unselected even tabs.
     # Type: QtColor
-    c.colors.tabs.even.fg = foreground
+    c.colors.tabs.even.fg = fg
 
     # Color for the tab indicator on errors.
     # Type: QtColor
@@ -317,34 +319,34 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color of unselected odd tabs.
     # Type: QtColor
-    c.colors.tabs.odd.fg = foreground
+    c.colors.tabs.odd.fg = fg
 
     # Background color of selected even tabs.
     # Type: QtColor
-    c.colors.tabs.selected.even.bg = background
+    c.colors.tabs.selected.even.bg = accent
 
     # Foreground color of selected even tabs.
     # Type: QtColor
-    c.colors.tabs.selected.even.fg = foreground
+    c.colors.tabs.selected.even.fg = bg
 
     # Background color of selected odd tabs.
     # Type: QtColor
-    c.colors.tabs.selected.odd.bg = background
+    c.colors.tabs.selected.odd.bg = accent
 
     # Foreground color of selected odd tabs.
     # Type: QtColor
-    c.colors.tabs.selected.odd.fg = foreground
+    c.colors.tabs.selected.odd.fg = bg
 
     # Background color for webpages if unset (or empty to use the theme's
     # color)
     # Type: QtColor
-    c.colors.webpage.bg = background
+    c.colors.webpage.bg = bg
 
     # context menu
-    c.colors.contextmenu.menu.bg=background
-    c.colors.contextmenu.menu.fg=foreground
-    c.colors.contextmenu.selected.bg=yellow
-    c.colors.contextmenu.selected.fg=background
+    c.colors.contextmenu.menu.bg=bg
+    c.colors.contextmenu.menu.fg=fg
+    c.colors.contextmenu.selected.bg=accent
+    c.colors.contextmenu.selected.fg=bg
 
     if qutewal_dynamic_loading or bool(os.getenv('QUTEWAL_DYNAMIC_LOADING')):
         import signal

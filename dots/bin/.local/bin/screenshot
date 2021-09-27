@@ -4,16 +4,17 @@ case $1 in
     SCDIR=~/pics/sc
     TIMESTAMP="$(date +%y-%m-%d.%H:%M:%S)"
     FILENAME=$SCDIR/$TIMESTAMP.png
-    maim -s $FILENAME
+    maim -s -b 5 $FILENAME
     notify-send "Screenshot" "saved" --urgency low -i $FILENAME 
     ;;
   "clip")
-    maim -s | magick -\
-      -sampling-factor 4:2:0\
-      -strip \
-      -quality 85\
-      -interlace Plane \
-      -colorspace RGB \
+    maim -s -b 5 | magick -\
       jpg:- | xclip -selection clip -t image/jpeg
     notify-send "Screenshot" "clipboard" --urgency low 
+    ;;
+  "pick")
+    p=`grabc`
+    echo $p | xsel -b
+    notify-send -h "string:bgcolor:$p" -h "string:frcolor:$p" " " " "
+    ;;
 esac

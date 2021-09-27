@@ -6,23 +6,38 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
+
+" colorscheme
 Plug 'lifepillar/vim-gruvbox8'
+Plug 'ayu-theme/ayu-vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+
+" telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'tpope/vim-fugitive'
-Plug 'romgrk/barbar.nvim'
-" Plug 'ayu-theme/ayu-vim'
-Plug 'neoclide/coc.nvim', {'branch':'release'}
-Plug 'ionide/ionide-vim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope-media-files.nvim'
+
+" barbar
 Plug 'ryanoasis/vim-devicons'
+Plug 'romgrk/barbar.nvim'
+
+" nvim-tree
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
+
+" completion, treesitter etc
+" Plug 'hrsh7th/nvim-cmp'
+Plug 'ackyshake/VimCompletesMe'
+Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
+Plug 'neovim/nvim-lspconfig'
+
+" etc
 Plug 'tpope/vim-surround'
+Plug 'windwp/nvim-autopairs'
 Plug 'direnv/direnv.vim'
 Plug 'tpope/vim-commentary'
-Plug 'ajh17/VimCompletesMe'
-Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
 call plug#end()
 
 let mapleader=" "
@@ -55,6 +70,10 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+" cd to dir of file
+nnoremap <leader>cd :cd %:p:h<CR>
+
 augroup EditVim
   autocmd!
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -76,8 +95,9 @@ let g:gruvbox_contrast_dark='hard'
 set background=dark
 let g:gruvbox_transp_bg = 1
 let g:gruvbox_filetype_hi_groups = 1
+let g:tokyonight_style = "night"
 
-" colorscheme gruvbox8
+colorscheme tokyonight
 
 " let ayucolor="dark"
 
@@ -101,9 +121,35 @@ augroup dynamic_smartcase
   autocmd CmdLineLeave : set smartcase
 augroup END
 
-" fzf
-nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files --hidden' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+" telescope
+lua <<EOF
+require('telescope').setup{
+  defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '-L'
+    },
+  },
+  extensions = {
+    media_files = {
+      -- filetypes whitelist
+      filetypes = {"png", "jpg", "mp4", "webm","pdf"},
+      find_cmd = "rg" -- find command (defaults to `fd`)
+    },
+  },
+}
+require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('media_files')
+EOF
 nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <C-f> <cmd>Telescope live_grep<cr>
+nnoremap <C-b> <cmd>Telescope buffers<cr>
 
 " treesitter
 lua <<EOF
@@ -123,13 +169,6 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
-
-" coc
-" GoTo code navigation.
-" nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 
 " barbar
 " Move to previous/next
@@ -205,3 +244,77 @@ let g:nvim_tree_icons = {
     \     'error': "",
     \   }
     \ }
+
+" lspconfig
+
+lua << EOF
+local nvim_lsp = require('lspconfig')
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  -- Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+-- local servers = { 'pyright', 'rust_analyzer', 'tsserver' }
+-- for _, lsp in ipairs(servers) do
+--   nvim_lsp[lsp].setup {
+--     on_attach = on_attach,
+--     flags = {
+--       debounce_text_changes = 150,
+--     }
+--   }
+-- end
+EOF
+
+" nvim-autopairs
+lua << EOF
+require('nvim-autopairs').setup{}
+
+local remap = vim.api.nvim_set_keymap
+local npairs = require('nvim-autopairs')
+
+-- skip it, if you use another global object
+_G.MUtils= {}
+
+MUtils.completion_confirm=function()
+  if vim.fn.pumvisible() ~= 0  then
+      return npairs.esc("<cr>")
+  else
+    return npairs.autopairs_cr()
+  end
+end
+
+
+remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
+
+EOF
