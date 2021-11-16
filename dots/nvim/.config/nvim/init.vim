@@ -38,6 +38,7 @@ Plug 'tpope/vim-surround'
 Plug 'windwp/nvim-autopairs'
 Plug 'direnv/direnv.vim'
 Plug 'tpope/vim-commentary'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 call plug#end()
 
 let mapleader=" "
@@ -59,11 +60,13 @@ let &t_SI = "\<Esc>[6 q"
 let &t_EI = "\<Esc>[1 q"
 set shiftwidth=2 
 set softtabstop=2
-set expandtab
+set ai
 set splitbelow splitright
 set wildmenu
 set wildmode=longest:full,full
 set cul
+set hidden
+set autochdir
 
 " shortcut split navigation
 map <C-h> <C-w>h
@@ -133,7 +136,9 @@ require('telescope').setup{
       '--line-number',
       '--column',
       '--smart-case',
-      '-L'
+      '-L',
+      '--ignore-file',
+      '.gitignore'
     },
   },
   extensions = {

@@ -31,6 +31,7 @@ alias gc=gc
 alias gd="git diff"
 alias gst="git status"
 alias gsta="git stash push"
+alias lg="lazygit"
 
 alias ..='cd ..'
 alias ...='cd ../..'

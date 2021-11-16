@@ -4,7 +4,7 @@ case $1 in
     SCDIR=~/pics/sc
     TIMESTAMP="$(date +%y-%m-%d.%H:%M:%S)"
     FILENAME=$SCDIR/$TIMESTAMP.png
-    maim -s -b 5 $FILENAME
+    maim -s -b 5 $FILENAME || exit
     notify-send "Screenshot" "saved" --urgency low -i $FILENAME 
     ;;
   "clip")

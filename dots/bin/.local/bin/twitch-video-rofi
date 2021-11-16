@@ -1,5 +1,4 @@
 #!/usr/bin/bash
-
 config_dir=~/.config/twitch-rofi
 client_id=$(<$config_dir/client_id)
 oauth_token=$(<$config_dir/oauth_token)
