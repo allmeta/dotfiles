@@ -36,7 +36,7 @@ bindsym $mod+w exec qutebrowser
 bindsym $mod+comma exec lang
 bindsym $mod+period exec rofimoji
 
-bindsym Mod1+F1 exec ~/.config/rofi/launchers/misc/launcher.sh
+bindsym Mod1+F1 exec "rofi -show drun"
 bindsym Mod1+Tab exec "rofi -show window" 
 
 # xrandr rotate screen

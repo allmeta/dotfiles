@@ -14,8 +14,6 @@ function transfer_encrypt() {
 	cat $1 | gpg -ac -o- | curl -X PUT --progress-bar --upload-file "-" https://transfer.sh/$(basename $1) | tee /dev/null | xclip -selection clipboard && notify-send "Transfer" "Url copied to clipboard"
 }
 
-
-
 function gc(){
   git commit -m "$*"
 }
@@ -40,11 +38,9 @@ alias ls='ls --color'
 alias open="xdg-open"
 alias v="$EDITOR"
 
-alias transfer=transfer
-alias transfer_encrypt=transfer_encrypt
-
 # source highlighter
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # source history nav
 export HISTFILE=~/.zsh_history
 export HIST_STAMPS="dd/mm/yyyy"
@@ -55,9 +51,9 @@ setopt histsavenodups
 setopt histreduceblanks
 setopt incappendhistorytime
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
+
 #completion
 fpath=(/usr/share/zsh/site-functions/ $fpath)
 autoload -U compinit && compinit
