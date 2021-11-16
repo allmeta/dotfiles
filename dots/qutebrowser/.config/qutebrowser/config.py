@@ -101,14 +101,15 @@ config.bind('gi','hint inputs')
 config.bind('yf','hint links yank')
 config.bind('ge','set-cmd-text :open {url:pretty}')
 config.bind('W','tab-give')
-config.bind(';m','hint links spawn nohup mpv "{hint-url}" & disown')
-config.bind('ym','spawn nohup mpv {url:pretty} & disown')
+config.bind(';m','hint links spawn mpv {hint-url}')
+config.bind('ym','spawn mpv {url:pretty}')
 config.bind('gp','spawn --userscript qute-bitwarden')
+config.bind('gP','spawn --userscript qute-bitwarden -w')
 config.bind('!','set-cmd-text :open -t !')
 
 
 # vim
-c.editor.command =['nohup','st','-e','nvim','-f','{file}','-c','normal {line}G{column0}l']
+c.editor.command =['st','-e','nvim','-f','{file}']
 
 #theme
 config.source('qutewal.py')

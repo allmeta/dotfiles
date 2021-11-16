@@ -16,15 +16,22 @@ tray-padding = 1
 
 modules-left = workspaces
 modules-center = clock 
-modules-right = weather pulseaudio backlight network battery
+modules-right = weather pulseaudio-control backlight network battery
 
 [bar/i3]
 inherit=bar/base
+wm-restack=i3
 
 modules-left = i3
 
 [bar/dwm]
 inherit=bar/base
+
+[bar/bspwm]
+inherit=bar/base
+wm-restack = bspwm
+
+modules-left = bspwm sxhkd
 
 [module/c0]
 type=custom/text

@@ -1,0 +1,1 @@
+/home/meta/git/polybar-sxhkd/polybar-sxhkd.sh
