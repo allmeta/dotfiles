@@ -109,7 +109,7 @@ config.bind('!','set-cmd-text :open -t !')
 
 
 # vim
-c.editor.command =['st','-e','nvim','-f','{file}']
+c.editor.command =['kitty','-e','nvim','-f','{file}']
 
 #theme
 config.source('qutewal.py')
@@ -125,8 +125,8 @@ c.fonts.default_family="FiraCode Nerd Font"
 c.content.register_protocol_handler=False
 
 c.fileselect.handler="external"
-c.fileselect.single_file.command=['st', '-c', 'float', 'lf' ,'-selection-path','{}']
-c.fileselect.multiple_files.command=['st', '-c', 'float', 'lf' ,'-selection-path','{}']
-c.fileselect.folder.command=['st', '-c', 'float', 'lf' ,'-selection-path','{}']
+c.fileselect.single_file.command=['kitty', '--class', 'float', 'lf' ,'-selection-path','{}']
+c.fileselect.multiple_files.command=['kitty', '--class', 'float', 'lf' ,'-selection-path','{}']
+c.fileselect.folder.command=['kitty', '--class', 'float', 'lf' ,'-selection-path','{}']
 
 config.load_autoconfig()
