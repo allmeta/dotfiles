@@ -1,4 +1,4 @@
 configuration {
   modi: "window,run,drun";
-  theme: "~/.config/rofi/grid.rasi";
 }
+@import "grid"

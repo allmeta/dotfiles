@@ -21,6 +21,7 @@ configuration {
 }
 listview {
   columns: 2;
+	border:0;
 }
 
 @import "~/.cache/wal/colors.rasi"
@@ -57,7 +58,6 @@ textbox-prompt-colon,
 entry {
   background-color: @background-light;
 }
-
 #inputbar {
   children: [ prompt, textbox-prompt-colon, entry ];
   margin: @inputbar-margin;
@@ -80,24 +80,23 @@ entry {
   padding: @entry-padding;
 }
 
-#element {
+element {
   padding: @list-element-padding;
-  margin: @list-element-margin;
   border: @list-element-border;
+  margin: @list-element-margin;
+}
+element normal.normal, element alternate.normal{
   background-color: @background-light;
   border-color: @background-light;
 }
-
-element-icon {
-	background-color: transparent;
-  size: 2.5ch;
-}
-
-
-#element.selected {
+element selected.normal {
   background-color: @background-focus;
   text-color: @accent;
   border-color: @accent;
+}
+element-icon {
+	background-color: transparent;
+  size: 2.5ch;
 }
 element-text{
   background-color:inherit;
