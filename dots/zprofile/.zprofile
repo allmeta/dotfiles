@@ -1,3 +1,1 @@
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec sway
-fi
+[[ ! $DISPLAY && $XDG_VTNR -eq 1 ]] && tbsm

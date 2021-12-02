@@ -14,6 +14,8 @@ for_window [class="float"] floating enable
 # Remove title bar
 for_window [class="^.*"] border pixel 1
 
+focus_follows_mouse no
+
 
 # COLORS                border	bg      text    indicator
 client.focused          $active $active $active $active
@@ -34,6 +36,7 @@ bindsym $mod+Shift+t exec $term --class float # floating term
 bindsym $mod+w exec qutebrowser 
 
 bindsym $mod+comma exec lang
+bindsym XF86Calculator exec $term --class float -e python
 bindsym $mod+period exec rofimoji
 
 bindsym Mod1+F1 exec "rofi -show drun"
@@ -66,7 +69,7 @@ bindsym Mod1+Print exec record-video
 bindsym $mod+Print exec record-video stop
 
 # notes
-bindsym $mod+n exec $term -class float -e nvim -f ~/dotfiles/todo
+bindsym $mod+n exec $term --class float -e nvim -f ~/dotfiles/todo
 
 # password menu
 bindsym $mod+p exec ~/.local/bin/lpass_menu
@@ -181,8 +184,8 @@ mode "swap" {
 # EXIT MENU
 bindsym $mod+x mode "power"; exec --no-startup-id notify-send "Keybinds" "u: poweroff\nr: reboot\nl: lock\ne: exit" &
 mode "power" {
-        bindsym u exec loginctl poweroff
-        bindsym r exec loginctl reboot
+        bindsym u exec poweroff
+        bindsym r exec reboot
         bindsym l exec mantablockscreen -cc; mode "default"
         bindsym e exit
 
@@ -193,10 +196,10 @@ mode "power" {
 # RESIZE
 bindsym $mod+r mode "resize"
 mode "resize" {
-        bindsym j resize shrink width 40px or 10 ppt
-        bindsym k resize grow height 40px or 10 ppt
-        bindsym l resize shrink height 40px or 10 ppt
-        bindsym oslash resize grow width 40px or 10 ppt
+        bindsym j resize grow height 40px or 10 ppt
+        bindsym k resize shrink height 40px or 10 ppt
+        bindsym l resize grow width 40px or 10 ppt
+        bindsym h resize shrink width 40px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 40px or 10 ppt

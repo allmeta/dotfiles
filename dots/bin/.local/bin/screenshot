@@ -8,7 +8,7 @@ case $1 in
     notify-send "Screenshot" "saved" --urgency low -i $FILENAME 
     ;;
   "clip")
-    maim -s -b 5 | xclip -selection clipboard -t image/png
+    maim -s -b 5 | xclip -sel c -t image/png
     notify-send "Screenshot" "clipboard" --urgency low 
     ;;
   "pick")
