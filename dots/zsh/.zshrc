@@ -65,7 +65,7 @@ autoload -U compinit && compinit
 #zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 ## case-insensitive,partial-word,substr
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' menu select
+# zstyle ':completion:*' menu select
 
 
 # powerline prompt

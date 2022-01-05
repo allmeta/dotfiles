@@ -1,4 +1,0 @@
-#!/usr/bin/bash
-
-g=`youtube-dl -g $1`
-mpv "$g"

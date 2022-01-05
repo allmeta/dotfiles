@@ -8,7 +8,7 @@ include-file = $HOME/.config/polybar/modules.conf
 
 [bar/base]
 inherit=bar/master
-monitor =
+monitor = ${env:MONITOR:}
 monitor-fallback= 
 
 tray-position = right

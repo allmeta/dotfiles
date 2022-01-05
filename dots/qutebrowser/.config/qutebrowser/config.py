@@ -75,7 +75,7 @@ c.content.notifications.enabled = False
 # Directory to save downloads to. If unset, a sensible OS-specific
 # default is used.
 # Type: Directory
-c.downloads.location.directory = '~/downloads'
+c.downloads.location.directory = '~/Downloads'
 
 # Duration (in milliseconds) to wait before removing finished downloads.
 # If set to -1, downloads are never removed.
@@ -106,6 +106,7 @@ config.bind('ym','spawn mpv {url:pretty}')
 config.bind('gp','spawn --userscript qute-bitwarden')
 config.bind('gP','spawn --userscript qute-bitwarden -w')
 config.bind('!','set-cmd-text :open -t !')
+config.bind('<Escape>','fake-key <Escape>')
 
 
 # vim
@@ -125,8 +126,10 @@ c.fonts.default_family="FiraCode Nerd Font"
 c.content.register_protocol_handler=False
 
 c.fileselect.handler="external"
-c.fileselect.single_file.command=['kitty', '--class', 'float', 'lf' ,'-selection-path','{}']
-c.fileselect.multiple_files.command=['kitty', '--class', 'float', 'lf' ,'-selection-path','{}']
-c.fileselect.folder.command=['kitty', '--class', 'float', 'lf' ,'-selection-path','{}']
+c.fileselect.single_file.command=['kitty', '--class', 'float', 'lfrun' ,'-selection-path','{}']
+c.fileselect.multiple_files.command=['kitty', '--class', 'float', 'lfrun' ,'-selection-path','{}']
+c.fileselect.folder.command=['kitty', '--class', 'float', 'lfrun' ,'-selection-path','{}']
+
+c.url.searchengines={"DEFAULT":"http://localhost:8000?q={}&b=google"}
 
 config.load_autoconfig()
