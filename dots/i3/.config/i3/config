@@ -12,7 +12,7 @@ floating_modifier $mod
 for_window [class="float"] floating enable
 
 # Remove title bar
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 3
 
 focus_follows_mouse no
 
@@ -64,7 +64,7 @@ bindsym Print exec screenshot clip
 bindsym Ctrl+Print --release exec screenshot pick
 
 # ffmpeg record script w slop
-bindsym Mod1+Print exec record-video
+bindsym Mod1+Print exec record-video select
 # stop record
 bindsym $mod+Print exec record-video stop
 
