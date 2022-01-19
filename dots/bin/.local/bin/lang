@@ -1,4 +1,14 @@
 #!/bin/bash
-lang=`echo -e "no\nus" | rofi -dmenu -i -p "XKB"` || exit 1
+langfile=~/.lang
+lang=`<$langfile`
+case $lang in
+	"us") lang="no" ;;
+	*)		lang="us" ;;
+esac
+echo $lang > $langfile
 setxkbmap $lang
 xmodmap ~/.Xmodmap
+
+for pid in `pgrep polybar`; do
+	polybar-msg -p $pid hook lang 1;
+done

@@ -16,7 +16,7 @@ tray-padding = 1
 
 modules-left = workspaces
 modules-center = clock 
-modules-right = weather pulseaudio-control backlight network battery
+modules-right = lang weather pulseaudio-control backlight network battery
 
 [bar/i3]
 inherit=bar/base
@@ -32,45 +32,3 @@ inherit=bar/base
 wm-restack = bspwm
 
 modules-left = bspwm sxhkd
-
-[module/c0]
-type=custom/text
-content=%{T5}%{T-}
-content-foreground=${colors.fg}
-content-background=${colors.bg}
-
-[module/c1]
-type=custom/text
-content=%{T5}%{T-}
-content-foreground=${colors.magenta}
-content-background=${colors.fg}
-
-[module/c2]
-type=custom/text
-content=%{T5}%{T-}
-content-foreground=${colors.blue}
-content-background=${colors.magenta}
-
-[module/c3]
-type=custom/text
-content=%{T5}%{T-}
-content-foreground=${colors.cyan}
-content-background=${colors.blue}
-
-[module/c4]
-type=custom/text
-content=%{T5}%{T-}
-content-foreground=${colors.green}
-content-background=${colors.cyan}
-
-[module/c5]
-type=custom/text
-content=%{T5}%{T-}
-content-foreground=${colors.yellow}
-content-background=${colors.bg}
-
-[module/c6]
-type=custom/text
-content=%{T5}%{T-}
-content-foreground=${colors.bg}
-content-background=${colors.yellow}
