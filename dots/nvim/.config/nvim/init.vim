@@ -36,6 +36,7 @@ Plug 'neovim/nvim-lspconfig'
 " etc
 Plug 'tpope/vim-surround'
 Plug 'windwp/nvim-autopairs'
+Plug 'ggandor/lightspeed.nvim'
 "Plug 'direnv/direnv.vim'
 Plug 'tpope/vim-commentary'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}

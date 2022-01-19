@@ -40,8 +40,8 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	*.xls|*.xlsx)
 		ssconvert --export-type=Gnumeric_stf:stf_csv "$1" "fd://1" | batorcat --language=csv
 		;;
-	*.wav|*.mp3|*.flac|*.m4a|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus|*.as[fx]|*.mka)
-		exiftool "$1"
+	*.wav|*.mp3|*.flac|*.m4a|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus|*.as[fx]|*.mka|*.aiff|*.wav)
+		exiftool "$1" -Title -Artist -Album -Duration -Date -FileType -AvgBitrate -AudioBitrate -FileSize -InitialKey -BeatsPerMinute -S
 		;;
 	*.pdf)
 		[ ! -f "${CACHE}.jpg" ] && \

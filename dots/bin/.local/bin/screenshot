@@ -12,7 +12,7 @@ case $1 in
     notify-send "Screenshot" "clipboard" --urgency low 
     ;;
   "pick")
-    p=`grabc`
+    p=`xcolor`
     echo $p | xsel -b
     notify-send -h "string:bgcolor:$p" -h "string:frcolor:$p" " " " "
     ;;
