@@ -1,0 +1,73 @@
+@import url("https://snappercord.github.io/dark-discord/src/source.css");
+
+.theme-dark,
+.theme-light,
+:root {
+    --background-primary: #1a1b26;
+    --background-secondary: #15161e;
+    --background-secondary-alt: #15161e;
+    --background-tertiary: #1a1b26;
+    --background-accent: #15161e;
+    --background-floating: #15161e;
+    --background-modifier-hover: rgba(255,255,255,0.01);
+    --background-modifier-active: rgba(255,255,255,0.03);
+    --background-modifier-selected: rgba(255,255,255,0.04);
+    --background-modifier-accent: hsla(0,0%,100%,0.06);
+    --channeltextarea-background: var(--background-accent);
+    --deprecated-card-bg: rgba(0, 0, 0, 0.2);
+    --deprecated-card-editable-bg: rgba(0,0,0,0.1);
+    --deprecated-text-input-border-disabled: var(--background-tertiary);
+    --activity-card-background: var(--background-primary);
+    --channels-default: #a9b1d6;
+		--background-message-hover: #00000030; /*change this to change the message hover color*/
+    --text-muted: #a9b1d6;
+    --text-normal: #a9b1d6;
+    --interactive-normal: #a9b1d6;
+    --interactive-hover: #7aa2f7;
+    --interactive-active: #7aa2f7;
+    --interactive-muted: #444b6a;
+    --header-secondary: #a9b1d6;
+    --toast-background: var(--background-primary);
+    --toast-header: var(--background-tertiary);
+    --toast-contents: var(--background-secondary);
+    --toast-box-shadow: rgba(0, 0, 0, .2);
+    --toast-border: var(--background-tertiary);
+    --offline-color: rgb(60, 60, 60);
+}
+
+.about, code, [class*="codeLine"], [class*="inlineCode"] {
+	font-family: 'FiraCode Nerd Font', mono !important;
+}
+code, [class*="inlineCode"] {
+	color: var(--interactive-active);
+}
+::-webkit-input-placeholder, body, button, input, select, textarea, [class*="name"], [class*="title"], [class*="unread"], [class*="wrapper"], [class*="header"], [class*="inviteDestination"], [class*="membersGroup"], [class*="threadNameLine"] {
+	font-family: 'FiraCode Nerd Font', Whitney, sans-serif;
+}
+.timestamp-3ZCmNB{
+	display:inherit;
+}
+
+.container-2cd8Mz{
+	background-color: var(--background-primary) !important;
+}
+
+::-webkit-scrollbar-track, ::-webkit-scrollbar-track-piece {
+    background-color: transparent !important;
+}
+
+::-webkit-scrollbar-button {
+    display: none !important;
+    width: 0;
+    height: 0;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--background-floating) !important;
+    border: 2px solid var(--text-normal) !important;
+    border-radius: 10px;
+}
