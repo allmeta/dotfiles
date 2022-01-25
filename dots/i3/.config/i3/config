@@ -49,9 +49,9 @@ bindsym $mod+Mod1+Left exec xrandr --output eDP-1 --rotate right
 bindsym $mod+Mod1+Right exec xrandr --output eDP-1 --rotate left
 
 # volume and brightness
-bindsym XF86AudioRaiseVolume exec amixer sset -M Master 10%+
-bindsym XF86AudioLowerVolume exec amixer sset -M Master 10%-
-bindsym XF86AudioMute exec amixer sset Master toggle 
+bindsym XF86AudioRaiseVolume exec pamixer -i 10
+bindsym XF86AudioLowerVolume exec pamixer -d 10
+bindsym XF86AudioMute exec pamixer -t
 bindsym XF86MonBrightnessUp exec xbacklight +5
 bindsym XF86MonBrightnessDown exec xbacklight -5
 bindsym $mod+XF86MonBrightnessDown exec xbacklight -set 0.4
