@@ -6,3 +6,14 @@ __pycache__/
 autoconfig.yml
 qsettings/
 todo
+
+dots/discocss/.config/discocss/preload.js
+dots/bin/.local/bin/notflix
+dots/bin/.local/bin/mantablockscreen
+dots/bin/.local/bin/ani-cli
+dots/bin/.local/bin/catt
+dots/bin/.local/bin/ddg-proxy
+dots/nvim/.config/nvim/.github
+dots/nvim/.config/nvim/LICENSE
+dots/nvim/.config/nvim/.stylua.toml
+dots/nvim/.config/nvim/.gitignore
