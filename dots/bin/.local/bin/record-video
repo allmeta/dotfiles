@@ -1,20 +1,20 @@
 #!/bin/bash
-case $1 in
-  "stop")
-    pkill ffmpeg
-    notify-send "recording stopped"
-  ;;
-  "select")
-    slop=$(slop -f "%x %y %w %h %g %i" -b 5 -c 0,100,200) || exit 1
-    read -r X Y W H G ID < <(echo $slop)
-    ffmpeg \
-			-f x11grab -s "$W"x"$H" -i :1.0+$X,$Y \
-			-f pulse -ac 2 -i 3 \
-      -framerate 30 \
-      -rtbufsize 150M \
-      -c:v  libx264 -r 30 \
-      -preset ultrafast -tune zerolatency -crf 30 \
-      -pix_fmt yuv420p \
-      -movflags +faststart \
-      ~/videos/captures/"$(date +%y-%m-%d_%H:%M:%S)".mp4
-esac
+if pidof ffmpeg 
+  then
+  killall ffmpeg
+  else
+  slop=$(slop -f "%x %y %w %h %g %i" -b 5 -c 0,100,200) || exit 1
+  read -r X Y W H G ID < <(echo $slop)
+  notify-send "recording started"
+  filename=`date +%y-%m-%d_%H:%M:%S`
+  ffmpeg \
+    -f x11grab -s "$W"x"$H" -i :1.0+$X,$Y \
+    -f alsa -i pulse \
+    -c:v  libx264 -r 30 \
+    -framerate 30 \
+    -preset ultrafast -tune zerolatency -crf 30 \
+    -qp 18 \
+    -movflags +faststart \
+    ~/Videos/captures/"$filename".mp4
+  notify-send "recording finished" "$filename"
+fi
