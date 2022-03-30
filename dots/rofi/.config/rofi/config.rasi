@@ -1,4 +1,4 @@
 configuration {
   modi: "window,run,drun";
 }
-@import "grid"
+@theme "style_9"

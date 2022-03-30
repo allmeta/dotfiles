@@ -11,12 +11,10 @@ configuration {
   drun-display-format: "{icon}  {name}";
   display-drun: "Applications";
   show-icons: true;
-  icon-theme: "Numix Circle";
   location: 0;
   yoffset: 0;
   xoffset: 0;
   show-icons: true;
-  terminal: "kitty";
   sidebar-mode: false;
 }
 listview {
@@ -27,7 +25,6 @@ listview {
 @import "~/.cache/wal/colors.rasi"
 
 * {
-  /* text-font:                            "Iosevka 12"; */
   text-font:                            "FiraCode Nerd Font Bold 12";
 
   inputbar-margin:                      3px 3px;
@@ -95,7 +92,7 @@ element selected.normal {
   border-color: @accent;
 }
 element-icon {
-	background-color: transparent;
+  background-color: transparent;
   size: 2.5ch;
 }
 element-text{
