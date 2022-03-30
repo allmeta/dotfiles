@@ -3,7 +3,7 @@
 ! ------------------------------------------------------------------------------
 ! special
 
-*-font: Fira Code:pixelsize=12:antialias=true:autohint=true;
-Xcursor.theme: Bibata_Oil
-Xcursor.size: 16
+*-font: FiraCode Nerd Font:pixelsize=12:antialias=true:autohint=true;
+Xcursor.theme: Bibata-Modern-Classic
+Xcursor.size: 12
 

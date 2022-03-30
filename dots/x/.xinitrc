@@ -6,8 +6,9 @@ xinput set-prop 11 309 1 & # enable touchpad
 ksuperkey -e 'Super_L=Alt_L|F1' &
 ksuperkey -e 'Super_R=Alt_L|F1' &
 xmodmap ~/.Xmodmap
-# sh ~/.screenlayout/165hz.sh
+# sh ~/.screenlayout/165hz.sh  # in xorg config
 export ROCKET_TEMPLATE_DIR=~/git/ddg-proxy/templates
+export DP_BANGS=~/git/ddg-proxy/bangs
 ~/git/ddg-proxy/ddg-proxy &
 
 dunst &
