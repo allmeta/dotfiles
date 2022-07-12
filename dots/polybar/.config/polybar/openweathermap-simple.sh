@@ -54,5 +54,5 @@ if [ -n "$weather" ]; then
     weather_temp=$(echo "$weather" | jq ".main.temp" | cut -d "." -f 1)
     weather_icon=$(echo "$weather" | jq -r ".weather[0].icon")
 
-    echo "$(get_icon "$weather_icon")" "%{T1}$weather_temp$SYMBOL%{T-}"
+    echo " $(get_icon "$weather_icon")%{F#e0af68}%{B#acb0d0}%{T8}%{T-}" "%{T1}%{F#1a1b26}$weather_temp$SYMBOL "
 fi
