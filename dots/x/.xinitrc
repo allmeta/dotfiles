@@ -1,15 +1,8 @@
 #!/bin/sh
 xsetroot -cursor_name left_ptr
-xset s off
-xinput set-prop 11 309 1 & # enable touchpad
-# setxkbmap us -option caps:none &
-ksuperkey -e 'Super_L=Alt_L|F1' &
-ksuperkey -e 'Super_R=Alt_L|F1' &
-xmodmap ~/.Xmodmap
+xset s off -dpms
 # sh ~/.screenlayout/165hz.sh  # in xorg config
-export ROCKET_TEMPLATE_DIR=~/git/ddg-proxy/templates
-export DP_BANGS=~/git/ddg-proxy/bangs
-~/git/ddg-proxy/ddg-proxy &
+ddg-proxy > ~/ddg-log & # /etc/env
 
 dunst &
 ~/.fehbg &
