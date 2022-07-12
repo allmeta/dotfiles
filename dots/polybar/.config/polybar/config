@@ -9,18 +9,17 @@ include-file = $HOME/.config/polybar/modules.conf
 [bar/base]
 inherit=bar/master
 monitor = ${env:MONITOR:}
-monitor-fallback= 
+monitor-fallback=
 
 tray-position = right
-tray-padding = 1
+tray-padding = 2
 
 modules-left = workspaces
-modules-center = clock 
+modules-center = clock
 modules-right = lang weather pulseaudio-control backlight network battery
 
 [bar/i3]
 inherit=bar/base
-wm-restack=i3
 
 modules-left = i3
 
