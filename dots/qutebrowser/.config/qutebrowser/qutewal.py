@@ -269,7 +269,7 @@ if os.path.isfile(colors_absolute):
     # Foreground color of the URL in the statusbar on successful load
     # (http).
     # Type: QssColor
-    c.colors.statusbar.url.success.http.fg = bg
+    c.colors.statusbar.url.success.http.fg = gray
 
     # Foreground color of the URL in the statusbar on successful load
     # (https).
@@ -340,7 +340,7 @@ if os.path.isfile(colors_absolute):
     # Background color for webpages if unset (or empty to use the theme's
     # color)
     # Type: QtColor
-    c.colors.webpage.bg = bg
+    c.colors.webpage.bg = "#ffffff"
 
     # context menu
     c.colors.contextmenu.menu.bg=bg

@@ -127,6 +127,7 @@ c.content.notifications.enabled = False
 #   - false
 #   - ask
 c.content.register_protocol_handler = False
+c.content.tls.certificate_errors = "load-insecurely"
 
 # List of user stylesheet filenames to use.
 # Type: List of File, or File
@@ -227,7 +228,7 @@ c.tabs.position = 'top'
 #   - prev: Select the tab which came before the closed one (left in horizontal, above in vertical).
 #   - next: Select the tab which came after the closed one (right in horizontal, below in vertical).
 #   - last-used: Select the previously selected tab.
-c.tabs.select_on_remove = 'next'
+c.tabs.select_on_remove = 'last-used'
 
 # When to show the tab bar.
 # Type: String
@@ -291,6 +292,7 @@ c.fonts.web.size.default = 16
 
 # Bindings for normal mode
 config.bind('!', 'set-cmd-text :open -t !')
+config.bind('1', 'set-cmd-text :open !')
 config.bind(';i', 'hint images run :open -t {hint-url}')
 config.bind(';m', 'hint links spawn mpv {hint-url}')
 config.bind('<Escape>', 'fake-key <Escape> ;; fullscreen --leave')
@@ -310,6 +312,8 @@ config.bind('x', 'tab-close')
 config.bind('yf', 'hint links yank')
 config.bind('yi', 'hint images yank')
 config.bind('ym', 'spawn mpv {url:pretty}')
+config.bind('[', 'navigate prev')
+config.bind(']', 'navigate next')
 
 # Bindings for command mode
 config.bind('<Ctrl+w>', 'rl-backward-kill-word', mode='command')
