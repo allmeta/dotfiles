@@ -38,6 +38,11 @@ alias ls='ls --color'
 alias open="xdg-open"
 alias v="$EDITOR"
 
+#zsh-vi-mode
+# Set the default WORDCHARS
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
+
 # source highlighter
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -51,8 +56,6 @@ setopt histsavenodups
 setopt histreduceblanks
 setopt incappendhistorytime
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
@@ -74,7 +77,5 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-#zsh-vi-mode
-# Set the default WORDCHARS
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
