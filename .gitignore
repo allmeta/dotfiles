@@ -18,3 +18,11 @@ dots/nvim/.config/nvim/LICENSE
 dots/nvim/.config/nvim/.stylua.toml
 dots/nvim/.config/nvim/.gitignore
 dots/qutebrowser/.local/share/qutebrowser/greasemonkey/requires
+dots/bin/.local/bin/ansi2html
+dots/bin/.local/bin/cmark
+dots/bin/.local/bin/dash-generate-components
+dots/bin/.local/bin/dash-update-components
+dots/bin/.local/bin/i3-auto-layout
+dots/bin/.local/bin/renderer
+dots/bin/.local/bin/termtyper
+dots/bin/.local/bin/yt-rofi
