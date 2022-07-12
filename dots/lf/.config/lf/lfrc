@@ -3,7 +3,7 @@ set cleaner ~/.config/lf/cleaner
 cmd open &xdg-open "$f"
 set dircounts
 set info size
-map <esc> unselect
+map <esc> clear
 map gp cd ~/Pictures/
 map gv cd ~/Videos/
 map gd cd ~/Downloads/
