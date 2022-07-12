@@ -2,7 +2,7 @@
 if pidof ffmpeg 
   then
   killall ffmpeg
-  else
+else
   slop=$(slop -f "%x %y %w %h %g %i" -b 5 -c 0,100,200) || exit 1
   read -r X Y W H G ID < <(echo $slop)
   notify-send "recording started"

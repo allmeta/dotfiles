@@ -16,4 +16,7 @@ case $1 in
     echo $p | xsel -b
     notify-send -h "string:bgcolor:$p" -h "string:frcolor:$p" " " " "
     ;;
+  *)
+    echo "save|clip|pick (colorpick)"
+    ;;
 esac
