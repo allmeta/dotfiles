@@ -11,7 +11,7 @@ inherit=bar/master
 monitor = ${env:MONITOR:}
 monitor-fallback=
 
-tray-position = right
+tray-position = ${env:TRAY_POS:none}
 tray-padding = 2
 
 modules-left = workspaces
