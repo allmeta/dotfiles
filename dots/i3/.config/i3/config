@@ -6,6 +6,7 @@ font pango:mono 10
 
 set_from_resource $bg     background
 set_from_resource $fg     foreground
+set_from_resource $black color0
 set_from_resource $warn   color5
 set_from_resource $active color1
 
@@ -13,15 +14,17 @@ floating_modifier $mod
 for_window [class="float"] floating enable
 
 # Remove title bar
-for_window [class="^.*"] border pixel 3
+default_border pixel 2
+default_floating_border pixel 2
 
 focus_follows_mouse no
 
+focus_on_window_activation urgent
 
 # COLORS                border	bg      text    indicator
 client.focused          $active $active $active $active
-client.focused_inactive	$bg	    $bg	    $fg	    $bg
-client.unfocused        $bg	    $bg     $fg     $bg
+client.focused_inactive	$bg	    $black	    $fg	    $black
+client.unfocused        $bg	    $black     $fg     $black
 client.urgent           $warn	  $warn	  $fg	    $bg
 
 # STARTUP
@@ -37,6 +40,7 @@ bindsym $mod+Shift+t exec $term --class float # floating term
 bindsym $mod+w exec qutebrowser
 
 bindsym $mod+comma exec lang
+bindsym $mod+$alt+comma exec lang colemak
 bindsym XF86Calculator exec $term --class float -e python
 bindsym $mod+period exec rofimoji
 
@@ -67,10 +71,10 @@ bindsym Print exec screenshot clip
 bindsym Ctrl+Print --release exec screenshot pick
 
 # ffmpeg record script w slop
-bindsym $alt+Print exec record-video
+bindsym $alt+Sys_Req exec record-video
 
 # notes
-bindsym $mod+n exec $term --class float -e nvim -u NONE -f ~/dotfiles/todo
+bindsym $mod+n exec $term --class float -e nvim -u NONE -f ~/Documents/todo
 
 # twitch
 bindsym $mod+y exec ~/.local/bin/twitch-rofi
@@ -185,8 +189,8 @@ mode "swap" {
 # EXIT MENU
 bindsym $mod+x mode "power"; exec --no-startup-id notify-send "Keybinds" "u: poweroff\nr: reboot\nl: lock\ne: exit" &
 mode "power" {
-        bindsym u exec systemctl poweroff
-        bindsym r exec systemctl reboot
+        bindsym u exec sudo systemctl poweroff
+        bindsym r exec sudo systemctl reboot
         bindsym l exec mantablockscreen -cc; mode "default"
         bindsym e exit
 
@@ -217,7 +221,7 @@ mode "resize" {
 
 # GAPS
 
-gaps inner 12
+gaps inner 0
 gaps outer 0
 smart_gaps on
 smart_borders on

@@ -1,11 +1,16 @@
 #!/bin/bash
 langfile=~/.lang
-lang=`<$langfile`
-case $lang in
-	"us")   lang="no" ;;
-	*)      lang="us" ;;
-esac
-echo $lang > $langfile
+if [ -z $1 ]; then
+  lang=`<$langfile`
+  case $lang in
+	  "us")   lang="no" ;;
+	  *)      lang="us" ;;
+  esac
+  echo $lang > $langfile
+else
+  lang=$1
+  echo $lang > $langfile
+fi
 setxkbmap $lang
 xmodmap ~/.Xmodmap
 polybar-msg action '#lang.hook.0'
