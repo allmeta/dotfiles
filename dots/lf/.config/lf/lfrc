@@ -10,3 +10,4 @@ map gd cd ~/Downloads/
 map gc cd ~/.config/
 map gt cd ~/git/
 map gm cd /media/
+map gw cd /mnt/windows-ssd/World\ of\ Warcraft/
