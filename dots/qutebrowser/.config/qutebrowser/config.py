@@ -11,7 +11,7 @@
 #   qute://help/settings.html
 
 # Change the argument to True to still load settings configured via autoconfig.yml
-config.load_autoconfig(False)
+config.load_autoconfig(True)
 
 # Always restore open sites when qutebrowser is reopened. Without this
 # option set, `:wq` (`:quit --save`) needs to be used to save open tabs
@@ -298,6 +298,10 @@ config.bind(';m', 'hint links spawn mpv {hint-url}')
 config.bind('<Escape>', 'fake-key <Escape> ;; fullscreen --leave')
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
+config.bind('gj', 'tab-move -')
+config.bind('gk', 'tab-move +')
+config.bind('gJ', 'tab-move -')
+config.bind('gK', 'tab-move +')
 config.bind('P', 'open -t -- {clipboard}')
 config.bind('W', 'tab-give')
 config.bind('X', 'undo')
