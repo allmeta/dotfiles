@@ -44,8 +44,9 @@ code, [class*="inlineCode"] {
 ::-webkit-input-placeholder, body, button, input, select, textarea, [class*="name"], [class*="title"], [class*="unread"], [class*="wrapper"], [class*="header"], [class*="inviteDestination"], [class*="membersGroup"], [class*="threadNameLine"] {
 	font-family: 'FiraCode Nerd Font', Whitney, sans-serif;
 }
-.timestamp-3ZCmNB{
-	display:inherit;
+
+.timestamp-p1Df1m{
+  width:initial!important;
 }
 
 .container-2cd8Mz{
