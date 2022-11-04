@@ -1,9 +1,3 @@
-! ------------------------------------------------------------------------------
-! theme colors
-! ------------------------------------------------------------------------------
-! special
-
 *-font: FiraCode Nerd Font:pixelsize=12:antialias=true:autohint=true;
-Xcursor.theme: Bibata-Modern-Classic
+Xcursor.theme: Bibata-Original-Classic
 Xcursor.size: 12
-
