@@ -21,8 +21,8 @@ streamer=`\
     -H 'Referer: https://www.twitch.tv/' \
     --data-raw '[{"operationName":"PersonalSections","variables":{"input":{"sectionInputs":["FOLLOWED_SECTION"]},"channelLogin":null,"withChannelUser":false},"extensions":{"persistedQuery":{"version":1,"sha256Hash":"156c235ae84585c1252fdcf47636c0773af1f67db48c1091e56ded42c548fd43"}}}]' \
     --compressed | \
-  jq -r '.[0].data.personalSections[0].items | map(select(.content | has("viewersCount")))[] | .user.login + " - " + .content.game.name + " - " + (.content.viewersCount | tostring)' | \
+  jq -r '.[0].data.personalSections[0].items | map(select(.content | has("viewersCount")))[] | .user.login + ", " + .content.game.name + ", " + (.content.viewersCount | tostring) + ", " + .user.broadcastSettings.title' | \
   rofi -dmenu -i -p 'Twitch'`|| exit 1
-streamer=`echo $streamer | awk '{print $1}'`
+streamer=`echo $streamer | awk -F ',' '{print $1}'`
 
 streamlink --twitch-low-latency --hls-live-edge=1 -p mpv "http://twitch.tv/$streamer" "1440p,1440p60,1080p,1080p60,1080p48,720p60,720p,720p48,480p,best" &
