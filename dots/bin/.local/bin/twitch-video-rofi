@@ -40,10 +40,10 @@ video=`
     -H 'Referer: https://www.twitch.tv/' \
     --data-raw '[{"operationName":"FilterableVideoTower_Videos","variables":{"limit":30,"channelOwnerLogin":"'$streamer'","broadcastType":"ARCHIVE","videoSort":"TIME"},"extensions":{"persistedQuery":{"version":1,"sha256Hash":"a937f1d22e269e39a03b509f65a7490f9fc247d7f83d6ac1421523e3b68042cb"}}}]' \
     --compressed | \
-  jq '.[0].data.user.videos.edges[] | .node | .id+" - "+.game.name+" - "+.title' -r | \
+  jq '.[0].data.user.videos.edges[] | .node | .game.name+", "+.title+", "+.id' -r | \
   rofi -dmenu -i -p 'video'` || exit 1
 
-video=`echo $video | awk '{print$1}'`
+video=`echo $video | awk '{print $NF}'`
 
 
 mpv "https://twitch.tv/videos/$video"
