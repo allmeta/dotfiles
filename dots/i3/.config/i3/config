@@ -16,6 +16,7 @@ for_window [class="float"] floating enable
 # Remove title bar
 default_border pixel 2
 default_floating_border pixel 2
+for_window [class=".*"] border pixel 2
 
 focus_follows_mouse no
 
