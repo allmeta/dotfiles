@@ -318,6 +318,9 @@ config.bind('yi', 'hint images yank')
 config.bind('ym', 'spawn mpv {url:pretty}')
 config.bind('[', 'navigate prev')
 config.bind(']', 'navigate next')
+config.bind('ce', 'config-edit')
+config.bind('cs', 'config-source')
+config.bind('<Ctrl+h>', 'history -t')
 
 # Bindings for command mode
 config.bind('<Ctrl+w>', 'rl-backward-kill-word', mode='command')
