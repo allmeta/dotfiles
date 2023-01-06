@@ -1,0 +1,32 @@
+#!/bin/bash
+interface="/mnt/windows-ssd/World of Warcraft/_retail_/Interface"
+
+update_git(){
+  fd "MythicDungeonTools|iPMythicTimer" "$interface/AddOns" -t d -x git -C {} pull
+}
+
+update_curse(){
+  curse_addons="details speedyautoloot omnicd"
+
+  #download
+  echo "downloading $curse_addons"
+  cd ~/git/projects/curse-downloader
+  python "curse-downloader.py" "$curse_addons" "$interface/tmp" || (echo "RIP" && exit 1)
+
+  #unzip
+  echo "unzipping..."
+  unzip -q "$interface/tmp/*.zip" -d "$interface/tmp/"
+
+  #clean zip
+  echo "cleaning zips..."
+  fd . -e zip "$interface/tmp" -x rm
+
+  echo "installing..."
+  fd . "$interface/tmp" -d1 -x rm -rf "$interface/AddOns/{/}"
+  fd . "$interface/tmp" -d1 -x mv "{}" "$interface/AddOns/"
+  echo "done!"
+}
+
+"$interface"/../CurseBreaker-linux update
+update_git
+update_curse
