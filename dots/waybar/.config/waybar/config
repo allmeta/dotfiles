@@ -2,7 +2,7 @@
   "layer": "top",
     "modules-left": ["hyprland/workspaces", "hyprland/submap"],
     "modules-center": ["clock"],
-    "modules-right": ["bluetooth", "network", "hyprland/language", "wireplumber", "tray"],
+    "modules-right": ["backlight","battery","bluetooth", "network", "hyprland/language", "wireplumber", "tray"],
     "hyprland/workspaces":{
       "on-click": "activate"
     },
@@ -30,10 +30,14 @@
       "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
       "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
     },
+    "hyprland/language": {
+      "on-click": "lang"
+    },
     "wireplumber": {
       "format": "  {volume}%",
       "format-muted": "",
       "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+      "on-click-right": "pavucontrol",
       "scroll-step": 10.0,
     }
 }
