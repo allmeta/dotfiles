@@ -1,5 +1,4 @@
 set previewer ~/.config/lf/preview
-set cleaner ~/.config/lf/cleaner
 cmd open &xdg-open "$f"
 set dircounts
 set info size

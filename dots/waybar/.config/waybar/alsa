@@ -1,9 +1,0 @@
-#!/bin/zsh
-a=`amixer sget Master`
-muted=`echo $a | awk -F' ' 'END{ print $6 }'`
-vol=`echo $a | awk -F'[][]' 'END{ print $2 }' | cut -d\\% -f1`
-if [ $muted  = '[on]' ]; then
-  echo "{\"text\": \" $vol%\", \"alt\": \"default\", \"tooltip\": \"\", \"class\": \"\", \"percentage\": $vol }" | jq --unbuffered --compact-output
-else
-  echo "{\"text\": \"\", \"alt\": \"muted\", \"tooltip\": \"\", \"class\": \"\", \"percentage\": $vol }" | jq --unbuffered --compact-output
-fi

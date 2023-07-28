@@ -8,7 +8,10 @@ fi
 
 ##using curl
 function transfer() {
-    curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename $1) | tee /dev/null | xclip -selection clipboard && notify-send "Transfer" "Url copied to clipboard"
+    url=`curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename $1)`
+    echo $url
+    echo $url | xsel -b
+    notify-send "Transfer" "Url copied to clipboard"
 }
 function transfer_encrypt() {
 	cat $1 | gpg -ac -o- | curl -X PUT --progress-bar --upload-file "-" https://transfer.sh/$(basename $1) | tee /dev/null | xclip -selection clipboard && notify-send "Transfer" "Url copied to clipboard"
@@ -33,7 +36,6 @@ alias lg="lazygit"
 
 alias ..='cd ..'
 alias ...='cd ../..'
-alias lf=lfrun
 alias ls='ls --color'
 alias open="xdg-open"
 alias v="$EDITOR"

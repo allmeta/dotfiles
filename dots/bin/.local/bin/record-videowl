@@ -1,2 +1,3 @@
 #!/bin/bash
-wf-recorder -p crf=30 fps=30 -g "$(slurp)" -f ~/videos/captures/"$(date +%y-%m-%d_%H:%M:%S)".mp4
+notify-send "Started recording"
+wf-recorder -a -g "$(slurp)" -f ~/Videos/captures/"$(date +%y-%m-%d_%H:%M:%S)".mp4
