@@ -12,5 +12,6 @@ else
   echo $lang > $langfile
 fi
 setxkbmap $lang
+hyprctl keyword input:kb_layout $lang
 xmodmap ~/.Xmodmap
 polybar-msg action '#lang.hook.0'

@@ -23,7 +23,6 @@ window {
     text-color:                     @fg;
 	border:							0px;
 	border-color:					@ac;
-    border-radius:                  15px;
 	width:							35%;
     location:                       center;
     x-offset:                       0;

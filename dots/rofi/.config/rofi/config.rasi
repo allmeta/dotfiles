@@ -1,4 +1,4 @@
 configuration {
-  modi: "window,run,drun";
+  modi: "run,drun";
 }
 @theme "style_9"
