@@ -5,21 +5,26 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
-##using curl
 function transfer() {
-    url=`curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename $1)`
+    url=`curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename "$1")`
     echo $url
-    echo $url | xsel -b
-    notify-send "Transfer" "Url copied to clipboard"
-}
-function transfer_encrypt() {
-	cat $1 | gpg -ac -o- | curl -X PUT --progress-bar --upload-file "-" https://transfer.sh/$(basename $1) | tee /dev/null | xclip -selection clipboard && notify-send "Transfer" "Url copied to clipboard"
+    echo $url | wl-copy
+    notify-send "Transfer" "$url copied to clipboard"
 }
 
 function gc(){
   git commit -m "$*"
 }
+
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 
 # git aliases
 alias gl="git pull"
@@ -45,8 +50,8 @@ alias v="$EDITOR"
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
 
-# source highlighter
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# syntax highlight
+source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # source history nav
 export HISTFILE=~/.zsh_history
