@@ -1,1 +1,0 @@
-/home/meta/git/ext/uosc/scripts/uosc.lua

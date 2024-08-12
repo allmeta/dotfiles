@@ -1,4 +1,5 @@
 set previewer ~/.config/lf/preview
+set sixel true
 cmd open &xdg-open "$f"
 set dircounts
 set info size

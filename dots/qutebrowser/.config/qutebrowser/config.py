@@ -89,7 +89,7 @@ c.downloads.remove_finished = 0
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 # Same as `{column}`, but starting from index 0.
 # Type: ShellCommand
-c.editor.command = ['kitty', '-e', 'nvim', '-f', '{file}']
+c.editor.command = ['foot', '-e', 'nvim', '-f', '{file}']
 
 # Handler for selecting file(s) in forms. If `external`, then the
 # commands specified by `fileselect.single_file.command` and
@@ -107,7 +107,7 @@ c.fileselect.handler = 'external'
 # the file to be written to. If not contained in any argument, the
 # standard output of the command is read instead.
 # Type: ShellCommand
-c.fileselect.single_file.command = ['kitty', '--class', 'float', 'lf', '-selection-path', '{}']
+c.fileselect.single_file.command = ['foot', 'yazi', '--chooser-file', '{}']
 
 # Command (and arguments) to use for selecting multiple files in forms.
 # The command should write the selected file paths to the specified file
@@ -116,7 +116,7 @@ c.fileselect.single_file.command = ['kitty', '--class', 'float', 'lf', '-selecti
 # contained in any argument, the   standard output of the command is
 # read instead.
 # Type: ShellCommand
-c.fileselect.multiple_files.command = ['kitty', '--class', 'float', 'lf', '-selection-path', '{}']
+c.fileselect.multiple_files.command = ['foot', 'yazi', '--chooser-file', '{}']
 
 # Command (and arguments) to use for selecting a single folder in forms.
 # The command should write the selected folder path to the specified
@@ -124,7 +124,7 @@ c.fileselect.multiple_files.command = ['kitty', '--class', 'float', 'lf', '-sele
 # Filename of the file to be written to. If not contained in any
 # argument, the   standard output of the command is read instead.
 # Type: ShellCommand
-c.fileselect.folder.command = ['kitty', '--class', 'float', 'lf', '-selection-path', '{}']
+c.fileselect.folder.command = ['foot', 'yazi', '--cwd-file', '{}']
 
 # When a hint can be automatically followed without pressing Enter.
 # Type: String
@@ -224,8 +224,8 @@ c.fonts.web.family.fixed = 'FiraCode Nerd Font'
 c.fonts.web.size.default = 16
 
 # Bindings for normal mode
-config.bind('!', 'set-cmd-text :open -t !')
-config.bind('1', 'set-cmd-text :open !')
+config.bind('!', 'cmd-set-text :open -t !')
+config.bind('1', 'cmd-set-text :open !')
 config.bind(';i', 'hint images run :open -t {hint-url}')
 config.bind(';m', 'hint links spawn mpv {hint-url}')
 config.bind('<Escape>', 'fake-key <Escape> ;; fullscreen --leave')
@@ -240,7 +240,7 @@ config.bind('W', 'tab-give')
 config.bind('X', 'undo')
 config.bind('d', 'scroll-px 0 350')
 config.bind('gP', 'spawn --userscript qute-bitwarden -w')
-config.bind('ge', 'set-cmd-text :open {url:pretty}')
+config.bind('ge', 'cmd-set-text :open {url:pretty}')
 config.bind('gi', 'hint inputs')
 config.bind('gp', 'spawn --userscript qute-bitwarden')
 config.bind('p', 'open -- {clipboard}')
