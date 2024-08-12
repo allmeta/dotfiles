@@ -1,5 +1,5 @@
 [manager]
 append_keymap = [
 	# Copy
-	{ on = [ "c", "k" ], run = "plugin copy-content", desc = "Copy the file content" },
+	{ on = [ "c", "k" ], run = "shell 'cat $0 | wl-copy' --confirm", desc = "Copy the file content" },
 ]
