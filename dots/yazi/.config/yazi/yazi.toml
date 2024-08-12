@@ -1,6 +1,7 @@
 [manager]
 ratio = [1,2,3]
 linemode = "size"
+show_symlink = false
 
 [preview]
 max_width = 1920

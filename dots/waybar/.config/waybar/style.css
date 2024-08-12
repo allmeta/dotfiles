@@ -24,12 +24,15 @@ button:hover {
   padding: 0 8px;
 }
 
+#workspaces {
+  margin-right: 8px;
+}
 #workspaces button {
     background: transparent;
     color: white;
 }
 
 #workspaces button.active, #workspaces button.visible {
-    background: rgba(255,255,255,0.6);
+    background: rgb(255,255,255);
     color: black;
 }

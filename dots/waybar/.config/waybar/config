@@ -59,7 +59,7 @@
     },
     "wireplumber": {
       "format": "  {volume}%",
-      "format-muted": "",
+      "format-muted": "󰝟",
       "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
       "on-click-right": "pavucontrol",
       "on-click-middle": "~/.local/bin/switch-audio",
