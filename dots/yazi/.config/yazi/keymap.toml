@@ -1,0 +1,5 @@
+[manager]
+append_keymap = [
+	# Copy
+	{ on = [ "c", "k" ], run = "plugin copy-content", desc = "Copy the file content" },
+]
