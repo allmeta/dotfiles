@@ -50,8 +50,6 @@ alias v="$EDITOR"
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
 
-# syntax highlight
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # source history nav
 export HISTFILE=~/.zsh_history
@@ -86,3 +84,5 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
+# source highlighter
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

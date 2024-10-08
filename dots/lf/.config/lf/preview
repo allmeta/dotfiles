@@ -1,17 +1,28 @@
-#!/bin/sh
+#!/usr/bin/env bash
+file=$1
+w=$2
+h=$3
+x=$4
+y=$5
+filetype="$( file -Lb --mime-type "$file")"
+term=`cat /proc/$PPID/comm | xargs basename`
+format="sixels"
+if [[ "$term" = "kitty" ]]; then 
+  format="kitty"
+fi
 
-case "$(file -Lb --mime-type -- "$1")" in
-    image/*)
-        chafa -f sixel -s "$2x$3" --animate off --polite on "$1"
-        exit 0
-        ;;
-    video/*)
-        # vidthumb is from here:
-        # https://raw.githubusercontent.com/duganchen/kitty-pistol-previewer/main/vidthumb
-        chafa -f sixel -s "$2x$3" --animate off --polite on `vidthumb "$1"` 
-        exit 0
-        ;;
-    *)
-        pistol "$1"
-        ;;
-esac
+if [[ "$filetype" =~ ^image ]]; then
+    chafa "$1" -f $format -s "$(($2-2))x$3"
+    exit 0
+fi
+
+if [[ "$filetype" =~ ^video ]]; then
+    # vidthumb is from here:
+    # https://raw.githubusercontent.com/duganchen/kitty-pistol-previewer/main/vidthumb
+    v=`vidthumb "$file"`
+    chafa "$v" -f $format -s "$(($2-2))x$3"
+    exit 0
+fi
+
+pistol "$file"
+exit 0

@@ -2,7 +2,7 @@
   "layer": "top",
     "modules-left": ["hyprland/workspaces", "hyprland/submap"],
     "modules-center": ["clock"],
-    "modules-right": ["wireplumber", "backlight", "battery", "bluetooth", "network", "hyprland/language", "custom/notification", "tray"],
+    "modules-right": ["pulseaudio", "backlight", "battery", "bluetooth", "network", "hyprland/language", "custom/notification", "tray"],
     "hyprland/workspaces":{
       "on-click": "activate"
     },
@@ -57,9 +57,17 @@
     "hyprland/language": {
       "on-click": "lang"
     },
+    "pulseaudio": {
+      "format": "  {volume}%",
+      "format-muted": "󰖁 MUTE",
+      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+      "on-click-right": "pavucontrol",
+      "on-click-middle": "~/.local/bin/switch-audio",
+      "scroll-step": 10.0,
+    },
     "wireplumber": {
       "format": "  {volume}%",
-      "format-muted": "󰝟",
+      "format-muted": "󰖁 MUTE",
       "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
       "on-click-right": "pavucontrol",
       "on-click-middle": "~/.local/bin/switch-audio",
