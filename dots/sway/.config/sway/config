@@ -1,18 +1,19 @@
 # SETUP
 set $mod Mod4
+set $alt Mod1
 set $term footclient
 font pango:mono 10
 
-# set_from_resource $bg     background
-# set_from_resource $fg     foreground
-# set_from_resource $warn   color1
-# set_from_resource $active color3
+for_window [class="float"] floating enable
 
-floating_modifier $mod
-for_window [app_id="float"] floating enable
+# Remove title bar
+default_border pixel 2
+default_floating_border pixel 2
+for_window [class=".*"] border pixel 2
 
-default_border pixel 1
-default_floating_border pixel 1
+focus_follows_mouse no
+
+focus_on_window_activation urgent
 
 set $active #edbbd2
 set $bg #1d2021
@@ -26,24 +27,17 @@ client.unfocused        $bg	    $bg     $fg     $bg
 client.urgent           $warn	  $warn	  $fg	    $bg
 
 # STARTUP
-exec bsptile
-exec swaybg -i ~/pics/walls/ddr_small.jpg
-# exec pipewire
-exec pulseaudio
+exec autotiling
+exec swaybg -i '/home/meta/Pictures/walls/wallhaven-lm7edq.png'
 exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
 exec waybar
 exec foot --server
-exec ~/git/ddg-proxy/ddg-proxy
+exec ddg-proxy
 
 # INPUT
 
 input type:keyboard {
   xkb_layout "us"
-  xkb_options "ctrl:nocaps"
-}
-input type:touchpad {
-  dwt disabled
-  tap enabled
 }
 
 # KEYBINDS
@@ -66,9 +60,9 @@ bindsym $mod+Mod1+Right exec swaymsg output eDP-1 transform 270
 bindsym $mod+f fullscreen
 
 # volume and brightness
-bindsym XF86AudioRaiseVolume exec amixer sset -M Master 10%+ && pkill -RTMIN+6 waybar
-bindsym XF86AudioLowerVolume exec amixer sset -M Master 10%- && pkill -RTMIN+6 waybar
-bindsym XF86AudioMute exec amixer sset Master toggle && pkill -RTMIN+6 waybar
+bindsym XF86AudioRaiseVolume exec pamixer -i 10
+bindsym XF86AudioLowerVolume exec pamixer -d 10
+bindsym XF86AudioMute exec pamixer -t
 bindsym XF86MonBrightnessUp exec xbacklight +5
 bindsym XF86MonBrightnessDown exec xbacklight -5
 bindsym $mod+XF86MonBrightnessDown exec xbacklight -set 0.4
@@ -83,13 +77,14 @@ bindsym Mod1+Print exec ~/.local/bin/record_videowl
 bindsym Mod1+Shift+Print exec ~/.local/bin/stop_record
 
 # notes
-bindsym $mod+n exec $term -a float nvim -f ~/dotfiles/todo
+bindsym $mod+n exec $term --class float -e nvim -u NONE -f ~/Documents/todo
 
 # password menu
-bindsym $mod+p exec ~/.local/bin/lpass_menu
-# twitch rofi script
+bindsym $mod+p exec rofi-rbw
+
 bindsym $mod+y exec ~/.local/bin/twitch-rofi
 bindsym $mod+Shift+y exec ~/.local/bin/twitch-video-rofi
+bindsym $mod+$alt+y exec ~/.local/bin/yt-rofi
 # wofi emoji picker
 bindsym $mod+period exec ~/.local/bin/wofi-emoji
 
@@ -207,13 +202,25 @@ mode "swap" {
         bindsym Return swap container with mark swapee; mode "default"
 }
 
+# EXIT MENU
+bindsym $mod+x mode "power"; exec --no-startup-id notify-send "Keybinds" "u: poweroff\nr: reboot\nl: lock\ne: exit" &
+mode "power" {
+        bindsym u exec sudo systemctl poweroff
+        bindsym r exec sudo systemctl reboot
+        bindsym l exec mantablockscreen -cc; mode "default"
+        bindsym e exit
+
+        bindsym Escape mode "default"
+        bindsym Return mode "default"
+}
+
 # RESIZE
 bindsym $mod+r mode "resize"
 mode "resize" {
-        bindsym j resize shrink width 40px or 10 ppt
-        bindsym k resize grow height 40px or 10 ppt
-        bindsym l resize shrink height 40px or 10 ppt
-        bindsym oslash resize grow width 40px or 10 ppt
+        bindsym j resize grow height 40px or 10 ppt
+        bindsym k resize shrink height 40px or 10 ppt
+        bindsym l resize grow width 40px or 10 ppt
+        bindsym h resize shrink width 40px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 40px or 10 ppt
@@ -230,7 +237,7 @@ mode "resize" {
 
 # GAPS
 
-gaps inner 12
+gaps inner 0
 gaps outer 0
 smart_gaps on
 smart_borders on

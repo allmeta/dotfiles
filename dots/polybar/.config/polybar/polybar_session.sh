@@ -7,7 +7,7 @@ killall -q -9 polybar
 while pgrep -x polybar >/dev/null; do sleep 1; done
 
 # ENV
-export WLAN="wlp7s0"
+# export WLAN="wlp7s0"
 export TRAY_POS="right"
 
 # Launch polybar

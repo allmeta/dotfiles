@@ -89,7 +89,7 @@ c.downloads.remove_finished = 0
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 # Same as `{column}`, but starting from index 0.
 # Type: ShellCommand
-c.editor.command = ['foot', '-e', 'nvim', '-f', '{file}']
+c.editor.command = ['foot', 'nvim', '-f', '{file}']
 
 # Handler for selecting file(s) in forms. If `external`, then the
 # commands specified by `fileselect.single_file.command` and
