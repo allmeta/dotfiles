@@ -45,10 +45,10 @@ alias ls='ls --color'
 alias open="xdg-open"
 alias v="$EDITOR"
 
-#zsh-vi-mode
 # Set the default WORDCHARS
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 
 # source history nav
@@ -61,8 +61,6 @@ setopt histsavenodups
 setopt histreduceblanks
 setopt incappendhistorytime
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
 
 #completion
 fpath=(/usr/share/zsh/site-functions/ $fpath)
