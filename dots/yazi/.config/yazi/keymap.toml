@@ -1,5 +1,10 @@
-[manager]
-append_keymap = [
-	# Copy
-	{ on = [ "c", "k" ], run = "shell 'cat $0 | wl-copy' --confirm", desc = "Copy the file content" },
-]
+[[manager.prepend_keymap]]
+on = [ "c", "a" ]
+run = "plugin ouch"
+desc = "Create archive (ouch)"
+
+[[manager.append_keymap]]
+# Copy
+on = [ "c", "k" ]
+run = "shell 'cat $0 | wl-copy' --confirm"
+desc = "Copy the file content"
