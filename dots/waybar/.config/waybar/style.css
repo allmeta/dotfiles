@@ -30,9 +30,10 @@ button:hover {
 #workspaces button {
     background: transparent;
     color: white;
+    padding: 4px;
 }
 
 #workspaces button.active, #workspaces button.visible {
-    background: rgb(255,255,255);
-    color: black;
+    /* background: rgb(255,255,255); */
+    /* color: black; */
 }

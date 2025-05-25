@@ -1,11 +1,8 @@
 {
   "layer": "top",
-    "modules-left": ["hyprland/workspaces", "hyprland/submap"],
+    "modules-left": ["niri/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "backlight", "battery", "bluetooth", "network", "hyprland/language", "custom/notification", "tray"],
-    "hyprland/workspaces":{
-      "on-click": "activate"
-    },
+    "modules-right": ["pulseaudio", "backlight", "battery", "bluetooth", "network", "niri/language", "custom/notification", "tray"],
     "clock": {
       "format": "{:%a, %d. %b  %H:%M}",
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
@@ -106,5 +103,12 @@
       "format": "{icon} {capacity}%",
       "format-icons": [" ", " ", " ", " ", " "],
       "max-length": 25
+    },
+    "niri/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "active": "",
+        "default": ""
+      }
     }
 }
