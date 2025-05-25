@@ -1,8 +1,11 @@
 {
   "layer": "top",
-    "modules-left": ["niri/workspaces", "sway/mode"],
+    "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "backlight", "battery", "bluetooth", "network", "niri/language", "custom/notification", "tray"],
+    "modules-right": ["pulseaudio", "backlight", "battery", "bluetooth", "network", "hyprland/language", "custom/notification", "tray"],
+    "hyprland/workspaces":{
+      "on-click": "activate"
+    },
     "clock": {
       "format": "{:%a, %d. %b  %H:%M}",
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
@@ -56,7 +59,7 @@
     },
     "pulseaudio": {
       "format": "  {volume}%",
-      "format-muted": "󰖁 MUTE",
+      "format-muted": "󰖁 mute",
       "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
       "on-click-right": "pavucontrol",
       "on-click-middle": "~/.local/bin/switch-audio",
@@ -103,12 +106,5 @@
       "format": "{icon} {capacity}%",
       "format-icons": [" ", " ", " ", " ", " "],
       "max-length": 25
-    },
-    "niri/workspaces": {
-      "format": "{icon}",
-      "format-icons": {
-        "active": "",
-        "default": ""
-      }
     }
 }
