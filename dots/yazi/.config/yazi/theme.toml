@@ -1,27 +1,2 @@
-[manager]
+[mgr]
 border_symbol = " "
-
-[filetype]
-rules = [
-	# Images
-	{ mime = "image/*", fg = "yellow" },
-
-	# Videos
-	{ mime = "video/*", fg = "magenta" },
-	{ mime = "audio/*", fg = "magenta" },
-
-	# Empty files
-	{ mime = "inode/x-empty", fg = "cyan" },
-
-	# Orphan symbolic links
-	{ name = "*", is = "orphan", fg = "red" },
-
-	{ name = "*", is = "link", fg = "cyan" },
-	{ name = "*/", is = "link", fg = "cyan" },
-
-	# ...
-
-	# Fallback
-	# { name = "*", fg = "white" },
-	{ name = "*/", fg = "blue" }
-]

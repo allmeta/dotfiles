@@ -2,6 +2,7 @@ input {
   keyboard {
     xkb {
       layout "us,no"
+      options "compose:caps"
     }
     repeat-delay 300
     repeat-rate 30
@@ -10,15 +11,27 @@ input {
   mouse {
     accel-profile "flat"
   }
+
+  touchpad {
+    tap
+    natural-scroll
+  }
 }
 
-output "DP-1" {
-  mode "2560x1440"
+gestures {
+  hot-corners {
+    off
+  }
+}
+
+output "eDP-1" {
   position x=0 y=0
 }
-output "DP-2" {
-  mode "2560x1440"
-  position x=2560 y=0
+output "Dell Inc. DELL P2722HE 6QDDW83" {
+  position x=1536 y=0
+}
+output "Dell Inc. DELL P2722H 3RS5FC3" {
+  position x=3456 y=0
 }
 
 hotkey-overlay {
@@ -51,7 +64,7 @@ layout {
     proportion 0.66667
   }
 
-  default-column-width { proportion 0.5; }
+  default-column-width { proportion 1.0; }
 
   focus-ring {
     width 2
@@ -91,6 +104,7 @@ layer-rule {
 
 overview {
   zoom 0.4
+  backdrop-color "#000"
 }
 
 prefer-no-csd
@@ -105,12 +119,32 @@ animations {
   slowdown 0.5
 }
 
-// Open the Firefox picture-in-picture player as floating by default.
+// Open teams on eDP-1
 window-rule {
-  // This app-id regular expression will work for both:
-  // - host Firefox (app-id is "firefox")
-  // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-  match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+  match app-id="teams-for-linux"
+  open-on-output "eDP-1"
+}
+
+// Open the Zen picture-in-picture player as floating by default.
+window-rule {
+  match app-id=r#"zen$"# title="^Picture-in-Picture$"
+  open-floating true
+}
+
+// blueberry
+window-rule {
+  match app-id="blueberry.py"
+  open-floating true
+}
+// dbeaver launcher floating
+window-rule {
+  match app-id="java" title="Dbeaver"
+  open-floating true
+}
+
+// pavucontrol floating
+window-rule {
+  match app-id="pavucontrol"
   open-floating true
 }
 
@@ -119,6 +153,12 @@ window-rule {
 window-rule {
   geometry-corner-radius 12
   clip-to-geometry true
+}
+
+// kitty half size
+window-rule {
+  match app-id="kitty"
+  default-column-width { proportion 0.5; }
 }
 
 // Indicate screencasted windows with red colors.
@@ -144,28 +184,41 @@ window-rule {
   }
 }
 
+xwayland-satellite {
+  path "xwayland-satellite"
+}
+
+cursor {
+  xcursor-theme "Bibata-Original-Classic"
+  xcursor-size 24
+}
+
+environment {
+  QT_QPA_PLATFORM "wayland"
+  ELECTRON_OZONE_PLATFORM_HINT "auto"
+}
+
 binds {
   // Mod-Shift-/, which is usually the same as Mod-?,
   // shows a list of important hotkeys.
   Mod+Shift+Slash { show-hotkey-overlay; }
 
-  Mod+T { spawn "kitty"; }
-  Mod+W { spawn "librewolf"; }
+  Mod+T { spawn "kitty" "-1"; }
+  Mod+W { spawn "flatpak" "run" "app.zen_browser.zen"; }
 
   Mod+Y { spawn "twitch-rofi"; }
   Mod+Shift+Y { spawn "twitch-video-rofi"; }
   Mod+Alt+Y { spawn "yt-rofi"; }
-  Mod+N { spawn "sh" "-c" "kitty -e nvim -u NONE -f ~/Documents/todo"; }
+  Mod+N { spawn-sh "kitty -e nvim -u NONE -f ~/Documents/todo.txt"; }
   Mod+P { spawn "rofi-rbw"; }
 
-  Mod+D { spawn "sh" "-c" "pkill rofi || ~/.config/rofi/scripts/launcher_t2"; }
+  Mod+D { spawn-sh "pkill rofi || rofi -show drun"; }
   Alt+Tab { spawn "rofi" "-show" "window"; }
-  Ctrl+Print { spawn "hyprpicker" "-an"; }
+  Ctrl+Print { spawn-sh "~/.nix-profile/bin/hyprpicker -an"; }
 
-  Mod+V { spawn "sh" "-c" "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
+  Mod+V { spawn-sh "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
 
-  // Mod+X { spawn "sh" "-c" "niri msg action do-screen-transition --delay-ms 150; hyprlock"; }
-  Mod+X { spawn "sh" "-c" "~/git/ext/adi-rofi/files/powermenu/type-1/powermenu.sh"; }
+  Mod+X { spawn-sh "~/git/rofi/files/powermenu/type-1/powermenu.sh ~/rofi-log.txt"; }
 
   // Example volume keys mappings for PipeWire & WirePlumber.
   // The allow-when-locked=true property makes them work even when the session is locked.
@@ -173,6 +226,8 @@ binds {
   XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
   XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
   XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+  XF86MonBrightnessDown { spawn "light" "-T" "0.9"; }
+  XF86MonBrightnessUp   { spawn "light" "-T" "1.1"; }
 
 
   Mod+Q { close-window; }
@@ -315,15 +370,12 @@ binds {
   Mod+Shift+Q { quit; }
 }
 
-environment {
-    DISPLAY ":10"
-}
 
-spawn-at-startup "xwayland-satellite" ":10"
-spawn-at-startup "swaybg" "-i" "/home/meta/Pictures/walls/bg.png"
-spawn-at-startup "sh" "-c" "swww init; sww img /home/meta/Pictures/walls/bg-blurred.png"
+spawn-at-startup "swaybg" "-i" "/home/thomal/Pictures/bg.png"
+spawn-at-startup "swww-daemon"
 spawn-at-startup "hyprlock"
 spawn-at-startup "cliphist" "wipe"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 spawn-at-startup "swaync"
+spawn-at-startup "hypridle"
