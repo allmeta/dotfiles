@@ -1,8 +1,8 @@
 {
   "layer": "top",
-    "modules-left": ["niri/workspaces", "sway/mode"],
+    "modules-left": ["niri/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "backlight", "battery", "bluetooth", "network", "niri/language", "custom/notification", "tray"],
+    "modules-right": ["wireplumber#mic", "wireplumber", "backlight", "battery", "bluetooth", "network", "niri/language", "tray", "custom/notification"],
     "clock": {
       "format": "{:%a, %d. %b  %H:%M}",
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
@@ -30,10 +30,9 @@
     },
     "network": {
       "format": "{ifname}",
-      "format-wifi": "{icon} {essid} ({signalStrength}%)",
-      "format-ethernet": " {ipaddr}/{cidr}",
-      "format-disconnected": "", //An empty format will hide the module.
-      "format-icons":[" "],
+      "format-wifi": " {essid}",
+      "format-ethernet": " ETH",
+      "format-disconnected": "//", //An empty format will hide the module.
       "tooltip-format": " {ifname} via {gwaddr}",
       "tooltip-format-wifi": " {essid} ({signalStrength}%)",
       "tooltip-format-ethernet": " {ifname}",
@@ -44,12 +43,11 @@
       "format": " {status}",
       "format-connected": " {device_alias}",
       "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-      // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
       "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
       "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
       "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
       "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-      "on-click": "blueberry"
+      "on-click-right": "~/.nix-profile/bin/blueberry"
     },
     "hyprland/language": {
       "on-click": "lang"
@@ -60,7 +58,7 @@
       "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
       "on-click-right": "pavucontrol",
       "on-click-middle": "~/.local/bin/switch-audio",
-      "scroll-step": 10.0,
+      "scroll-step": 10.0
     },
     "wireplumber": {
       "format": "  {volume}%",
@@ -69,6 +67,14 @@
       "on-click-right": "pavucontrol",
       "on-click-middle": "~/.local/bin/switch-audio",
       "scroll-step": 10.0
+    },
+    "wireplumber#mic": {
+      "node-type": "Audio/Source",
+      "format": "",
+      "format-muted": "",
+      "tooltip": true,
+      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+      "on-click-middle": "~/.local/bin/switch-mic"
     },
     "custom/notification": {
       "tooltip": false,
@@ -101,7 +107,10 @@
         "critical": 15
       },
       "format": "{icon} {capacity}%",
-      "format-icons": [" ", " ", " ", " ", " "],
+      "format-charging": " {icon} {capacity}%",
+      "format-icons": {
+        "default": [" ", " ", " ", " ", " "],
+      },
       "max-length": 25
     },
     "niri/workspaces": {
