@@ -1,9 +1,9 @@
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = [ "c", "a" ]
 run = "plugin ouch"
 desc = "Create archive (ouch)"
 
-[[manager.append_keymap]]
+[[mgr.append_keymap]]
 # Copy
 on = [ "c", "k" ]
 run = "shell 'cat $0 | wl-copy' --confirm"

@@ -1,123 +1,121 @@
 {
   "layer": "top",
-    "modules-left": ["niri/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["wireplumber#mic", "wireplumber", "backlight", "battery", "bluetooth", "network", "niri/language", "tray", "custom/notification"],
-    "clock": {
-      "format": "{:%a, %d. %b  %H:%M}",
-      "tooltip-format": "<tt><small>{calendar}</small></tt>",
-      "calendar": {
-        "mode"          : "month",
-        "mode-mon-col"  : 3,
-        "weeks-pos"     : "right",
-        "on-scroll"     : 1,
-        "on-click-right": "mode",
-        "format": {
-          "months":     "<span color='#ffffff'><b>{}</b></span>",
-          "days":       "<span color='#888888'>{}</span>",
-          "weeks":      "<span color='#ffffff'><b>W{}</b></span>",
-          "weekdays":   "<span color='#ffffff'><b>{}</b></span>",
-          "today":      "<span color='#ffffff'><b>{}</b></span>"
-        }
-      },
-      "actions":  {
-        "on-click-right": "mode",
-        "on-click-forward": "tz_up",
-        "on-click-backward": "tz_down",
-        "on-scroll-up": "shift_up",
-        "on-scroll-down": "shift_down"
+  "height": 30,
+  "modules-left": ["niri/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["wireplumber#mic", "wireplumber", "backlight", "battery", "bluetooth", "network", "niri/language", "tray", "custom/notification"],
+  "clock": {
+    "format": "{:%a, %d. %b  %H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode"          : "month",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "on-click-right": "mode",
+      "format": {
+        "months":     "<span color='#ffffff'><b>{}</b></span>",
+        "days":       "<span color='#888888'>{}</span>",
+        "weeks":      "<span color='#ffffff'><b>W{}</b></span>",
+        "weekdays":   "<span color='#ffffff'><b>{}</b></span>",
+        "today":      "<span color='#ffffff'><b>{}</b></span>"
       }
     },
-    "network": {
-      "format": "{ifname}",
-      "format-wifi": " {essid}",
-      "format-ethernet": " ETH",
-      "format-disconnected": "//", //An empty format will hide the module.
-      "tooltip-format": " {ifname} via {gwaddr}",
-      "tooltip-format-wifi": " {essid} ({signalStrength}%)",
-      "tooltip-format-ethernet": " {ifname}",
-      "tooltip-format-disconnected": "Disconnected",
-      "max-length": 50
-    },
-    "bluetooth": {
-      "format": " {status}",
-      "format-connected": " {device_alias}",
-      "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-      "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-      "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-      "on-click-right": "~/.nix-profile/bin/blueberry"
-    },
-    "hyprland/language": {
-      "on-click": "lang"
-    },
-    "pulseaudio": {
-      "format": "  {volume}%",
-      "format-muted": "󰖁 MUTE",
-      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-      "on-click-right": "pavucontrol",
-      "on-click-middle": "~/.local/bin/switch-audio",
-      "scroll-step": 10.0
-    },
-    "wireplumber": {
-      "format": "  {volume}%",
-      "format-muted": "󰖁 MUTE",
-      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-      "on-click-right": "pavucontrol",
-      "on-click-middle": "~/.local/bin/switch-audio",
-      "scroll-step": 10.0
-    },
-    "wireplumber#mic": {
-      "node-type": "Audio/Source",
-      "format": "",
-      "format-muted": "",
-      "tooltip": true,
-      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-      "on-click-middle": "~/.local/bin/switch-mic"
-    },
-    "custom/notification": {
-      "tooltip": false,
-      "format": "{icon}",
-      "format-icons": {
-        "notification": "<span foreground='red'><sup></sup></span>",
-        "none": "",
-        "dnd-notification": "<span foreground='red'><sup></sup></span>",
-        "dnd-none": "",
-        "inhibited-notification": "<span foreground='red'><sup></sup></span>",
-        "inhibited-none": "",
-        "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
-        "dnd-inhibited-none": ""
-      },
-      "return-type": "json",
-      "exec-if": "which swaync-client",
-      "exec": "swaync-client -swb",
-      "on-click": "sleep 0.1; swaync-client -t -sw",
-      "on-click-right": "sleep 0.1; swaync-client -d -sw",
-      "escape": true
-    },
-    "backlight": {
-      "format": "{icon} {percent}%",
-      "format-icons": [" ", " "]
-    },
-    "battery": {
-      "interval": 60,
-      "states": {
-        "warning": 30,
-        "critical": 15
-      },
-      "format": "{icon} {capacity}%",
-      "format-charging": " {icon} {capacity}%",
-      "format-icons": {
-        "default": [" ", " ", " ", " ", " "],
-      },
-      "max-length": 25
-    },
-    "niri/workspaces": {
-      "format": "{icon}",
-      "format-icons": {
-        "active": "",
-        "default": ""
-      }
+    "actions":  {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
     }
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": " {essid}",
+    "format-ethernet": " ETH",
+    "format-disconnected": "//", //An empty format will hide the module.
+    "tooltip-format": " {ifname} via {gwaddr}",
+    "tooltip-format-wifi": " {essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": " {ifname}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+  },
+  "bluetooth": {
+    "format": " {status}",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click-right": "~/.nix-profile/bin/blueberry"
+  },
+  "hyprland/language": {
+    "on-click": "lang"
+  },
+  "wireplumber": {
+    "format": "  {volume}%",
+    "format-muted": "󰖁  {volume}%",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "on-click-middle": "~/.local/bin/switch-audio",
+    "scroll-step": 2.0
+  },
+  "wireplumber#mic": {
+    "node-type": "Audio/Source",
+    "format": "",
+    "format-muted": "",
+    "tooltip": true,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-click-middle": "~/.local/bin/switch-mic"
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "sleep 0.1; swaync-client -t -sw",
+    "on-click-right": "sleep 0.1; swaync-client -d -sw",
+    "escape": true
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": [" ", " "]
+  },
+  "battery": {
+    "interval": 60,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {icon} {capacity}%",
+    "format-icons": {
+      "default": [" ", " ", " ", " ", " "],
+    },
+    "max-length": 25
+  },
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active": "",
+      "default": ""
+    }
+  },
+  "niri/language": {
+    "format": "  {}",
+    "format-en": "en",
+    "format-no": "no"
+  }
 }
