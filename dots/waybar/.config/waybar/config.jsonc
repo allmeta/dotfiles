@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "height": 30,
-  "modules-left": ["niri/workspaces"],
+  "modules-left": ["niri/workspaces", "mpris"],
   "modules-center": ["clock"],
   "modules-right": ["wireplumber#mic", "wireplumber", "backlight", "battery", "bluetooth", "network", "niri/language", "tray", "custom/notification"],
   "clock": {
@@ -117,5 +117,17 @@
     "format": "  {}",
     "format-en": "en",
     "format-no": "no"
-  }
+  },
+  "mpris": {
+    "format": "{status_icon} [{position} / {length}] ({player}): {title}",
+    "truncate-hours": true,
+    "dynamic-len": 40,                                 // truncate long titles to ~40 chars
+    "dynamic-order": "title:artist:album",             // order of metadata (or "artist:title")
+    "interval": 1,
+    "status-icons": {
+        "playing": "",
+        "paused": "",
+        "stopped": "■"
+    },
+  },
 }

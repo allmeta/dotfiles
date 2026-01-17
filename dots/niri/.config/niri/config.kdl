@@ -132,6 +132,7 @@ animations {
 window-rule {
   match app-id="teams-for-linux"
   open-on-output "eDP-1"
+  open-fullscreen false
 }
 
 // Open the Zen picture-in-picture player as floating by default.
@@ -254,6 +255,15 @@ binds {
   XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
   XF86MonBrightnessDown allow-when-locked=true { spawn "light" "-T" "0.9"; }
   XF86MonBrightnessUp   allow-when-locked=true { spawn "light" "-T" "1.1"; }
+
+  // Media controls (play/pause/next/prev) — needs an MPRIS player running (spotify, mpv, firefox, etc.)
+  XF86AudioPlay         allow-when-locked=true { spawn "playerctl" "play-pause"; }
+  XF86AudioNext         allow-when-locked=true { spawn "playerctl" "next"; }
+  XF86AudioPrev         allow-when-locked=true { spawn "playerctl" "previous"; }
+  XF86AudioStop         allow-when-locked=true { spawn "playerctl" "stop"; }
+
+  // Optional: very common alternative names some keyboards use
+  XF86AudioMedia        allow-when-locked=true { spawn "playerctl" "play-pause"; }
 
 
   Mod+Q { close-window; }
