@@ -8,3 +8,7 @@ desc = "Create archive (ouch)"
 on = [ "c", "k" ]
 run = "shell 'cat $0 | wl-copy' --confirm"
 desc = "Copy the file content"
+
+[[mgr.prepend_keymap]]
+on  = "<C-n>"
+run = "shell 'ripdrag @0'"
