@@ -1,0 +1,32 @@
+input {
+  keyboard {
+    xkb {
+      layout "us,no"
+      options "compose:ralt"
+    }
+    repeat-delay 300
+    repeat-rate 30
+  }
+
+  mouse {
+    accel-profile "flat"
+  }
+
+  touchpad {
+    tap
+    natural-scroll
+  }
+
+  workspace-auto-back-and-forth
+  focus-follows-mouse max-scroll-amount="0%"
+}
+
+gestures {
+  hot-corners {
+    off
+  }
+}
+
+clipboard {
+    disable-primary
+}
