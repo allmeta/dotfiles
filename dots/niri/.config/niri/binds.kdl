@@ -2,29 +2,32 @@ binds {
   Mod+Shift+Slash { show-hotkey-overlay; }
 
   Mod+T { spawn "kitty" "-1"; }
-  Mod+W { spawn "flatpak" "run" "app.zen_browser.zen"; }
-  Mod+Shift+W { spawn "nixGL" "librewolf"; }
+  Mod+W { spawn "firefox"; }
+  Mod+Shift+W { spawn "librewolf"; }
   Mod+E { spawn "nautilus"; }
 
   Mod+Y { spawn "twitch-rofi"; }
   Mod+Shift+Y { spawn "twitch-video-rofi"; }
   Mod+Alt+Y { spawn "yt-rofi"; }
-  Mod+N { spawn-sh "kitty -e nvim -f ~/Documents/todo.txt"; }
-  Mod+P { spawn "rofi-rbw"; }
+  Mod+Shift+N { spawn-sh "kitty -e nvim -f ~/Documents/todo.txt"; }
+  Mod+N { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper toggle";}
+  Mod+P { spawn "keepassxc"; }
 
-  Mod+D { spawn-sh "pkill rofi || rofi -show drun -columns 2"; }
+  Mod+D { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
 
-  Mod+V { spawn-sh "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
+  Mod+V { spawn-sh "qs -c noctalia-shell ipc call plugin:clipboard toggle"; }
 
-  Mod+X { spawn-sh "~/git/rofi/files/powermenu/type-1/powermenu.sh"; }
+  Mod+X { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+
+  Super+Alt+L allow-when-locked=true { spawn "hyprlock"; }
 
   Mod+S { spawn-sh "~/.local/bin/niri-layout-rofi"; }
 
   XF86Calculator { spawn-sh "kitty -e python"; }
-  XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
-  XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
-  XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-  XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+  XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume decrease"; }
+  XF86AudioMute        allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteOutput"; }
+  XF86AudioMicMute     allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteInput"; }
   XF86MonBrightnessDown allow-when-locked=true { spawn "light" "-T" "0.9"; }
   XF86MonBrightnessUp   allow-when-locked=true { spawn "light" "-T" "1.1"; }
 
@@ -117,8 +120,7 @@ binds {
   Mod+BracketLeft  { consume-or-expel-window-left; }
   Mod+BracketRight { consume-or-expel-window-right; }
 
-  Mod+Comma  { consume-window-into-column; }
-  Mod+Period { expel-window-from-column; }
+  Mod+Period { spawn-sh "qs -c noctalia-shell ipc call launcher emoji"; }
 
   Mod+R { switch-preset-column-width; }
   Mod+Shift+R { switch-preset-window-height; }
