@@ -1,0 +1,161 @@
+[backdrop]
+blur_intensity = 0.20999999530613422
+enabled = true
+tint_intensity = 0.63999998569488525
+
+[bar.default]
+background_opacity = 0.63999998569488525
+capsule_fill = "#20508B"
+end = [
+    "media",
+    "tray",
+    "1",
+    "bluetooth",
+    "input_volume",
+    "volume",
+    "1",
+    "brightness",
+    "battery",
+    "1",
+    "network",
+    "notifications",
+    "session"
+]
+margin_edge = 0.0
+margin_ends = 0.0
+padding = 6
+radius = 0
+shadow = false
+start = [ "launcher", "workspaces", "1", "active_window" ]
+widget_spacing = 4
+
+[[control_center.shortcuts]]
+type = "wifi"
+
+[[control_center.shortcuts]]
+type = "bluetooth"
+
+[[control_center.shortcuts]]
+type = "caffeine"
+
+[[control_center.shortcuts]]
+type = "notification"
+
+[[control_center.shortcuts]]
+type = "power_profile"
+
+[desktop_widgets]
+enabled = false
+
+[location]
+address = "Oslo, Norway"
+
+[osd]
+lock_keys = false
+orientation = "vertical"
+position = "center_right"
+
+[shell]
+avatar_path = "/home/thomal/Pictures/sly.png"
+clipboard_auto_paste = "off"
+polkit_agent = true
+
+    [shell.animation]
+    speed = 4.0
+
+    [shell.panel]
+    borders = false
+    launcher_categories = false
+    open_near_click_control_center = true
+    transparency_mode = "soft"
+
+    [shell.screen_corners]
+    enabled = true
+
+    [[shell.session.actions]]
+    action = "command"
+    command = "~/.local/share/quickshell-lockscreen/lock.sh"
+    enabled = true
+    label = "Lock"
+    shortcut = "l"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "logout"
+    enabled = true
+    shortcut = "q"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "suspend"
+    enabled = true
+    shortcut = "s"
+    variant = "primary"
+
+    [[shell.session.actions]]
+    action = "reboot"
+    enabled = true
+    shortcut = "r"
+    variant = "destructive"
+
+    [[shell.session.actions]]
+    action = "shutdown"
+    enabled = true
+    shortcut = "u"
+    variant = "destructive"
+
+[theme]
+builtin = "Nord"
+wallpaper_scheme = "m3-tonal-spot"
+
+    [theme.templates]
+    builtin_ids = [ "gtk3", "gtk4", "qt" ]
+
+[wallpaper]
+directory = "~/Pictures"
+
+    [wallpaper.default]
+    path = "/home/thomal/Pictures/bg.png"
+
+    [wallpaper.last]
+    path = "/home/thomal/Pictures/bg.png"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/thomal/Pictures/bg.png"
+
+[weather]
+address = "Oslo, Norway"
+
+[widget.1]
+length = 10.0
+type = "spacer"
+
+[widget.battery]
+device = "/org/freedesktop/UPower/devices/battery_BAT0"
+display_mode = "graphic"
+hide_when_full = true
+
+[widget.bongocat]
+script = "scripts/bongocat.lua"
+type = "scripted"
+
+[widget.brightness]
+show_label = false
+
+[widget.clock]
+format = "{:%a %B %d, %H:%M}"
+
+[widget.input_volume]
+show_label = false
+
+[widget.media]
+hide_when_no_media = true
+
+[widget.network]
+show_label = false
+
+[widget.tray]
+drawer = true
+
+[widget.workspaces]
+hide_when_empty = true

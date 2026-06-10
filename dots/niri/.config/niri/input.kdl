@@ -19,6 +19,7 @@ input {
 
   workspace-auto-back-and-forth
   focus-follows-mouse max-scroll-amount="0%"
+  mod-key-nested "Alt"
 }
 
 gestures {
