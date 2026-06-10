@@ -2,6 +2,7 @@ input {
   keyboard {
     xkb {
       layout "us,no"
+      options "compose:ralt"
     }
     repeat-delay 300
     repeat-rate 30
@@ -10,11 +11,19 @@ input {
   mouse {
     accel-profile "flat"
   }
+
+  touchpad {
+    tap
+    natural-scroll
+  }
+
+  workspace-auto-back-and-forth
+  // focus-follows-mouse max-scroll-amount="0%"
 }
 
 output "HDMI-A-1" {
   mode "1920x1080@60.000"
-  // scale 2
+  scale 2
 }
 output "DP-2" {
   mode "2560x1440"
@@ -25,23 +34,28 @@ output "DP-1" {
   position x=2560 y=0
 }
 
+gestures {
+  hot-corners {
+    off
+  }
+}
+
+clipboard {
+    disable-primary
+}
+
 hotkey-overlay {
   skip-at-startup
 }
 
 layout {
   // Set gaps around windows in logical pixels.
-  gaps 16
+  background-color "transparent"
+  gaps 10
 
   empty-workspace-above-first
-
-  // When to center a column when changing focus, options are:
-  // - "never", default behavior, focusing an off-screen column will keep at the left
-  //   or right edge of the screen.
-  // - "always", the focused column will always be centered.
-  // - "on-overflow", focusing a column will center it if it doesn't fit
-  //   together with the previously focused column.
   center-focused-column "never"
+  always-center-single-column
 
   preset-column-widths {
     proportion 0.5
@@ -49,9 +63,8 @@ layout {
   }
 
   preset-window-heights { 
-    proportion 0.33333
     proportion 0.5
-    proportion 0.66667
+    proportion 1.0
   }
 
   default-column-width { proportion 1.0; }
@@ -63,16 +76,20 @@ layout {
     active-gradient from="#8DBEF3" to="#B4CD8C" angle=45 in="oklch longer hue"
   }
 
+  border {
+    off
+  }
+
   // You can enable drop shadows for windows.
   shadow {
     on
   }
 
   struts {
-    left -10
-    right -10
-    top -10
-    bottom -10
+    left -8
+    right -8
+    top -6
+    bottom -6
   }
 }
 
@@ -91,13 +108,19 @@ layer-rule {
     place-within-backdrop true
 }
 
+layer-rule {
+  match namespace="^noctalia-wallpaper*"
+  place-within-backdrop true
+}
+
 overview {
   zoom 0.4
+  backdrop-color "#000"
 }
 
 prefer-no-csd
 
-screenshot-path null
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // Animation settings.
 // The wiki explains how to configure individual animations:
@@ -107,12 +130,46 @@ animations {
   slowdown 0.5
 }
 
-// Open the Firefox picture-in-picture player as floating by default.
+// Open teams on eDP-1
 window-rule {
-  // This app-id regular expression will work for both:
-  // - host Firefox (app-id is "firefox")
-  // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-  match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+  match app-id="teams-for-linux"
+  open-fullscreen false
+}
+
+// Open the Zen picture-in-picture player as floating by default.
+window-rule {
+  match app-id=r#"zen$"# title="^Picture-in-Picture$"
+  open-floating true
+}
+window-rule {
+  match app-id=r#"zen$"# title="Sign in to your account — Zen Browser"
+  open-floating true
+}
+
+// blueberry
+window-rule {
+  match app-id="blueberry.py"
+  open-floating true
+}
+
+window-rule {
+  match app-id="nm-connection-editor"
+  open-floating true
+}
+
+window-rule {
+  match app-id="org.keepassxc.KeePassXC"
+  open-floating true
+}
+// dbeaver launcher floating
+window-rule {
+  match app-id="java" title="Dbeaver"
+  open-floating true
+}
+
+// pavucontrol floating
+window-rule {
+  match app-id="pavucontrol"
   open-floating true
 }
 
@@ -122,10 +179,9 @@ window-rule {
 }
 
 window-rule {
-  match app-id="steam"
+  match app-id="steam_app_*"
   open-fullscreen true
   open-focused true
-  // open-floating true
 }
 
 // Example: enable rounded corners for all windows.
@@ -133,6 +189,13 @@ window-rule {
 window-rule {
   geometry-corner-radius 12
   clip-to-geometry true
+  draw-border-with-background false
+}
+
+// kitty half size
+window-rule {
+  match app-id="kitty"
+  default-column-width { proportion 0.5; }
 }
 
 // Indicate screencasted windows with red colors.
@@ -158,35 +221,57 @@ window-rule {
   }
 }
 
+cursor {
+  xcursor-theme "Bibata-Modern-Classic"
+  xcursor-size 24
+}
+
+environment {
+  QT_QPA_PLATFORM "wayland"
+  ELECTRON_OZONE_PLATFORM_HINT "auto"
+  GDK_BACKEND "wayland"
+  MOZ_ENABLE_WAYLAND "1"
+  FILE_PICKER "yazi-picker"
+}
+
 binds {
   // Mod-Shift-/, which is usually the same as Mod-?,
   // shows a list of important hotkeys.
   Mod+Shift+Slash { show-hotkey-overlay; }
 
-  Mod+T { spawn "kitty"; }
+  Mod+T { spawn "kitty" "-1"; }
   Mod+W { spawn "librewolf"; }
+  Mod+E { spawn "nautilus"; }
 
   Mod+Y { spawn "twitch-rofi"; }
   Mod+Shift+Y { spawn "twitch-video-rofi"; }
   Mod+Alt+Y { spawn "yt-rofi"; }
-  Mod+N { spawn "sh" "-c" "kitty -e nvim -u NONE -f ~/Documents/todo"; }
+  Mod+N { spawn-sh "kitty -e nvim -u NONE -f ~/Documents/todo"; }
   Mod+P { spawn "rofi-rbw"; }
 
-  Mod+D { spawn "sh" "-c" "pkill rofi || ~/.config/rofi/scripts/launcher_t2"; }
+  Mod+D { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
   Alt+Tab { spawn "rofi" "-show" "window"; }
-  Ctrl+Print { spawn-sh "niri msg pick-color";}
 
-  Mod+V { spawn "sh" "-c" "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
+  Mod+V { spawn-sh "qs -c noctalia-shell ipc call launcher clipboard"; }
 
-  // Mod+X { spawn "sh" "-c" "niri msg action do-screen-transition --delay-ms 150; hyprlock"; }
-  Mod+X { spawn "sh" "-c" "~/git/ext/adi-rofi/files/powermenu/type-1/powermenu.sh"; }
+  Mod+X { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
 
-  // Example volume keys mappings for PipeWire & WirePlumber.
-  // The allow-when-locked=true property makes them work even when the session is locked.
+  XF86Calculator { spawn-sh "kitty -e python"; }
   XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
   XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
   XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
   XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "light" "-T" "0.9"; }
+  XF86MonBrightnessUp   allow-when-locked=true { spawn "light" "-T" "1.1"; }
+
+  // Media controls (play/pause/next/prev) — needs an MPRIS player running (spotify, mpv, firefox, etc.)
+  XF86AudioPlay         allow-when-locked=true { spawn "playerctl" "play-pause"; }
+  XF86AudioNext         allow-when-locked=true { spawn "playerctl" "next"; }
+  XF86AudioPrev         allow-when-locked=true { spawn "playerctl" "previous"; }
+  XF86AudioStop         allow-when-locked=true { spawn "playerctl" "stop"; }
+
+  // Optional: very common alternative names some keyboards use
+  XF86AudioMedia        allow-when-locked=true { spawn "playerctl" "play-pause"; }
 
 
   Mod+Q { close-window; }
@@ -248,15 +333,15 @@ binds {
   Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
   Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
-  Mod+WheelScrollRight      { focus-column-right; }
-  Mod+WheelScrollLeft       { focus-column-left; }
-  Mod+Ctrl+WheelScrollRight { move-column-right; }
-  Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+  Mod+WheelScrollRight      cooldown-ms=150 { focus-column-right; }
+  Mod+WheelScrollLeft       cooldown-ms=150 { focus-column-left; }
+  Mod+Ctrl+WheelScrollRight cooldown-ms=150 { move-column-right; }
+  Mod+Ctrl+WheelScrollLeft  cooldown-ms=150 { move-column-left; }
 
-  Mod+Shift+WheelScrollDown      { focus-column-right; }
-  Mod+Shift+WheelScrollUp        { focus-column-left; }
-  Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-  Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+  Mod+Shift+WheelScrollDown cooldown-ms=150 { focus-column-right; }
+  Mod+Shift+WheelScrollUp   cooldown-ms=150 { focus-column-left; }
+  Mod+Ctrl+Shift+WheelScrollDown cooldown-ms=150 { move-column-right; }
+  Mod+Ctrl+Shift+WheelScrollUp   cooldown-ms=150 { move-column-left; }
 
   Mod+1 { focus-workspace 1; }
   Mod+2 { focus-workspace 2; }
@@ -323,22 +408,21 @@ binds {
   // rather than stacked on top of each other.
   // Mod+W { toggle-column-tabbed-display; }
 
-  Print { screenshot; }
+  Print { spawn-sh "sharew"; }
+  Mod+Shift+T { spawn-sh "grim -g \"$(slurp)\" - | tesseract stdin stdout -l eng+nor  --oem 1 --psm 6 -c preserve_interword_spaces=1  | wl-copy"; }
+  Ctrl+Print { spawn-sh "hyprpicker -an"; }
+  Shift+Print { spawn-sh "grim -g \"$(slurp)\" - | nixGL satty -f -"; }
+
   Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
   Mod+Shift+Q { quit; }
 }
 
-environment {
-    ELECTRON_OZONE_PLATFORM_HINT "wayland"
-}
-
-spawn-at-startup "swaybg" "-i" "/home/meta/Pictures/walls/bg.png"
-spawn-at-startup "swww-daemon"
-// den cacher forrige bildet
-// spawn-at-startup "sh" "-c" "swww img /home/meta/Pictures/walls/bg-blurred.png"
+//spawn-at-startup "swaybg" "-i" "/home/meta/Pictures/walls/bg.png"
+// spawn-at-startup "awww-daemon"
 spawn-at-startup "hyprlock"
 spawn-at-startup "cliphist" "wipe"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
-spawn-at-startup "swaync"
+//spawn-at-startup "hypridle"
+spawn-at-startup "qs" "-c" "noctalia-shell"
