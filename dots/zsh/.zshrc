@@ -44,6 +44,7 @@ alias ...='cd ../..'
 alias ls='ls --color'
 alias open="xdg-open"
 alias v="$EDITOR"
+alias y=yy
 
 # Set the default WORDCHARS
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
@@ -84,3 +85,5 @@ bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 # source highlighter
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+eval "$(zoxide init zsh --cmd cd)"

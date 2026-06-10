@@ -1,0 +1,37 @@
+#!/bin/bash
+# Author: Jan Keith Darunday <github@jkcdarunday.mozmail.com>
+# Description: A shell script that switches to the next available Pulseaudio output device/source
+# Note: This uses pactl instead of pacmd since pacmd is not available in pipewire
+
+function get_current_source() {
+  pactl info | sed -En 's/Default Source: (.*)/\1/p'
+}
+
+SOURCES=$(pactl list short sources | grep -v easyeffects | grep -v monitor)
+SOURCE_COUNT=$(echo "$SOURCES" | wc -l)
+
+CURRENT_SOURCE=$(get_current_source)
+CURRENT_SOURCE_INDEX=$(echo "$SOURCES" | grep -n "$CURRENT_SOURCE" | grep -Eo '^[0-9]+')
+
+MAX_RETRIES=6
+RETRIES=0
+
+while true; do
+  [ "$RETRIES" -ge "$MAX_RETRIES" ] && echo "Reached retry limit of $MAX_SOURCE_SKIPS, giving up." && break
+
+  NEW_SOURCE_INDEX=$(((CURRENT_SOURCE_INDEX + $RETRIES) % $SOURCE_COUNT + 1))
+  NEW_SOURCE=$(echo "$SOURCES" | sed "${NEW_SOURCE_INDEX}q;d" | awk '{ print $2 }')
+
+  echo "Switching to source: $NEW_SOURCE"
+  pactl set-default-source "$NEW_SOURCE"
+
+  [ "$(get_current_source)" = "$NEW_SOURCE" ] && break
+
+  # Note: switching could fail if, for example, the new source does not have any available output port
+  echo "Failed to switch to source: $NEW_SOURCE, skipping to next source..."
+  RETRIES=$((RETRIES + 1))
+done
+
+# Forward all playing audio (source inputs) to the new source (Uncomment if your system does not automatically do this)
+#SOURCE_INPUTS=($(pactl list short source-inputs | grep -Eo '^[0-9]+'))
+#for SOURCE_INPUT in ${SOURCE_INPUTS[*]}; do pactl move-source-input $SOURCE_INPUT $NEW_SOURCE; done
