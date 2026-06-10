@@ -1,0 +1,17 @@
+environment {
+  QT_QPA_PLATFORM "wayland"
+  ELECTRON_OZONE_PLATFORM_HINT "auto"
+  GDK_BACKEND "wayland"
+  MOZ_ENABLE_WAYLAND "1"
+  FILE_PICKER "yazi-picker"
+}
+
+//spawn-at-startup "swaybg" "-i" "/home/meta/Pictures/walls/bg.png"
+// spawn-at-startup "awww-daemon"
+spawn-at-startup "hyprlock"
+spawn-at-startup "cliphist" "wipe"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+//spawn-at-startup "hypridle"
+//spawn-at-startup "qs" "-c" "noctalia-shell"
+spawn-at-startup "noctalia"

@@ -17,3 +17,5 @@ alias gb="git branch"
 alias gsta="git stash push"
 alias gcl="git clone"
 alias gr="git rebase"
+
+string match -q "$TERM_PROGRAM" "kiro" and . (kiro --locate-shell-integration-path fish)

@@ -1,0 +1,110 @@
+// Add a shadow for rofi.
+layer-rule {
+  match namespace="^rofi$"
+
+  shadow {
+    on
+  }
+}
+
+// Put swww inside the overview backdrop.
+layer-rule {
+    match namespace="swww-daemon"
+    place-within-backdrop true
+}
+
+layer-rule {
+  match namespace="^noctalia-wallpaper*"
+  place-within-backdrop true
+}
+
+// Open teams on eDP-1
+window-rule {
+  match app-id="teams-for-linux"
+  open-fullscreen false
+}
+
+// Open the Zen picture-in-picture player as floating by default.
+window-rule {
+  match app-id=r#"zen$"# title="^Picture-in-Picture$"
+  open-floating true
+}
+window-rule {
+  match app-id=r#"zen$"# title="Sign in to your account — Zen Browser"
+  open-floating true
+}
+
+// blueberry
+window-rule {
+  match app-id="blueberry.py"
+  open-floating true
+}
+
+window-rule {
+  match app-id="nm-connection-editor"
+  open-floating true
+}
+
+window-rule {
+  match app-id="org.keepassxc.KeePassXC"
+  open-floating true
+}
+// dbeaver launcher floating
+window-rule {
+  match app-id="java" title="Dbeaver"
+  open-floating true
+}
+
+// pavucontrol floating
+window-rule {
+  match app-id="pavucontrol"
+  open-floating true
+}
+
+window-rule {
+  match app-id="kitty"
+  default-column-width { proportion 0.5; }
+}
+
+window-rule {
+  match app-id="steam_app_*"
+  open-fullscreen true
+  open-focused true
+}
+
+// Example: enable rounded corners for all windows.
+// (This example rule is commented out with a "/-" in front.)
+window-rule {
+  geometry-corner-radius 12
+  clip-to-geometry true
+  draw-border-with-background false
+}
+
+// kitty half size
+window-rule {
+  match app-id="kitty"
+  default-column-width { proportion 0.5; }
+}
+
+// Indicate screencasted windows with red colors.
+window-rule {
+  match is-window-cast-target=true
+
+  focus-ring {
+    active-color "#f38ba8"
+    inactive-color "#7d0d2d"
+  }
+
+  border {
+    inactive-color "#7d0d2d"
+  }
+
+  shadow {
+    color "#7d0d2d70"
+  }
+
+  tab-indicator {
+    active-color "#f38ba8"
+    inactive-color "#7d0d2d"
+  }
+}
