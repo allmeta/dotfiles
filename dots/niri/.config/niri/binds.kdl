@@ -9,25 +9,24 @@ binds {
   Mod+Y { spawn "twitch-rofi"; }
   Mod+Shift+Y { spawn "twitch-video-rofi"; }
   Mod+Alt+Y { spawn "yt-rofi"; }
-  Mod+Shift+N { spawn-sh "kitty -e nvim -f ~/Documents/todo.txt"; }
-  Mod+N { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper toggle";}
+  Mod+N { spawn-sh "kitty -e nvim -f ~/Documents/todo.txt"; }
   Mod+P { spawn "keepassxc"; }
 
-  Mod+D { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+  Mod+D { spawn-sh "noctalia msg panel-toggle launcher"; }
 
-  Mod+V { spawn-sh "qs -c noctalia-shell ipc call plugin:clipboard toggle"; }
+  Mod+V { spawn-sh "noctalia msg panel-toggle clipboard"; }
 
-  Mod+X { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+  Mod+X { spawn-sh "noctalia msg panel-toggle session"; }
 
-  Super+Alt+L allow-when-locked=true { spawn "hyprlock"; }
+  Super+Alt+X allow-when-locked=true { spawn "hyprlock"; }
 
   Mod+S { spawn-sh "~/.local/bin/niri-layout-rofi"; }
 
   XF86Calculator { spawn-sh "kitty -e python"; }
-  XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
-  XF86AudioLowerVolume allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume decrease"; }
-  XF86AudioMute        allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteOutput"; }
-  XF86AudioMicMute     allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteInput"; }
+  XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+  XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+  XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
   XF86MonBrightnessDown allow-when-locked=true { spawn "light" "-T" "0.9"; }
   XF86MonBrightnessUp   allow-when-locked=true { spawn "light" "-T" "1.1"; }
 
@@ -120,7 +119,7 @@ binds {
   Mod+BracketLeft  { consume-or-expel-window-left; }
   Mod+BracketRight { consume-or-expel-window-right; }
 
-  Mod+Period { spawn-sh "qs -c noctalia-shell ipc call launcher emoji"; }
+  Mod+Period { spawn-sh "noctalia msg panel-toggle emoji"; }
 
   Mod+R { switch-preset-column-width; }
   Mod+Shift+R { switch-preset-window-height; }
@@ -143,10 +142,10 @@ binds {
 
   Mod+Space { switch-layout "next"; }
 
-  Print { screenshot; }
+  //Print { screenshot; }
+  Print { spawn-sh "~/.local/bin/sharew"; }
   Mod+Shift+T { spawn-sh "grim -g \"$(slurp)\" - | tesseract stdin stdout -l eng+nor  --oem 1 --psm 6 -c preserve_interword_spaces=1  | wl-copy"; }
   Ctrl+Print { spawn-sh "~/.nix-profile/bin/hyprpicker -an"; }
-  Shift+Print { spawn-sh "pkill -SIGUSR1 wayscriber"; }
 
   Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 

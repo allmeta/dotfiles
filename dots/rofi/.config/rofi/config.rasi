@@ -1,4 +1,5 @@
 configuration {
   modi: "run,drun";
+  columns: 1;
 }
 @theme "style_3"
