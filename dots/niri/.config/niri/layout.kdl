@@ -1,0 +1,70 @@
+hotkey-overlay {
+  skip-at-startup
+}
+
+layout {
+  // Set gaps around windows in logical pixels.
+  background-color "transparent"
+  gaps 10
+
+  empty-workspace-above-first
+  center-focused-column "never"
+  always-center-single-column
+
+  preset-column-widths {
+    proportion 0.5
+    proportion 1.0
+  }
+
+  preset-window-heights {
+    proportion 0.5
+    proportion 1.0
+  }
+
+  default-column-width { proportion 1.0; }
+
+  focus-ring {
+    width 2
+    // active-color "#7fc8ff"
+    // inactive-color "#505050"
+    active-gradient from="#8DBEF3" to="#B4CD8C" angle=45 in="oklch longer hue"
+  }
+
+  border {
+    off
+  }
+
+  // You can enable drop shadows for windows.
+  shadow {
+    on
+  }
+
+  struts {
+    left -8
+    right -8
+    top -6
+    bottom -6
+  }
+}
+
+overview {
+  zoom 0.4
+  backdrop-color "#000"
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// Animation settings.
+// The wiki explains how to configure individual animations:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
+animations {
+  // Slow down all animations by this factor. Values below 1 speed them up instead.
+  slowdown 0.5
+}
+
+cursor {
+  xcursor-theme "Bibata-Modern-Classic"
+  xcursor-size 24
+}
