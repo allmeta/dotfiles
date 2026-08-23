@@ -17,7 +17,7 @@ layer-rule {
 }
 
 layer-rule {
-  match namespace="^noctalia-oveview"
+  match namespace="^noctalia-overview"
   place-within-backdrop true
 }
 
