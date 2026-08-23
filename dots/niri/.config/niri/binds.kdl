@@ -115,11 +115,12 @@ binds {
   Mod+Shift+9 { move-column-to-workspace 9; }
 
   Mod+Tab { toggle-overview; }
+  Alt+Tab { spawn-sh "noctalia msg panel-open launcher /win"; }
 
   Mod+BracketLeft  { consume-or-expel-window-left; }
   Mod+BracketRight { consume-or-expel-window-right; }
 
-  Mod+Period { spawn-sh "noctalia msg panel-toggle emoji"; }
+  Mod+Period { spawn-sh "noctalia msg panel-open launcher /emo"; }
 
   Mod+R { switch-preset-column-width; }
   Mod+Shift+R { switch-preset-window-height; }
