@@ -4,6 +4,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# --- Prompt Theme (load early so real prompt replaces cached one ASAP) ---
+source ~/git/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # --- Zsh History Configuration ---
 export HISTFILE=~/.zsh_history
 export HIST_STAMPS="dd/mm/yyyy"
@@ -14,17 +18,21 @@ setopt histsavenodups
 setopt histreduceblanks
 setopt incappendhistorytime
 
-# The following lines were added by compinstall
-#zstyle :compinstall filename '/home/thomal/.zshrc'
+# fpath: generated per-tool completions + zsh-completions community definitions
+fpath=(
+  ~/.config/zsh/completions
+  ~/git/zsh-completions/src
+  $fpath
+)
 
-#fpath=(/usr/share/zsh/site-functions/ $fpath)
+source ~/git/zsh-defer/zsh-defer.plugin.zsh
+
 autoload -Uz compinit
-if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-else
-  compinit -C
-fi
-# End of lines added by compinstall
+# Load the precompiled dump as-is; never rebuild on startup.
+# Must run synchronously (NOT via zsh-defer) — deferring compinit corrupts the
+# dump and drops completions for tools like fd. -C is cheap; it just loads the dump.
+# Regenerate manually after adding/removing a completion: rebuild-zcompdump
+compinit -C
 
 # --- Completion styles ---
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -37,18 +45,20 @@ zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/compcache
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color=always $realpath'
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
-# fzf-tab must load after compinit, before widget-wrapping plugins
-source ~/git/fzf-tab/fzf-tab.plugin.zsh
-
-# carapace: rich completions for hundreds of CLIs
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
-source <(carapace _carapace zsh)
+# fzf-tab must load after compinit
+zsh-defer source ~/git/fzf-tab/fzf-tab.plugin.zsh
 
 # fzf key bindings (Ctrl+R history, Ctrl+T file picker, Alt+C cd) + completion
-source <(fzf --zsh)
+() {
+  local cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/fzf.zsh"
+  if [[ ! -s "$cache" || "${commands[fzf]}" -nt "$cache" ]]; then
+    mkdir -p "${cache:h}" && fzf --zsh > "$cache"
+  fi
+  source "$cache"
+}
 
-# zsh-syntax-highlighting must load last (wraps widgets)
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# zsh-syntax-highlighting must load after compinit (deferred)
+zsh-defer source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # --- Alias and Function Definitions ---
 function transfer() {
@@ -60,6 +70,16 @@ function transfer() {
 
 function gc(){
   git commit -m "$*"
+}
+
+# Rebuild the completion dump from scratch and recompile it.
+# Run after installing/removing a tool that ships a _completion file.
+function rebuild-zcompdump() {
+  local dump="${ZDOTDIR:-$HOME}/.zcompdump"
+  rm -f "$dump" "$dump.zwc"
+  autoload -Uz compinit && compinit -u -d "$dump"
+  zcompile "$dump"
+  echo "rebuilt $dump"
 }
 
 function yy() {
@@ -121,22 +141,19 @@ alias ....='cd ../../..'
 alias ls='ls --color'
 alias open="xdg-open"
 alias vim=nvim
+alias c=claude
 
 # --- Key Bindings ---
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 bindkey -e
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-
-# --- Prompt Theme ---
-source ~/git/powerlevel10k/powerlevel10k.zsh-theme
-
-# Customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '\ev' edit-command-line
 
 export PATH="$PATH:/home/thomal/.local/bin"
-# nvm
-export PATH="$PATH:/home/thomal/.nvm/versions/node/v22.20.0/bin"
+export _ZO_DOCTOR=0
 # pnpm
 export PNPM_HOME="/home/thomal/.local/share/pnpm"
 case ":$PATH:" in
@@ -147,9 +164,25 @@ esac
 export PATH="$PATH:/home/thomal/.dotnet/tools"
 #
 source $HOME/.nix-profile/share/nix-direnv/direnvrc
-eval "$(direnv hook zsh)"
+() {
+  local cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/direnv.zsh"
+  if [[ ! -s "$cache" || "${commands[direnv]}" -nt "$cache" ]]; then
+    mkdir -p "${cache:h}" && direnv hook zsh > "$cache"
+  fi
+  source "$cache"
+}
 
-eval "$(zoxide init zsh --cmd cd)"
+() {
+  local cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zoxide.zsh"
+  if [[ ! -s "$cache" || "${commands[zoxide]}" -nt "$cache" ]]; then
+    mkdir -p "${cache:h}" && zoxide init zsh --cmd cd > "$cache"
+  fi
+  source "$cache"
+}
 
 # opencode
 export PATH=/home/thomal/.opencode/bin:$PATH
+
+# Claude Code: make AFK / question prompts wait up to 1 week (604800000 ms) instead of ~60s.
+# NOTE: not confirmed as a recognized Claude Code setting — may be a no-op.
+export CLAUDE_AFK_TIMEOUT_MS=604800000
