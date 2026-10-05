@@ -36,12 +36,6 @@ widget_spacing = 4
 show_events_card = false
 
 [[control_center.shortcuts]]
-type = "wifi"
-
-[[control_center.shortcuts]]
-type = "bluetooth"
-
-[[control_center.shortcuts]]
 type = "caffeine"
 
 [[control_center.shortcuts]]
@@ -197,6 +191,7 @@ widget_order = [
         opacity = 1.0
 
 [notification]
+layer = "overlay"
 monitors = [ "DP-1" ]
 
 [osd]
@@ -205,8 +200,12 @@ lock_keys = false
 monitors = [ "DP-1" ]
 offset_x = 0
 orientation = "vertical"
-position = "center_right"
+position = "top_right"
 position_vertical = "center_right"
+
+    [osd.kinds]
+    media = false
+    volume_input = false
 
 [plugin_settings."noctalia/screen_recorder"]
 audio_source = "default_output"
@@ -234,6 +233,9 @@ settings_show_advanced = true
     launcher_categories = false
     open_near_click_control_center = true
     transparency_mode = "soft"
+
+    [shell.screen_corners]
+    enabled = true
 
     [[shell.session.actions]]
     action = "logout"
@@ -271,10 +273,14 @@ enabled = false
 
 [theme]
 builtin = "Nord"
-wallpaper_scheme = "m3-tonal-spot"
+community_palette = "GruvboxAlt"
+mode = "dark"
+source = "community"
+wallpaper_scheme = "vibrant"
 
     [theme.templates]
-    builtin_ids = [ "gtk3", "gtk4", "qt" ]
+    builtin_ids = [ "gtk3", "gtk4", "kitty", "qt" ]
+    community_ids = [ "zathura" ]
 
 [wallpaper]
 directory = "/home/meta/Pictures/walls"
@@ -284,9 +290,6 @@ directory = "/home/meta/Pictures/walls"
 
     [wallpaper.last]
     path = "/home/meta/Pictures/walls/bg.png"
-
-    [wallpaper.monitors.eDP-1]
-    path = "/home/thomal/Pictures/bg.png"
 
 [weather]
 address = "Oslo, Norway"
@@ -314,6 +317,7 @@ format = "{:%a %B %d, %H:%M}"
 capsule = true
 capsule_opacity = 0.0
 capsule_padding = 0.0
+mute_color = "error"
 show_label = false
 
 [widget.media]
@@ -327,6 +331,9 @@ type = "noctalia/screen_recorder:recorder"
 
 [widget.tray]
 drawer = true
+
+[widget.volume]
+mute_color = "error"
 
 [widget.workspaces]
 hide_when_empty = true

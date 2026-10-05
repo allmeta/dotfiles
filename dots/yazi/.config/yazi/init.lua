@@ -10,3 +10,5 @@ function Status:name()
   end
   return ui.Line(" " .. h.name .. linked)
 end
+
+require("folder-rules"):setup()
