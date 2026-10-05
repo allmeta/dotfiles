@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Swayimg (ICO)
+Comment=Open Windows icons in swayimg
+Exec=swayimg-ico %F
+Icon=swayimg
+Terminal=false
+NoDisplay=true
+MimeType=image/vnd.microsoft.icon;image/x-icon;image/x-win-bitmap;

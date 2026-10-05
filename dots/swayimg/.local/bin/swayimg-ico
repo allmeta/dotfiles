@@ -1,0 +1,28 @@
+#!/bin/sh
+# Open .ico files in swayimg by converting them to PNG first.
+# Picks the largest size stored in each icon. Non-.ico args are passed through.
+
+tmp=$(mktemp -d "${TMPDIR:-/tmp}/swayimg-ico.XXXXXX") || exit 1
+trap 'rm -rf "$tmp"' EXIT INT TERM
+
+for f in "$@"; do
+  case "$f" in
+    *.ico|*.ICO|*.cur|*.CUR)
+      # index of the largest frame
+      idx=$(magick identify -format '%p %w\n' "$f" 2>/dev/null | sort -k2 -n | tail -1 | cut -d' ' -f1)
+      out="$tmp/$(basename "${f%.*}").png"
+      if magick "$f[${idx:-0}]" "$out" 2>/dev/null; then
+        set -- "$@" "$out"
+      else
+        echo "swayimg-ico: failed to convert $f" >&2
+      fi
+      ;;
+    *)
+      set -- "$@" "$f"
+      ;;
+  esac
+  shift
+done
+
+[ $# -gt 0 ] || exit 1
+swayimg "$@"
