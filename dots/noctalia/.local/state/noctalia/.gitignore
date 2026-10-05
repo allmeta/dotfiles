@@ -1,0 +1,4 @@
+# noctalia writes all its runtime state here; only track settings
+*
+!settings.toml
+!.gitignore
