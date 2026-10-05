@@ -20,6 +20,8 @@ setopt incappendhistorytime
 
 # fpath: generated per-tool completions + zsh-completions community definitions
 fpath=(
+  ~/.nix-profile/share/zsh/site-functions
+  /nix/var/nix/profiles/default/share/zsh/site-functions
   ~/.config/zsh/completions
   ~/git/zsh-completions/src
   $fpath
@@ -28,11 +30,10 @@ fpath=(
 source ~/git/zsh-defer/zsh-defer.plugin.zsh
 
 autoload -Uz compinit
-# Load the precompiled dump as-is; never rebuild on startup.
-# Must run synchronously (NOT via zsh-defer) — deferring compinit corrupts the
-# dump and drops completions for tools like fd. -C is cheap; it just loads the dump.
-# Regenerate manually after adding/removing a completion: rebuild-zcompdump
-compinit -C
+# Must run synchronously (NOT via zsh-defer) — deferring compinit corrupts the dump.
+# No -C: compinit rebuilds the dump itself when fpath gains/loses completions
+# (e.g. after `nix profile add`). Measured as fast as -C here.
+compinit -u
 
 # --- Completion styles ---
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -72,16 +73,6 @@ function gc(){
   git commit -m "$*"
 }
 
-# Rebuild the completion dump from scratch and recompile it.
-# Run after installing/removing a tool that ships a _completion file.
-function rebuild-zcompdump() {
-  local dump="${ZDOTDIR:-$HOME}/.zcompdump"
-  rm -f "$dump" "$dump.zwc"
-  autoload -Uz compinit && compinit -u -d "$dump"
-  zcompile "$dump"
-  echo "rebuilt $dump"
-}
-
 function yy() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
   yazi "$@" --cwd-file="$tmp"
@@ -113,6 +104,32 @@ yay() {
       ;;
   esac
 }
+
+_yay() {
+  if (( CURRENT == 2 )); then
+    _describe 'action' '(-S:install -R:remove)'
+  elif [[ $words[2] == -S ]]; then
+    # every package (incl. nested like python3Packages.foo) in the pinned nixpkgs, cached to a file;
+    # rebuilt (~3s) when the pin (registry.json) changes.
+    local cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/nixpkgs-names"
+    if [[ ! -s $cache || ~/.config/nix/registry.json -nt $cache ]]; then
+      mkdir -p "${cache:h}"
+      nix search nixpkgs '^' --json 2>/dev/null \
+        | jq -r 'keys[] | sub("^legacyPackages\\.[^.]+\\."; "")' > "$cache.tmp" \
+        && [[ -s $cache.tmp ]] && mv "$cache.tmp" "$cache"
+    fi
+    # fzf directly on the file: fzf-tab loops over every candidate in zsh (~20s for 113k).
+    local preview; zstyle -s ':fzf-tab:complete:yay:' fzf-preview preview
+    local -a sel=(${(f)"$(fzf --multi --height=60% --reverse --query="$PREFIX" \
+      --preview="word={}; $preview" --preview-window=right:50%:wrap < $cache)"})
+    (( $#sel )) && compadd -U -Q -- "${(j: :)sel}"
+  elif [[ $words[2] == -R ]]; then
+    local -a pkgs=(${(f)"$(nix profile list --json 2>/dev/null | jq -r '.elements | keys[]')"})
+    _describe 'installed' pkgs
+  fi
+}
+compdef _yay yay
+zstyle ':fzf-tab:complete:yay:*' fzf-preview 'nix eval --json "nixpkgs#$word" --apply "p: { v = p.version or \"\"; d = p.meta.description or \"\"; l = p.meta.longDescription or \"\"; h = p.meta.homepage or \"\"; }" 2>/dev/null | jq -r "\"\(.v)\n\n\(.d)\n\n\(.l)\n\(.h)\""'
 
 
 # Git aliases
