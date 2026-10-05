@@ -1,0 +1,257 @@
+// Zed keymap
+//
+// For information off binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    // ============================================================================
+    // NORMAL MODE BINDINGS (Leader key = space)
+    // ============================================================================
+    "context": "Workspace && vim_mode == normal || Editor && vim_mode == normal",
+    "bindings": {
+      // Window navigation (ctrl+hjkl)
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+
+      // Buffer navigation
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+      "[ b": "pane::ActivatePreviousItem",
+      "] b": "pane::ActivateNextItem",
+      "ctrl-[": "pane::ActivatePreviousItem",
+      "ctrl-]": "pane::ActivateNextItem",
+      "space b b": "pane::AlternateFile",
+      "space b d": "pane::CloseActiveItem",
+      "space b o": "pane::CloseOtherItems",
+
+      "space y": "editor::Copy",
+      "space p": "editor::Paste",
+      "ctrl-a": "editor::SelectAll",
+
+      // Save file
+      "space w": "workspace::Save",
+
+      // Diagnostics
+      "space c d": "editor::Hover",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPreviousDiagnostic",
+
+      // Code actions
+      "space c f": "editor::Format",
+      "space c a": "editor::ToggleCodeActions",
+      "space c r": "editor::Rename",
+
+      // Search / Find
+      "space s f": "file_finder::Toggle",
+      "space space": "file_finder::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space f p": "projects::OpenRecent",
+      "space /": "pane::DeploySearch",
+      "space f w": "pane::DeploySearch",
+
+      // File operations
+      "space f n": "workspace::NewFile",
+      "space e": "project_panel::ToggleFocus",
+      "space m p": "markdown::OpenPreviewToTheSide",
+
+      // Git
+      "space g b": "editor::ToggleGitBlameInline",
+      "space g B": "git::Blame",
+
+      // UI toggles
+      "space u w": "editor::ToggleSoftWrap",
+      "space u l": "editor::ToggleLineNumbers",
+      "space u h": "editor::ToggleInlayHints",
+      "space u d": "diagnostics::Deploy",
+      "space u z": "workspace::ToggleZoom",
+
+      // Quickfix / Location list
+      "space x q": "diagnostics::Deploy",
+      "space x l": "diagnostics::Deploy",
+      "] q": "search::SelectNextMatch",
+      "[ q": "search::SelectPreviousMatch",
+
+      // Windows
+      "space -": "pane::SplitDown",
+      "space |": "pane::SplitRight",
+      "space w d": "pane::CloseActiveItem",
+      "space w m": "workspace::ToggleZoom",
+
+      // Tabs
+      "space tab l": "pane::ActivateLastItem",
+      "space tab tab": "workspace::NewFile",
+      "space tab ]": "pane::ActivateNextItem",
+      "space tab d": "pane::CloseActiveItem",
+      "space tab [": "pane::ActivatePreviousItem",
+
+      // Terminal
+      "space t": "terminal_panel::ToggleFocus",
+
+      // Quit
+      "space q q": "zed::Quit",
+
+      // Lazy (plugin manager equivalent - open extensions)
+      "space l": "zed::Extensions",
+
+      "space k": "git_panel::ToggleFocus",
+
+      // LSP
+      "g r": "editor::FindAllReferences",
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDeclaration",
+      "g I": "editor::GoToImplementation",
+      "g y": "editor::GoToTypeDefinition",
+      "shift-k": "editor::Hover",
+    },
+  },
+
+  // ============================================================================
+  // VISUAL MODE BINDINGS
+  // ============================================================================
+  {
+    "context": "Editor && VimControl && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+
+      // Better indenting (stay in visual mode)
+      "<": ["workspace::SendKeystrokes", "< g v"],
+      ">": ["workspace::SendKeystrokes", "> g v"],
+
+      // Move lines
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
+
+      "ctrl-a": "editor::SelectAll",
+      "space y": "editor::Copy",
+      "space p": "editor::Paste",
+
+      // Format selection
+      "space c f": "editor::Format",
+    },
+  },
+
+  // ============================================================================
+  // INSERT MODE BINDINGS
+  // ============================================================================
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      // Save file
+      "ctrl-s": "workspace::Save",
+
+      // Move lines
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
+    },
+  },
+
+  // ============================================================================
+  // NORMAL MODE - Move lines
+  // ============================================================================
+  {
+    "context": "Editor && vim_mode == normal && !menu",
+    "bindings": {
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
+    },
+  },
+
+  // ============================================================================
+  // TERMINAL BINDINGS
+  // ============================================================================
+  {
+    "context": "Terminal",
+    "bindings": {},
+  },
+
+  // ============================================================================
+  // GLOBAL / WORKSPACE BINDINGS (no space bindings here!)
+  // ============================================================================
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-s": "workspace::Save",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+    },
+  },
+
+  // ============================================================================
+  // EMPTY PANE (when no file is open) - space bindings are OK here
+  // since there's no insert mode possible
+  // ============================================================================
+  {
+    "context": "EmptyPane",
+    "bindings": {
+      "space space": "file_finder::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space e": "project_panel::ToggleFocus",
+    },
+  },
+
+  // ============================================================================
+  // PROJECT PANEL (file tree) - space bindings are OK here
+  // since there's no insert mode possible
+  // ============================================================================
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "space space": "file_finder::Toggle",
+      "/": "file_finder::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space f p": "projects::OpenRecent",
+      "space e": "project_panel::ToggleFocus",
+      "y p": "workspace::CopyRelativePath",
+      "y y": "project_panel::Copy",
+      "x": "project_panel::Cut",
+      "p": "project_panel::Paste",
+      "a": "project_panel::NewFile",
+      "A": "project_panel::NewDirectory",
+      "r": "project_panel::Rename",
+      "d d": "project_panel::Delete",
+      "space": null,
+      "escape": null,
+    },
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "space": null,
+    },
+  },
+  {
+    "context": "ProjectSearchBar",
+    "bindings": {
+      "escape": "project_panel::ToggleFocus",
+      "tab": "project_panel::ToggleFocus",
+      // "escape": "project_search::ToggleFocus",
+    },
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+    },
+  },
+  // Sneak motion, refer https://github.com/zed-industries/zed/pull/22793/files#diff-90c0cb07588e2f309c31f0bb17096728b8f4e0bad71f3152d4d81ca867321c68
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "s": ["vim::PushSneak", {}],
+      "S": ["vim::PushSneakBackward", {}],
+    },
+  },
+]
