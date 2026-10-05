@@ -5,6 +5,8 @@ environment {
   GDK_BACKEND "wayland"
   MOZ_ENABLE_WAYLAND "1"
   NOCTALIA_PAM_SERVICE "noctalia"
+  // niri doesn't expand $PATH or ~ here, so this is the full PATH with ~/.local/bin added
+  PATH "/home/thomal/.local/bin:/home/thomal/.nix-profile/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
 }
 
 //spawn-at-startup "swaybg" "-i" "/home/thomal/Pictures/bg.png"

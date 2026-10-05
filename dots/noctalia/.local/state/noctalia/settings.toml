@@ -1,4 +1,4 @@
-config_version = 12
+config_version = 15
 
 [backdrop]
 blur_intensity = 0.20999999530613422
@@ -27,6 +27,8 @@ radius = 0
 shadow = false
 start = [ "session", "launcher", "workspaces" ]
 widget_spacing = 4
+
+[calendar]
 
 [control_center.calendar]
 show_events_card = false
@@ -91,6 +93,8 @@ widget_order = [
     cx = 960.0
     cy = 957.0
     output = "DP-10"
+    placement_height = 1080.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "login_box"
 
@@ -116,6 +120,8 @@ widget_order = [
     cx = 960.0
     cy = 954.0
     output = "DP-11"
+    placement_height = 1080.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "login_box"
 
@@ -141,6 +147,8 @@ widget_order = [
     cx = 960.0
     cy = 957.0
     output = "DP-8"
+    placement_height = 1080.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "login_box"
 
@@ -166,6 +174,8 @@ widget_order = [
     cx = 960.0
     cy = 957.0
     output = "DP-9"
+    placement_height = 1080.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "login_box"
 
@@ -191,6 +201,8 @@ widget_order = [
     cx = 960.0
     cy = 1077.0
     output = "eDP-1"
+    placement_height = 1200.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "login_box"
 
@@ -211,8 +223,18 @@ widget_order = [
         show_weather = true
 
 [notification]
+filter_order = [ "filter" ]
+follow_focused_output = true
 layer = "overlay"
-position = "bottom_right"
+
+    [notification.filter.filter]
+    allow_permanent = false
+    bypass_dnd = false
+    enabled = true
+    match = "teams-for-linux"
+    play_sound = false
+    save_history = false
+    show_toast = false
 
 [osd]
 lock_keys = false
@@ -223,6 +245,7 @@ position_vertical = "center_right"
 
     [osd.kinds]
     media = false
+    volume_input = false
 
 [plugin_settings."noctalia/mpvpaper"]
 mpv_options = "no-config loop"
@@ -232,13 +255,12 @@ video_directory = "/home/thomal/git/qylock/themes/pixel-munchlax/pokemon"
 frame_rate = 30
 
 [plugins]
-enabled = [ "noctalia/screen_recorder", "noctalia/mpvpaper" ]
+enabled = [ "noctalia/screen_recorder" ]
 
 [shell]
 avatar_path = "/home/thomal/Pictures/thomal.jpg"
 clipboard_auto_paste = "off"
 polkit_agent = true
-settings_show_advanced = false
 
     [shell.animation]
     speed = 4.0
@@ -293,17 +315,19 @@ settings_show_advanced = false
 [theme]
 builtin = "Nord"
 community_palette = "GruvboxAlt"
+mode = "dark"
 source = "community"
 wallpaper_scheme = "vibrant"
 
     [theme.templates]
     builtin_ids = [ "gtk3", "gtk4", "kitty", "qt" ]
+    community_ids = [ "zathura" ]
 
 [wallpaper]
 directory = "~/Pictures"
 
     [wallpaper.default]
-    path = "/home/thomal/Pictures/bg.png"
+    path = "/home/thomal/Pictures/pokemon-emerald-waterfall-first-frame.png"
 
     [wallpaper.last]
     path = "/home/thomal/.cache/noctalia/mpvpaper/_home_thomal_git_qylock_themes_pixel_munchlax_pokemon_pokemon_emerald_waterfall_wallpaperwaves_com_mp4.jpg"
