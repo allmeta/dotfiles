@@ -275,11 +275,10 @@ enabled = false
 builtin = "Nord"
 community_palette = "GruvboxAlt"
 mode = "dark"
-source = "community"
 wallpaper_scheme = "vibrant"
 
     [theme.templates]
-    builtin_ids = [ "gtk3", "gtk4", "kitty", "qt" ]
+    builtin_ids = [ "gtk3", "gtk4", "qt" ]
     community_ids = [ "zathura" ]
 
 [wallpaper]
@@ -289,6 +288,12 @@ directory = "/home/meta/Pictures/walls"
     path = "/home/meta/Pictures/walls/bg.png"
 
     [wallpaper.last]
+    path = "/home/meta/Pictures/walls/bg.png"
+
+    [wallpaper.monitors.DP-1]
+    path = "/home/meta/Pictures/walls/bg.png"
+
+    [wallpaper.monitors.DP-2]
     path = "/home/meta/Pictures/walls/bg.png"
 
 [weather]
