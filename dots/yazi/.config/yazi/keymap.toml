@@ -38,3 +38,8 @@ desc = "Drag hovered/selected files with ripdrag"
 on   = "<C-p>"
 run  = "plugin toggle-pane min-preview"
 desc = "Toggle preview pane"
+
+[[mgr.prepend_keymap]]
+on   = "<C-f>"
+run  = "plugin toggle-pane max-preview"
+desc = "Maximize preview pane"
