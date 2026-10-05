@@ -126,6 +126,7 @@ alias gcl="git clone"
 alias ga="git add"
 alias gco="git checkout"
 alias gd="git diff"
+alias gs="git show"
 alias gst="git status"
 alias gsta="git stash push"
 alias grho="git grho"
@@ -142,6 +143,7 @@ alias ls='ls --color'
 alias open="xdg-open"
 alias vim=nvim
 alias c=claude
+alias p1='ping 1.1.1.1'
 
 # --- Key Bindings ---
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
@@ -163,7 +165,6 @@ esac
 # dotnet
 export PATH="$PATH:/home/thomal/.dotnet/tools"
 #
-source $HOME/.nix-profile/share/nix-direnv/direnvrc
 () {
   local cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/direnv.zsh"
   if [[ ! -s "$cache" || "${commands[direnv]}" -nt "$cache" ]]; then

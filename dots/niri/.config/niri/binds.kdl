@@ -9,7 +9,7 @@ binds {
   Mod+Y { spawn "twitch-rofi"; }
   Mod+Shift+Y { spawn "twitch-video-rofi"; }
   Mod+Alt+Y { spawn "yt-rofi"; }
-  Mod+N { spawn-sh "kitty -e nvim -f ~/Documents/todo.txt"; }
+  Mod+N { spawn-sh "kitty -e nvim -f ~/Documents/todo.md"; }
   Mod+P { spawn "keepassxc"; }
 
   Mod+D { spawn-sh "noctalia msg panel-toggle launcher"; }
@@ -20,7 +20,7 @@ binds {
 
   Super+Alt+X allow-when-locked=true { spawn "hyprlock"; }
 
-  Mod+S { spawn-sh "~/.local/bin/niri-layout-rofi"; }
+  Mod+S { spawn "niri-layout-rofi"; }
 
   XF86Calculator { spawn-sh "kitty -e python"; }
   XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
@@ -144,9 +144,9 @@ binds {
   Mod+Space { switch-layout "next"; }
 
   //Print { screenshot; }
-  Print { spawn-sh "~/.local/bin/sharew"; }
-  Mod+Shift+T { spawn-sh "grim -g \"$(slurp)\" - | tesseract stdin stdout -l eng+nor  --oem 1 --psm 6 -c preserve_interword_spaces=1  | wl-copy"; }
-  Ctrl+Print { spawn-sh "~/.nix-profile/bin/hyprpicker -an"; }
+  Print { spawn "sharew"; }
+  Mod+Shift+T { spawn-sh "ocr"; }
+  Ctrl+Print { spawn "hyprpicker" "-an"; }
 
   Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
