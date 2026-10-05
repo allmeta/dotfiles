@@ -65,6 +65,6 @@ animations {
 }
 
 cursor {
-  xcursor-theme "Bibata-Modern-Classic"
+  xcursor-theme "volantes_cursors"
   xcursor-size 24
 }

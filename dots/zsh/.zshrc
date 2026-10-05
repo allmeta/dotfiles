@@ -86,4 +86,4 @@ bindkey "^[[B" history-substring-search-down
 # source highlighter
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-eval "$(zoxide init zsh --cmd cd)"
+[[ $- == *i* ]] && eval "$(zoxide init --cmd cd zsh)"

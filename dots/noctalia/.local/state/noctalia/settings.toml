@@ -1,3 +1,9 @@
+config_version = 14
+
+[audio]
+enable_sounds = true
+sound_volume = 0.99999997764825821
+
 [backdrop]
 blur_intensity = 0.20999999530613422
 enabled = true
@@ -9,25 +15,25 @@ capsule_fill = "#20508B"
 end = [
     "media",
     "tray",
-    "1",
+    "recorder",
     "bluetooth",
     "input_volume",
     "volume",
-    "1",
     "brightness",
     "battery",
-    "1",
     "network",
-    "notifications",
-    "session"
+    "notifications"
 ]
 margin_edge = 0.0
 margin_ends = 0.0
 padding = 6
 radius = 0
 shadow = false
-start = [ "launcher", "workspaces", "1", "active_window" ]
+start = [ "session", "launcher", "workspaces" ]
 widget_spacing = 4
+
+[control_center.calendar]
+show_events_card = false
 
 [[control_center.shortcuts]]
 type = "wifi"
@@ -47,38 +53,187 @@ type = "power_profile"
 [desktop_widgets]
 enabled = false
 
+[dock]
+monitors = [ "DP-1" ]
+
 [location]
 address = "Oslo, Norway"
 
+[lockscreen]
+blur_intensity = 0.18999999575316906
+fingerprint = false
+lock_on_startup = true
+monitors = [ "DP-1" ]
+tint_intensity = 0.65999998524785042
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = [
+    "lockscreen-login-box@winit",
+    "lockscreen-login-box@DP-1",
+    "lockscreen-login-box@DP-2",
+    "lockscreen-widget-0000000000000003",
+    "lockscreen-widget-0000000000000002"
+]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1280.0
+    cy = 759.0
+    output = "DP-1"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-2"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1280.0
+    cy = 752.0
+    output = "DP-2"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-2".settings]
+        background_color = "on_primary"
+        background_opacity = 0.0
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@winit"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1278.0
+    cy = 1275.0
+    output = "winit"
+    placement_height = 0.0
+    placement_width = 0.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@winit".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
+    box_height = 144.0
+    box_width = 304.0
+    cx = 1280.0
+    cy = 240.0
+    output = "DP-2"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000002.settings]
+        background = false
+        clock_style = "digital"
+        font_family = "FiraCode Nerd Font"
+        shadow = false
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000003]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 1280.0
+    cy = 542.0
+    output = "DP-2"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "sticker"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000003.settings]
+        background = false
+        image_path = "/home/meta/Pictures/A0007.png"
+        opacity = 1.0
+
+[notification]
+monitors = [ "DP-1" ]
+
 [osd]
+background_opacity = 0.99999997764825821
 lock_keys = false
+monitors = [ "DP-1" ]
+offset_x = 0
 orientation = "vertical"
 position = "center_right"
+position_vertical = "center_right"
+
+[plugin_settings."noctalia/screen_recorder"]
+audio_source = "default_output"
+video_codec = "av1"
+video_source = "portal"
+
+[plugins]
+enabled = [ "noctalia/screen_recorder" ]
 
 [shell]
-avatar_path = "/home/thomal/Pictures/sly.png"
+avatar_path = "/home/meta/Pictures/sly.png"
 clipboard_auto_paste = "off"
+password_style = "random"
 polkit_agent = true
+settings_show_advanced = true
 
     [shell.animation]
     speed = 4.0
+
+    [shell.launcher]
+    categories = false
 
     [shell.panel]
     borders = false
     launcher_categories = false
     open_near_click_control_center = true
     transparency_mode = "soft"
-
-    [shell.screen_corners]
-    enabled = true
-
-    [[shell.session.actions]]
-    action = "command"
-    command = "~/.local/share/quickshell-lockscreen/lock.sh"
-    enabled = true
-    label = "Lock"
-    shortcut = "l"
-    variant = "default"
 
     [[shell.session.actions]]
     action = "logout"
@@ -104,6 +259,16 @@ polkit_agent = true
     shortcut = "u"
     variant = "destructive"
 
+    [[shell.session.actions]]
+    action = "lock"
+    command = "hyprlock"
+    enabled = true
+    shortcut = "l"
+    variant = "default"
+
+[system.monitor]
+enabled = false
+
 [theme]
 builtin = "Nord"
 wallpaper_scheme = "m3-tonal-spot"
@@ -112,13 +277,13 @@ wallpaper_scheme = "m3-tonal-spot"
     builtin_ids = [ "gtk3", "gtk4", "qt" ]
 
 [wallpaper]
-directory = "~/Pictures"
+directory = "/home/meta/Pictures/walls"
 
     [wallpaper.default]
-    path = "/home/thomal/Pictures/bg.png"
+    path = "/home/meta/Pictures/walls/bg.png"
 
     [wallpaper.last]
-    path = "/home/thomal/Pictures/bg.png"
+    path = "/home/meta/Pictures/walls/bg.png"
 
     [wallpaper.monitors.eDP-1]
     path = "/home/thomal/Pictures/bg.png"
@@ -146,6 +311,9 @@ show_label = false
 format = "{:%a %B %d, %H:%M}"
 
 [widget.input_volume]
+capsule = true
+capsule_opacity = 0.0
+capsule_padding = 0.0
 show_label = false
 
 [widget.media]
@@ -153,6 +321,9 @@ hide_when_no_media = true
 
 [widget.network]
 show_label = false
+
+[widget.recorder]
+type = "noctalia/screen_recorder:recorder"
 
 [widget.tray]
 drawer = true
