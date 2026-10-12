@@ -8,6 +8,7 @@ swayimg.viewer.set_window_background(0xff000000)
 swayimg.gallery.window_color = 0xff000000
 swayimg.gallery.thumb_size = 160
 swayimg.imagelist.adjacent = true -- opening one file loads its whole dir
+swayimg.imagelist.order = "mtime" -- sort by modified date
 swayimg.text.visible = false -- info hidden at start, toggle with i
 swayimg.text.timeout = 0     -- don't auto-hide once shown
 
@@ -89,7 +90,9 @@ end
 
 -- alternate image (nsxiv Ctrl-6)
 local prev_path, cur_path
+local last_scale, image_changed -- used by the zoom hook below
 swayimg.viewer.on_image_change(function()
+  image_changed = true
   local img = swayimg.viewer.get_image()
   if img and img.path ~= cur_path then
     prev_path, cur_path = cur_path, img.path
@@ -122,9 +125,31 @@ local function pan_edge(edge)
   swayimg.viewer.set_abs_position(x, y)
 end
 
-local function zoom(factor)
+-- on every scale change: nearest-neighbour (no blur) at >= 100%, smooth
+-- below it; show the zoom % unless the change came from opening an image
+swayimg.on_redrawn(function()
+  if swayimg.mode ~= "viewer" then return end
   local s = swayimg.viewer.scale
-  swayimg.viewer.scale = s * factor
+  if s == last_scale then return end
+  if not last_scale or (s < 1) ~= (last_scale < 1) then
+    swayimg.antialiasing = s < 1
+  end
+  if not image_changed then
+    swayimg.text.status = string.format("%d%%", math.floor(s * 100 + 0.5))
+  end
+  last_scale, image_changed = s, false
+end)
+
+-- next 25% step up/down from the current scale (e.g. 37% -> 50% / 25%);
+-- won't zoom out past 25%, or at all if fit-to-window is already smaller
+local function zoom_step(dir)
+  local s = swayimg.viewer.scale
+  if dir > 0 then return math.floor(s * 4 + 1e-6) / 4 + 0.25 end
+  return math.max(math.ceil(s * 4 - 1e-6) / 4 - 0.25, math.min(s, 0.25))
+end
+
+local function zoom(dir)
+  swayimg.viewer.scale = zoom_step(dir)
 end
 
 --------------------------------------------------------------------------------
@@ -225,13 +250,13 @@ Vw.on_key({ "j", "Down" }, function() pan(0, 1) end)
 Vw.on_key({ "k", "Up" }, function() pan(0, -1) end)
 Vw.on_key({ "l", "Right" }, function() pan(1, 0) end)
 Vw.on_key(keys("H"), function() pan_edge("left") end)
-Vw.on_key(keys("J"), function() pan_edge("bottom") end)
-Vw.on_key(keys("K"), function() pan_edge("top") end)
+Vw.on_key(keys("J"), function() Vw.open("prev") end)
+Vw.on_key(keys("K"), function() Vw.open("next") end)
 Vw.on_key(keys("L"), function() pan_edge("right") end)
 
 -- zoom
-Vw.on_key(keys("plus"), function() zoom(1.25) end)
-Vw.on_key("minus", function() zoom(0.8) end)
+Vw.on_key(keys("plus"), function() zoom(1) end)
+Vw.on_key("minus", function() zoom(-1) end)
 Vw.on_key("equal", function() Vw.set_fix_scale("real") end)
 Vw.on_key("w", function() Vw.set_fix_scale("optimal") end)
 Vw.on_key(keys("W"), function() Vw.set_fix_scale("fit") end)
@@ -259,11 +284,11 @@ end)
 Vw.on_mouse("MouseRight", function() swayimg.mode = "gallery" end)
 Vw.on_mouse("ScrollUp", function()
   local m = swayimg.get_mouse_pos()
-  Vw.set_abs_scale(Vw.scale * 1.25, m.x, m.y)
+  Vw.set_abs_scale(zoom_step(1), m.x, m.y)
 end)
 Vw.on_mouse("ScrollDown", function()
   local m = swayimg.get_mouse_pos()
-  Vw.set_abs_scale(Vw.scale * 0.8, m.x, m.y)
+  Vw.set_abs_scale(zoom_step(-1), m.x, m.y)
 end)
 
 --------------------------------------------------------------------------------
