@@ -25,13 +25,27 @@ margin_ends = 0
 padding = 6
 radius = 0
 shadow = false
-start = [ "session", "launcher", "workspaces" ]
+start = [ "session", "launcher", "workspaces", "preview" ]
 widget_spacing = 4
 
+    [bar.default.dead_zone.actions]
+    back = "exec niri msg action move-workspace-to-monitor-left"
+    forward = "exec niri msg action move-workspace-to-monitor-right"
+    scroll_down = "workspace-switch next"
+    scroll_left = "exec niri msg action focus-column-left"
+    scroll_right = "exec niri msg action focus-column-right"
+    scroll_up = "workspace-switch prev"
+
 [calendar]
+enabled = true
+
+    [calendar.account.subscription]
+    name = "Outlook"
+    server_url = "https://outlook.office365.com/owa/calendar/ea22a38f8b1c4b12b5c5a62d6ef18819@netcompany.com/14390b25474e4f38b0e5f5707e2ad1ff17169408100781073810/calendar.ics"
+    type = "ics"
 
 [control_center.calendar]
-show_events_card = false
+show_week_numbers = true
 
 [[control_center.shortcuts]]
 type = "caffeine"
@@ -41,9 +55,6 @@ type = "notification"
 
 [[control_center.shortcuts]]
 type = "power_profile"
-
-[desktop_widgets]
-enabled = false
 
 [idle]
 behavior_order = [ "lock", "screen-off", "idle-behavior" ]
@@ -223,6 +234,8 @@ widget_order = [
         show_weather = true
 
 [notification]
+background_opacity = 0.0
+border_color = "primary"
 filter_order = [ "filter" ]
 follow_focused_output = true
 layer = "overlay"
@@ -239,8 +252,7 @@ layer = "overlay"
 [osd]
 lock_keys = false
 offset_x = 0
-orientation = "vertical"
-position = "top_right"
+position = "bottom_center"
 position_vertical = "center_right"
 
     [osd.kinds]
@@ -255,9 +267,10 @@ video_directory = "/home/thomal/git/qylock/themes/pixel-munchlax/pokemon"
 frame_rate = 30
 
 [plugins]
-enabled = [ "noctalia/screen_recorder" ]
+enabled = [ "noctalia/screen_recorder", "teagar/niri-workspace-preview" ]
 
 [shell]
+app_icon_color = "#FFFFFF"
 avatar_path = "/home/thomal/Pictures/thomal.jpg"
 clipboard_auto_paste = "off"
 polkit_agent = true
@@ -381,6 +394,11 @@ hide_when_no_media = true
 
 [widget.network]
 show_label = false
+
+[widget.preview]
+enable_scroll = false
+output_scope = "current"
+type = "teagar/niri-workspace-preview:preview"
 
 [widget.recorder]
 type = "noctalia/screen_recorder:recorder"
