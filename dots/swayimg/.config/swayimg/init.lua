@@ -22,7 +22,8 @@ swayimg.slideshow.bind_reset()
 --------------------------------------------------------------------------------
 
 -- shifted symbols may be reported with or without the Shift modifier,
--- so bind both forms
+-- so bind both forms. Capital letters must be written as "Shift+<lowercase>":
+-- a bare "N" matches plain n.
 local function keys(...)
   local out = {}
   for _, k in ipairs({ ... }) do
@@ -31,6 +32,9 @@ local function keys(...)
   end
   return out
 end
+
+local NEXT = { "n", "space", "Shift+l" }
+local PREV = { "p", "BackSpace", "Shift+n", "Shift+h" }
 
 local function bind(modes, key, fn)
   for _, m in ipairs(modes) do
@@ -166,7 +170,7 @@ bind(ALL, "g", function()
   if swayimg.mode == "gallery" then swayimg.gallery.select("first")
   else swayimg.viewer.open("first") end
 end)
-bind(ALL, keys("G"), function()
+bind(ALL, "Shift+g", function()
   if swayimg.mode == "gallery" then swayimg.gallery.select("last")
   else swayimg.viewer.open("last") end
 end)
@@ -177,7 +181,7 @@ bind(ALL, "r", function()
 end)
 
 -- remove from list (not from disk)
-bind(ALL, keys("D"), function()
+bind(ALL, "Shift+d", function()
   local img = current()
   if img then swayimg.imagelist.remove(img.path) end
 end)
@@ -187,7 +191,7 @@ bind(ALL, "m", function()
   if swayimg.mode == "gallery" then swayimg.gallery.mark_image()
   else swayimg.viewer.mark_image() end
 end)
-bind(ALL, keys("P"), function() jump_marked(-1) end)
+bind(ALL, "Shift+p", function() jump_marked(-1) end)
 
 -- switch modes
 swayimg.viewer.on_key({ "Return", "t" }, function() swayimg.mode = "gallery" end)
@@ -204,8 +208,8 @@ G.on_key({ "k", "Up" }, function() G.select("up") end)
 G.on_key({ "l", "Right" }, function() G.select("right") end)
 G.on_key({ "Ctrl+d", "Next" }, function() G.select("pgdown") end)
 G.on_key({ "Ctrl+u", "Prior" }, function() G.select("pgup") end)
-G.on_key({ "n", "space" }, function() G.select("right") end)
-G.on_key({ "p", "BackSpace", "N", "Shift+N" }, function() G.select("left") end)
+G.on_key(NEXT, function() G.select("right") end)
+G.on_key(PREV, function() G.select("left") end)
 G.on_key(keys("bracketright"), function() jump(10) end)
 G.on_key(keys("bracketleft"), function() jump(-10) end)
 G.on_key(keys("plus"), function() G.thumb_size = G.thumb_size + 40 end)
@@ -229,8 +233,8 @@ G.on_mouse("Ctrl+ScrollDown", function() G.thumb_size = math.max(40, G.thumb_siz
 local Vw = swayimg.viewer
 
 -- navigation
-Vw.on_key({ "n", "space" }, function() Vw.open("next") end)
-Vw.on_key({ "p", "BackSpace", "N", "Shift+N" }, function() Vw.open("prev") end)
+Vw.on_key(NEXT, function() Vw.open("next") end)
+Vw.on_key(PREV, function() Vw.open("prev") end)
 Vw.on_key(keys("bracketright"), function() jump(10) end)
 Vw.on_key(keys("bracketleft"), function() jump(-10) end)
 Vw.on_key({ "Ctrl+6", "Ctrl+asciicircum", "Ctrl+Shift+asciicircum" }, function()
@@ -249,19 +253,17 @@ Vw.on_key({ "h", "Left" }, function() pan(-1, 0) end)
 Vw.on_key({ "j", "Down" }, function() pan(0, 1) end)
 Vw.on_key({ "k", "Up" }, function() pan(0, -1) end)
 Vw.on_key({ "l", "Right" }, function() pan(1, 0) end)
-Vw.on_key(keys("H"), function() pan_edge("left") end)
-Vw.on_key(keys("J"), function() Vw.open("prev") end)
-Vw.on_key(keys("K"), function() Vw.open("next") end)
-Vw.on_key(keys("L"), function() pan_edge("right") end)
+Vw.on_key("Shift+j", function() Vw.open("prev") end)
+Vw.on_key("Shift+k", function() Vw.open("next") end)
 
 -- zoom
 Vw.on_key(keys("plus"), function() zoom(1) end)
 Vw.on_key("minus", function() zoom(-1) end)
 Vw.on_key("equal", function() Vw.set_fix_scale("real") end)
 Vw.on_key("w", function() Vw.set_fix_scale("optimal") end)
-Vw.on_key(keys("W"), function() Vw.set_fix_scale("fit") end)
+Vw.on_key("Shift+w", function() Vw.set_fix_scale("fit") end)
 Vw.on_key("e", function() Vw.set_fix_scale("width") end)
-Vw.on_key(keys("E"), function() Vw.set_fix_scale("height") end)
+Vw.on_key("Shift+e", function() Vw.set_fix_scale("height") end)
 
 -- rotate / flip
 Vw.on_key(keys("less"), function() Vw.rotate(270) end)
@@ -299,5 +301,5 @@ local S = swayimg.slideshow
 S.on_key({ "s", "Escape" }, function() swayimg.mode = "viewer" end)
 S.on_key("q", function() swayimg.exit() end)
 S.on_key("f", function() swayimg.fullscreen = not swayimg.fullscreen end)
-S.on_key({ "n", "space" }, function() S.open("next") end)
-S.on_key({ "p", "BackSpace", "N", "Shift+N" }, function() S.open("prev") end)
+S.on_key(NEXT, function() S.open("next") end)
+S.on_key(PREV, function() S.open("prev") end)
