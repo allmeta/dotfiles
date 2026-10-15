@@ -29,11 +29,19 @@ margin_ends = 0.0
 padding = 6
 radius = 0
 shadow = false
-start = [ "session", "launcher", "workspaces" ]
+start = [ "session", "launcher", "workspaces", "preview" ]
 widget_spacing = 4
 
+    [bar.default.dead_zone.actions]
+    back = "exec niri msg action move-workspace-to-monitor-left"
+    forward = "exec niri msg action move-workspace-to-monitor-right"
+    scroll_down = "workspace-switch next"
+    scroll_left = "exec niri msg action focus-column-left"
+    scroll_right = "exec niri msg action focus-column-right"
+    scroll_up = "workspace-switch prev"
+
 [control_center.calendar]
-show_events_card = false
+show_week_numbers = true
 
 [[control_center.shortcuts]]
 type = "caffeine"
@@ -199,8 +207,7 @@ background_opacity = 0.99999997764825821
 lock_keys = false
 monitors = [ "DP-1" ]
 offset_x = 0
-orientation = "vertical"
-position = "top_right"
+position = "bottom_center"
 position_vertical = "center_right"
 
     [osd.kinds]
@@ -213,7 +220,7 @@ video_codec = "av1"
 video_source = "portal"
 
 [plugins]
-enabled = [ "noctalia/screen_recorder" ]
+enabled = [ "noctalia/screen_recorder", "teagar/niri-workspace-preview" ]
 
 [shell]
 avatar_path = "/home/meta/Pictures/sly.png"
@@ -330,6 +337,11 @@ hide_when_no_media = true
 
 [widget.network]
 show_label = false
+
+[widget.preview]
+enable_scroll = false
+output_scope = "current"
+type = "teagar/niri-workspace-preview:preview"
 
 [widget.recorder]
 type = "noctalia/screen_recorder:recorder"
