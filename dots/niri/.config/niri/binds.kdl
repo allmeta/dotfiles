@@ -144,7 +144,7 @@ binds {
   Mod+Space { switch-layout "next"; }
 
   //Print { screenshot; }
-  Print { spawn "sharew"; }
+  Print { spawn-sh "noctalia msg screenshot-annotate"; }
   Mod+Shift+T { spawn-sh "ocr"; }
   Ctrl+Print { spawn "hyprpicker" "-an"; }
 
