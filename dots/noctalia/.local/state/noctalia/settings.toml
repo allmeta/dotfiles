@@ -44,6 +44,10 @@ enabled = true
     server_url = "https://outlook.office365.com/owa/calendar/ea22a38f8b1c4b12b5c5a62d6ef18819@netcompany.com/14390b25474e4f38b0e5f5707e2ad1ff17169408100781073810/calendar.ics"
     type = "ics"
 
+    [calendar.reminders]
+    all_day_digest_time = ""
+    default_lead_minutes = 5
+
 [control_center.calendar]
 show_week_numbers = true
 
@@ -267,7 +271,7 @@ video_directory = "/home/thomal/git/qylock/themes/pixel-munchlax/pokemon"
 frame_rate = 30
 
 [plugins]
-enabled = [ "noctalia/screen_recorder", "teagar/niri-workspace-preview" ]
+enabled = [ "noctalia/screen_recorder", "teagar/niri-workspace-preview", "noctalia/translator" ]
 
 [shell]
 app_icon_color = "#FFFFFF"
@@ -408,6 +412,9 @@ drawer = true
 
 [widget.volume]
 mute_color = "error"
+
+    [widget.volume.actions]
+    right = "exec pavucontrol"
 
 [widget.workspaces]
 hide_when_empty = true
