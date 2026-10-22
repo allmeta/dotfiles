@@ -109,6 +109,8 @@ _yay() {
   if (( CURRENT == 2 )); then
     _describe 'action' '(-S:install -R:remove)'
   elif [[ $words[2] == -S ]]; then
+    # no selection (Esc) = no matches, so zsh retries once per matcher-list entry → fzf reopens
+    (( _matcher_num > 1 )) && return 1
     # every package (incl. nested like python3Packages.foo) in the pinned nixpkgs, cached to a file;
     # rebuilt (~3s) when the pin (registry.json) changes.
     local cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/nixpkgs-names"
@@ -201,6 +203,7 @@ export PATH="$PATH:/home/thomal/.dotnet/tools"
 # opencode
 export PATH=/home/thomal/.opencode/bin:$PATH
 
-# Claude Code: make AFK / question prompts wait up to 1 week (604800000 ms) instead of ~60s.
-# NOTE: not confirmed as a recognized Claude Code setting — may be a no-op.
-export CLAUDE_AFK_TIMEOUT_MS=604800000
+# Pager: same as git (less -FRX) for apt, man, systemctl, etc.
+export PAGER=less
+export LESS=FRX
+export SYSTEMD_LESS=FRX
