@@ -3,6 +3,12 @@ ratio = [1,2,3]
 linemode = "size"
 show_symlink = false
 
+# xdg-open only if a handler is registered, else nvim in this terminal (stops the browser fallback)
+[opener]
+open = [
+	{ run = '''t=$(xdg-mime query filetype %s1); if [ -n "$(xdg-mime query default "${t%%%%;*}")" ]; then setsid -f xdg-open %s1 >/dev/null 2>&1; else nvim %s1; fi''', block = true, desc = "Open" },
+]
+
 [preview]
 max_width = 1920
 max_height = 1080
