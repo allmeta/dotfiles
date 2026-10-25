@@ -20,6 +20,11 @@ run  = "cd ~/Downloads"
 desc = "Go to ~/Downloads"
 
 [[mgr.prepend_keymap]]
+on   = [ "g", "v" ]
+run  = "cd ~/Videos"
+desc = "Go to ~/Videos"
+
+[[mgr.prepend_keymap]]
 on   = [ "g", "/" ]
 run  = "cd /"
 desc = "Go to /"
@@ -28,6 +33,16 @@ desc = "Go to /"
 on   = [ "g", "t" ]
 run  = "cd ~/git"
 desc = "Go to ~/git"
+
+[[mgr.prepend_keymap]]
+on   = "z"
+run  = "plugin zoxide"
+desc = "Jump to a directory via zoxide"
+
+[[mgr.prepend_keymap]]
+on   = "Z"
+run  = "plugin fzf"
+desc = "Jump to a file/directory via fzf"
 
 [[mgr.prepend_keymap]]
 on  = "<C-n>"
