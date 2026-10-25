@@ -1,0 +1,25 @@
+{
+  "env": {
+    "CLAUDE_CODE_SHELL": "/usr/bin/bash",
+    "PLAYWRIGHT_MCP_CONFIG": "/home/meta/.config/playwright-mcp/config.json"
+  },
+  "model": "opus",
+  "enabledPlugins": {
+    "vercel@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "context7@anthropic-plugin-directory": true
+  },
+  "effortLevel": "medium",
+  "promptSuggestionEnabled": false,
+  "awaySummaryEnabled": false,
+  "tui": "fullscreen",
+  "theme": "dark-ansi",
+  "preferredNotifChannel": "notifications_disabled",
+  "switchModelsOnFlag": true,
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline.sh",
+    "padding": 0
+  }
+}
