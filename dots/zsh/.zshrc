@@ -163,6 +163,7 @@ alias open="xdg-open"
 alias vim=nvim
 alias c=claude
 alias p1='ping 1.1.1.1'
+alias feniks="~/feniks/opencode"
 
 # --- Key Bindings ---
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'

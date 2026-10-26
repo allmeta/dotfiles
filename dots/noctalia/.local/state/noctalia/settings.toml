@@ -268,6 +268,7 @@ mpv_options = "no-config loop"
 video_directory = "/home/thomal/git/qylock/themes/pixel-munchlax/pokemon"
 
 [plugin_settings."noctalia/screen_recorder"]
+copy_to_clipboard = true
 frame_rate = 30
 
 [plugins]
@@ -277,6 +278,7 @@ enabled = [ "noctalia/screen_recorder", "teagar/niri-workspace-preview", "noctal
 app_icon_color = "#FFFFFF"
 avatar_path = "/home/thomal/Pictures/thomal.jpg"
 clipboard_auto_paste = "off"
+font_family = "Noto Sans"
 polkit_agent = true
 
     [shell.animation]
@@ -406,6 +408,9 @@ type = "teagar/niri-workspace-preview:preview"
 
 [widget.recorder]
 type = "noctalia/screen_recorder:recorder"
+
+    [widget.recorder.actions]
+    middle = "settings-open-plugin noctalia/screen_recorder"
 
 [widget.tray]
 drawer = true
