@@ -82,6 +82,19 @@ window-rule {
   match app-id="org.pwmt.zathura"
   default-column-width { proportion 0.5; }
 }
+// PCSX2 reference runs (ps2-recomp-test/sly3/tools/run-pcsx2.sh), on the second monitor
+window-rule {
+  match app-id=r#"(?i)pcsx2"#
+  open-on-output "DP-2"
+  open-focused false
+}
+// Sly 3 recompiled runner (ps2-recomp-test/sly3)
+window-rule {
+  match title=r#"\(recompiled\)$"#
+  open-on-output "DP-2"
+  open-focused false
+  default-column-width { proportion 0.5; }
+}
 window-rule {
   match app-id="vimfox"
   open-on-output "eDP-1"
@@ -115,4 +128,10 @@ window-rule {
   match app-id="steam_app_*"
   open-fullscreen true
   open-focused true
+}
+
+// Steam friends list as a small popup instead of a tiled column
+window-rule {
+  match app-id=r#"^steam$"# title="^Friends List$"
+  open-floating true
 }
