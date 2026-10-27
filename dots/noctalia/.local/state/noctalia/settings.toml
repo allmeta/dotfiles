@@ -1,4 +1,4 @@
-config_version = 14
+config_version = 15
 
 [audio]
 enable_sounds = true
@@ -56,7 +56,6 @@ type = "power_profile"
 enabled = false
 
 [dock]
-monitors = [ "DP-1" ]
 
 [location]
 address = "Oslo, Norway"
