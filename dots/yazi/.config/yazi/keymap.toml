@@ -58,3 +58,18 @@ desc = "Toggle preview pane"
 on   = "<C-f>"
 run  = "plugin toggle-pane max-preview"
 desc = "Maximize preview pane"
+
+[[mgr.prepend_keymap]]
+on   = "w"
+run  = "quit"
+desc = "Quit and cd to current directory"
+
+[[mgr.prepend_keymap]]
+on   = "q"
+run  = "quit --no-cwd-file"
+desc = "Quit without cd"
+
+[[mgr.prepend_keymap]]
+on   = "T"
+run  = "tasks:show"
+desc = "Show task manager"
