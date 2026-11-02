@@ -221,10 +221,16 @@ G.on_mouse("MouseLeft", function()
   G.select_at(m.x, m.y)
   swayimg.mode = "viewer"
 end)
-G.on_mouse("ScrollUp", function() G.select("up") end)
-G.on_mouse("ScrollDown", function() G.select("down") end)
-G.on_mouse("Ctrl+ScrollUp", function() G.thumb_size = G.thumb_size + 20 end)
-G.on_mouse("Ctrl+ScrollDown", function() G.thumb_size = math.max(40, G.thumb_size - 20) end)
+-- 5.7+: scroll goes through on_scroll; vertical < 0 is up, > 0 is down
+G.on_scroll(function(kmods, _, vertical)
+  if not vertical or vertical == 0 then return end
+  if kmods == "Ctrl" then
+    if vertical < 0 then G.thumb_size = G.thumb_size + 20
+    else G.thumb_size = math.max(40, G.thumb_size - 20) end
+  else
+    G.select(vertical < 0 and "up" or "down")
+  end
+end)
 
 --------------------------------------------------------------------------------
 -- image mode
@@ -284,13 +290,10 @@ Vw.on_mouse("MouseLeft", function()
   if m.x < win.width / 2 then Vw.open("prev") else Vw.open("next") end
 end)
 Vw.on_mouse("MouseRight", function() swayimg.mode = "gallery" end)
-Vw.on_mouse("ScrollUp", function()
+Vw.on_scroll(function(_, _, vertical)
+  if not vertical or vertical == 0 then return end
   local m = swayimg.get_mouse_pos()
-  Vw.set_abs_scale(zoom_step(1), m.x, m.y)
-end)
-Vw.on_mouse("ScrollDown", function()
-  local m = swayimg.get_mouse_pos()
-  Vw.set_abs_scale(zoom_step(-1), m.x, m.y)
+  Vw.set_abs_scale(zoom_step(vertical < 0 and 1 or -1), m.x, m.y)
 end)
 
 --------------------------------------------------------------------------------
